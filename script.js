@@ -118,7 +118,7 @@ const translations = {
     con_tag:          'Contacto',
     con_title:        'Contáctanos',
     con_desc:         'Nuestro equipo de especialistas está listo para ayudarte a implementar DAG en tu operación ganadera.',
-    con_email:        'contacto@dag-ganado.com',
+    con_phone_label:  'Teléfono',
     con_phone:        '+52 (800) 326-4263',
     con_location:     'Monterrey, Nuevo León, México',
     form_name:        'Nombre Completo',
@@ -271,7 +271,7 @@ const translations = {
     con_tag:          'Contact',
     con_title:        'Get in Touch',
     con_desc:         'Our team of specialists is ready to help you implement DAG in your cattle operation.',
-    con_email:        'contact@dag-livestock.com',
+    con_phone_label:  'Phone',
     con_phone:        '+1 (800) DAG-HERD',
     con_location:     'Monterrey, Nuevo León, Mexico',
     form_name:        'Full Name',
@@ -310,7 +310,13 @@ const translations = {
 };
 
 /* ---------- State ---------- */
-let currentLang = localStorage.getItem('dag-lang') || 'es';
+function getStoredLang() {
+  try { return localStorage.getItem('dag-lang'); } catch (e) { return null; }
+}
+function setStoredLang(lang) {
+  try { localStorage.setItem('dag-lang', lang); } catch (e) { /* ignore */ }
+}
+let currentLang = getStoredLang() || 'es';
 
 /* ---------- Apply Translations ---------- */
 function applyLang(lang) {
@@ -336,7 +342,7 @@ function applyLang(lang) {
   });
   document.documentElement.lang = lang;
   currentLang = lang;
-  localStorage.setItem('dag-lang', lang);
+  setStoredLang(lang);
 }
 
 /* ---------- Navbar Scroll Effect ---------- */
@@ -383,7 +389,7 @@ function animateCounter(el) {
     const progress = Math.min(elapsed / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 3);
     const value = Math.round(target * ease * 10) / 10;
-    el.textContent = prefix + (Number.isInteger(target) ? Math.round(value) : value.toFixed(1)) + suffix;
+    el.textContent = prefix + (target % 1 === 0 ? Math.round(value) : value.toFixed(1)) + suffix;
     if (progress < 1) requestAnimationFrame(update);
   }
   requestAnimationFrame(update);
