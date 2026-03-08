@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAG – Detección Activa de Ganado | Active Livestock Detection</title>
+  <meta name="description" content="Sistema inteligente de monitoreo y rastreo bovino con GPS, IA y análisis predictivo. Smart livestock monitoring system with GPS, AI and predictive analytics." />
+  <meta name="theme-color" content="#1a7f4b" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="DAG – Detección Activa de Ganado" />
+  <meta property="og:description" content="Monitorea, localiza y gestiona tu hato ganadero en tiempo real con inteligencia artificial y GPS de precisión." />
+  <meta property="og:type" content="website" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐄</text></svg>" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="DAG Home">
+        <div class="logo-icon" aria-hidden="true">🐄</div>
+        DAG
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#features" data-i18n="nav_features">Características</a></li>
+        <li><a href="#how-it-works" data-i18n="nav_how">Cómo Funciona</a></li>
+        <li><a href="#technology" data-i18n="nav_technology">Tecnología</a></li>
+        <li><a href="#benefits" data-i18n="nav_benefits">Beneficios</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+      </ul>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <!-- Language switcher -->
+        <div class="lang-switcher" role="group" aria-label="Language selector">
+          <button class="lang-btn active" data-lang="es" aria-label="Español">ES</button>
+          <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        </div>
+        <a href="#contact" class="btn btn-primary" data-i18n="nav_demo">Ver Demo</a>
+      </div>
+
+      <!-- Hamburger -->
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <a href="#features" data-i18n="nav_features">Características</a>
+  <a href="#how-it-works" data-i18n="nav_how">Cómo Funciona</a>
+  <a href="#technology" data-i18n="nav_technology">Tecnología</a>
+  <a href="#benefits" data-i18n="nav_benefits">Beneficios</a>
+  <a href="#contact" data-i18n="nav_contact">Contacto</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" aria-label="Hero section">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Copy -->
+      <div class="hero-copy">
+        <div class="hero-badge" data-i18n="hero_badge">🐄 Sistema de Monitoreo Bovino</div>
+        <h1 data-i18n="hero_title">Detección <span>Activa</span> de Ganado Inteligente</h1>
+        <p class="hero-desc" data-i18n="hero_desc">
+          Monitorea, localiza y gestiona tu hato ganadero en tiempo real con inteligencia artificial, GPS de precisión y análisis predictivo de salud animal.
+        </p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-accent" data-i18n="hero_cta_primary">Solicitar Demo</a>
+          <a href="#features" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;" data-i18n="hero_cta_secondary">Ver Características</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong><span data-target="50000" data-suffix="+" aria-label="50000+">50,000+</span></strong>
+            <span data-i18n="hero_stat_head">Cabezas Monitoreadas</span>
+          </div>
+          <div class="hero-stat">
+            <strong><span data-target="98.4" data-suffix="%" aria-label="98.4%">98.4%</span></strong>
+            <span data-i18n="hero_stat_acc">Precisión Detección</span>
+          </div>
+          <div class="hero-stat">
+            <strong><span data-target="24" data-suffix="/7" aria-label="24/7">24/7</span></strong>
+            <span data-i18n="hero_stat_alert">Alertas en Tiempo Real</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual / Dashboard mockup -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="dashboard-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="mockup-title" data-i18n="mockup_title">DAG · Panel de Control</span>
+            <span></span>
+          </div>
+          <!-- Map -->
+          <div class="mockup-map">
+            <div class="map-grid"></div>
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+            <div class="map-pin"></div>
+            <div class="map-label" data-i18n="mockup_sat">🛰 GPS Activo</div>
+          </div>
+          <!-- Cards -->
+          <div class="mockup-cards">
+            <div class="mockup-card">
+              <div class="mockup-card-num">247</div>
+              <div class="mockup-card-lbl" data-i18n="mockup_animals">Animales</div>
+            </div>
+            <div class="mockup-card">
+              <div class="mockup-card-num" style="color:#27ae60">241</div>
+              <div class="mockup-card-lbl" data-i18n="mockup_healthy">Sanos</div>
+            </div>
+            <div class="mockup-card">
+              <div class="mockup-card-num" style="color:#f4a020">6</div>
+              <div class="mockup-card-lbl" data-i18n="mockup_alerts">Alertas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TRUSTED LOGOS
+     ============================================================ -->
+<div class="trusted">
+  <div class="container">
+    <div class="trusted-inner">
+      <span class="trusted-label" data-i18n="trusted_label">Adoptado por ganaderos líderes en</span>
+      <div class="trusted-logos">
+        <span class="trusted-logo">🇲🇽 Sonora</span>
+        <span class="trusted-logo">🇲🇽 Chihuahua</span>
+        <span class="trusted-logo">🇲🇽 Jalisco</span>
+        <span class="trusted-logo">🇲🇽 Veracruz</span>
+        <span class="trusted-logo">🇺🇸 Texas</span>
+        <span class="trusted-logo">🇺🇸 Colorado</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     FEATURES
+     ============================================================ -->
+<section class="features section" id="features">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="tag" data-i18n="features_tag">Características</div>
+      <h2 data-i18n="features_title">Todo lo que necesitas para gestionar tu ganado</h2>
+      <p data-i18n="features_desc">Nuestra plataforma combina las últimas tecnologías para ofrecerte control total sobre tu hato ganadero.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <!-- Feature 1 -->
+      <div class="feature-card featured reveal">
+        <div class="feature-icon">🛰</div>
+        <h3 data-i18n="feat1_title">Rastreo GPS en Tiempo Real</h3>
+        <p data-i18n="feat1_desc">Collares IoT con GPS de alta precisión ± 1 m. Visualiza la ubicación exacta de cada animal en el mapa interactivo.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">🤖</div>
+        <h3 data-i18n="feat2_title">Detección con IA</h3>
+        <p data-i18n="feat2_desc">Algoritmos de visión por computadora identifican automáticamente cada animal, detectan comportamientos inusuales y anomalías de salud.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">❤️</div>
+        <h3 data-i18n="feat3_title">Alertas de Salud</h3>
+        <p data-i18n="feat3_desc">Sensores biométricos monitorean temperatura, frecuencia cardíaca y actividad. Recibe alertas antes de que un problema se agrave.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">📍</div>
+        <h3 data-i18n="feat4_title">Geocercas Virtuales</h3>
+        <p data-i18n="feat4_desc">Define zonas de pastoreo y recibe notificaciones inmediatas cuando un animal abandona el área delimitada.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">📊</div>
+        <h3 data-i18n="feat5_title">Analítica Avanzada</h3>
+        <p data-i18n="feat5_desc">Dashboards con datos históricos, tendencias de peso, ciclos reproductivos y proyecciones de productividad por hato.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="feature-card reveal">
+        <div class="feature-icon">📱</div>
+        <h3 data-i18n="feat6_title">App Móvil</h3>
+        <p data-i18n="feat6_desc">Gestiona todo desde tu smartphone. Disponible para iOS y Android con modo offline para zonas sin cobertura.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+<section class="how-it-works section" id="how-it-works">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="tag" data-i18n="how_tag">Proceso</div>
+      <h2 data-i18n="how_title">Cómo Funciona DAG</h2>
+      <p data-i18n="how_desc">Implementación sencilla en 4 pasos para digitalizar completamente tu operación ganadera.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3 data-i18n="step1_title">Instalación de Collares</h3>
+        <p data-i18n="step1_desc">Colocamos los collares IoT en cada animal. El proceso toma solo minutos y no causa estrés al animal.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3 data-i18n="step2_title">Configuración de Sensores</h3>
+        <p data-i18n="step2_desc">Instalamos las cámaras de visión artificial y los nodos de comunicación LoRa en tu rancho.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3 data-i18n="step3_title">Activación de la Plataforma</h3>
+        <p data-i18n="step3_desc">Tu panel de control personalizado se activa y comienza a recibir datos en tiempo real desde el primer día.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h3 data-i18n="step4_title">Monitoreo Continuo</h3>
+        <p data-i18n="step4_desc">Recibe alertas, reportes automáticos y recomendaciones de gestión basadas en IA 24/7.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TECHNOLOGY
+     ============================================================ -->
+<section class="tech-specs section" id="technology">
+  <div class="container">
+    <div class="tech-inner">
+
+      <!-- Content -->
+      <div class="tech-content reveal">
+        <div class="section-header">
+          <div class="tag" data-i18n="tech_tag">Tecnología</div>
+          <h2 data-i18n="tech_title">Tecnología de Punta para tu Ganadería</h2>
+          <p data-i18n="tech_desc">Combinamos IoT, inteligencia artificial y comunicaciones de largo alcance para crear la solución más completa del mercado.</p>
+        </div>
+        <ul class="tech-list">
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech1">Collares GPS con batería de hasta 12 meses</p>
+          </li>
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech2">Redes LoRaWAN con alcance de hasta 15 km</p>
+          </li>
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech3">Modelos de IA entrenados con más de 500,000 imágenes bovinas</p>
+          </li>
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech4">Cifrado AES-256 en todas las comunicaciones</p>
+          </li>
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech5">Servidores en la nube con 99.9 % de disponibilidad</p>
+          </li>
+          <li class="tech-item">
+            <div class="tech-check" aria-hidden="true">✓</div>
+            <p data-i18n="tech6">Integración con sistemas ERP y de gestión ganadera</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Stats -->
+      <div class="tech-visual reveal">
+        <div class="stat-card">
+          <div class="stat-icon green" aria-hidden="true">⚡</div>
+          <div>
+            <div class="stat-num" data-i18n="stat1_num">&lt; 5s</div>
+            <div class="stat-lbl" data-i18n="stat1_lbl">Latencia promedio de datos</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow" aria-hidden="true">🎯</div>
+          <div>
+            <div class="stat-num" data-i18n="stat2_num">98.4%</div>
+            <div class="stat-lbl" data-i18n="stat2_lbl">Precisión de detección</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue" aria-hidden="true">📡</div>
+          <div>
+            <div class="stat-num" data-i18n="stat3_num">15 km</div>
+            <div class="stat-lbl" data-i18n="stat3_lbl">Cobertura por nodo LoRa</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red" aria-hidden="true">🔋</div>
+          <div>
+            <div class="stat-num" data-i18n="stat4_num">12 m</div>
+            <div class="stat-lbl" data-i18n="stat4_lbl">Duración de batería del collar</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BENEFITS
+     ============================================================ -->
+<section class="benefits section" id="benefits">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="tag" style="background:rgba(255,255,255,.15);color:#fff;" data-i18n="ben_tag">Beneficios</div>
+      <h2 style="color:#fff;" data-i18n="ben_title">Transforma tu Operación Ganadera</h2>
+      <p data-i18n="ben_desc">Ganaderos que adoptan DAG ven resultados medibles desde los primeros tres meses de operación.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">📉</div>
+        <h3 data-i18n="ben1_title">Reduce Pérdidas</h3>
+        <p data-i18n="ben1_desc">Detecta enfermedades en etapas tempranas y evita robo de ganado con alertas en tiempo real. Ahorra hasta 35 % en pérdidas.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">📈</div>
+        <h3 data-i18n="ben2_title">Mayor Productividad</h3>
+        <p data-i18n="ben2_desc">Optimiza el pastoreo, mejora la gestión reproductiva y aumenta la ganancia de peso promedio en un 18 %.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">🔍</div>
+        <h3 data-i18n="ben3_title">Decisiones Basadas en Datos</h3>
+        <p data-i18n="ben3_desc">Accede a reportes detallados e indicadores clave de desempeño para tomar decisiones estratégicas informadas.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">📋</div>
+        <h3 data-i18n="ben4_title">Trazabilidad Completa</h3>
+        <p data-i18n="ben4_desc">Cumple con normativas sanitarias y de exportación con el historial completo de cada animal desde nacimiento.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">⏱</div>
+        <h3 data-i18n="ben5_title">Ahorro de Tiempo</h3>
+        <p data-i18n="ben5_desc">Automatiza conteos, revisiones de salud y reportes. Ahorra más de 4 horas diarias de trabajo operativo.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon" aria-hidden="true">🚀</div>
+        <h3 data-i18n="ben6_title">Escalable y Flexible</h3>
+        <p data-i18n="ben6_desc">Desde 50 hasta 50,000 cabezas. Planes adaptados a cada tamaño de operación, con soporte especializado.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section class="testimonials section">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <div class="tag" data-i18n="test_tag">Testimonios</div>
+      <h2 data-i18n="test_title">Lo que Dicen Nuestros Clientes</h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="test1_text">
+          "DAG transformó completamente nuestra operación. Detectamos un brote de fiebre aftosa 72 horas antes gracias a las alertas de temperatura. Salvamos casi todo el hato."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">RG</div>
+          <div>
+            <div class="author-name" data-i18n="test1_name">Roberto Garza</div>
+            <div class="author-role" data-i18n="test1_role">Ganadero, Sonora · 1,200 cabezas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="test2_text">
+          "El rastreo GPS nos ayudó a recuperar 23 animales que habían cruzado la cerca durante una tormenta. Sin DAG, esos animales se habrían perdido."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">MF</div>
+          <div>
+            <div class="author-name" data-i18n="test2_name">María Fernández</div>
+            <div class="author-role" data-i18n="test2_role">Administradora, Jalisco · 650 cabezas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text" data-i18n="test3_text">
+          "Los reportes automáticos me ahorran horas de trabajo al mes. Ahora tengo datos precisos para presentar a mis socios y mejorar las decisiones de negocio."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar" aria-hidden="true">CM</div>
+          <div>
+            <div class="author-name" data-i18n="test3_name">Carlos Mendoza</div>
+            <div class="author-role" data-i18n="test3_role">Director Técnico, Chihuahua · 3,800 cabezas</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA BANNER
+     ============================================================ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2 data-i18n="cta_title">¿Listo para Digitalizar tu Ganadería?</h2>
+      <p data-i18n="cta_desc">Únete a los ganaderos que ya confían en DAG. Solicita una demostración personalizada sin costo.</p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn btn-accent" data-i18n="cta_btn1">Solicitar Demo Gratuita</a>
+        <a href="#contact" class="btn btn-white" data-i18n="cta_btn2">Hablar con un Experto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+
+      <!-- Info -->
+      <div class="contact-info reveal">
+        <div class="section-header">
+          <div class="tag" data-i18n="con_tag">Contacto</div>
+          <h2 data-i18n="con_title">Contáctanos</h2>
+          <p data-i18n="con_desc">Nuestro equipo de especialistas está listo para ayudarte a implementar DAG en tu operación ganadera.</p>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon" aria-hidden="true">✉</div>
+          <div>
+            <strong>Email</strong>
+            <p data-i18n="con_email">contacto@dag-ganado.com</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon" aria-hidden="true">📞</div>
+          <div>
+            <strong data-i18n="nav_contact">Contacto</strong>
+            <p data-i18n="con_phone">+52 (800) 326-4263</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon" aria-hidden="true">📍</div>
+          <div>
+            <strong>Ubicación</strong>
+            <p data-i18n="con_location">Monterrey, Nuevo León, México</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal">
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" data-i18n="form_name">Nombre Completo</label>
+              <input type="text" id="name" name="name" required
+                data-i18n-attr="placeholder:form_name" placeholder="Nombre Completo" />
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="form_email">Correo Electrónico</label>
+              <input type="email" id="email" name="email" required
+                data-i18n-attr="placeholder:form_email" placeholder="Correo Electrónico" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone" data-i18n="form_phone">Teléfono (opcional)</label>
+              <input type="tel" id="phone" name="phone"
+                data-i18n-attr="placeholder:form_phone" placeholder="Teléfono (opcional)" />
+            </div>
+            <div class="form-group">
+              <label for="herd" data-i18n="form_herd">Tamaño del Hato</label>
+              <select id="herd" name="herd">
+                <option value="" data-i18n="form_herd_opt0">Seleccionar...</option>
+                <option value="50-200" data-i18n="form_herd_opt1">50 – 200 cabezas</option>
+                <option value="201-500" data-i18n="form_herd_opt2">201 – 500 cabezas</option>
+                <option value="501-2000" data-i18n="form_herd_opt3">501 – 2,000 cabezas</option>
+                <option value="2000+" data-i18n="form_herd_opt4">Más de 2,000 cabezas</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message" data-i18n="form_message">Mensaje</label>
+            <textarea id="message" name="message" required
+              data-i18n-attr="placeholder:form_message" placeholder="Mensaje"></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-i18n="form_submit">Enviar Mensaje</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="DAG Home">
+          <div class="logo-icon" aria-hidden="true">🐄</div>
+          DAG
+        </a>
+        <p data-i18n="footer_desc">Sistema inteligente de monitoreo y rastreo bovino. Tecnología de punta para la ganadería moderna.</p>
+      </div>
+
+      <!-- Product -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_col1">Producto</h4>
+        <ul>
+          <li><a href="#features" data-i18n="footer_link_features">Características</a></li>
+          <li><a href="#how-it-works" data-i18n="footer_link_how">Cómo Funciona</a></li>
+          <li><a href="#" data-i18n="footer_link_pricing">Precios</a></li>
+          <li><a href="#" data-i18n="footer_link_integrations">Integraciones</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_col2">Empresa</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer_link_about">Nosotros</a></li>
+          <li><a href="#" data-i18n="footer_link_blog">Blog</a></li>
+          <li><a href="#" data-i18n="footer_link_careers">Empleos</a></li>
+          <li><a href="#" data-i18n="footer_link_press">Prensa</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="footer-col">
+        <h4 data-i18n="footer_col3">Recursos</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer_link_docs">Documentación</a></li>
+          <li><a href="#" data-i18n="footer_link_api">API Reference</a></li>
+          <li><a href="#contact" data-i18n="footer_link_support">Soporte</a></li>
+          <li><a href="#" data-i18n="footer_link_status">Estado del Sistema</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p data-i18n="footer_copy">© 2025 Detección Activa de Ganado S.A. de C.V. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="Twitter">𝕏</a>
+        <a href="#" class="footer-social" aria-label="LinkedIn">in</a>
+        <a href="#" class="footer-social" aria-label="YouTube">▶</a>
+      </div>
+      <div>
+        <a href="#" data-i18n="footer_privacy" style="font-size:.85rem;color:rgba(255,255,255,.4);margin-right:16px;">Privacidad</a>
+        <a href="#" data-i18n="footer_terms" style="font-size:.85rem;color:rgba(255,255,255,.4);">Términos</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
