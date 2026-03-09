@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" fill="#121212" rx="16"/>
+  <rect x="2" y="2" width="896" height="516" fill="none" stroke="#6CACE4" stroke-width="2.5" stroke-dasharray="14,7" rx="14"/>
+  <!-- Cattle silhouettes -->
+  <g opacity="0.85">
+    <!-- Cow 1 -->
+    <ellipse cx="180" cy="240" rx="55" ry="34" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <circle  cx="148" cy="232" r="22" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <!-- Cow 2 -->
+    <ellipse cx="340" cy="260" rx="50" ry="30" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <circle  cx="312" cy="254" r="19" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <!-- Cow 3 -->
+    <ellipse cx="500" cy="230" rx="52" ry="32" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <circle  cx="470" cy="222" r="20" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <!-- Cow 4 -->
+    <ellipse cx="660" cy="250" rx="48" ry="30" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <circle  cx="635" cy="244" r="18" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <!-- Cow 5 -->
+    <ellipse cx="790" cy="235" rx="50" ry="31" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+    <circle  cx="763" cy="228" r="19" fill="#6CACE4" opacity="0.2" stroke="#6CACE4" stroke-width="1.5"/>
+  </g>
+  <text x="450" y="340" fill="#6CACE4" font-family="Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">FOTO A REEMPLAZAR</text>
+  <text x="450" y="368" fill="#A3A3A3" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">Tropilla de hacienda bovina en lote — campo abierto, Argentina</text>
+  <text x="450" y="392" fill="#6B6B6B" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">Recomendado: 900×520 px, formato JPG o PNG — Foto horizontal, buena iluminación</text>
+  <text x="450" y="412" fill="#6B6B6B" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">Nombre de archivo: foto-hacienda-lote.jpg</text>
+</svg>

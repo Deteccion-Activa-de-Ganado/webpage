@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tecnología — DAG Detección Activa de Ganado</title>
+  <meta name="description" content="Conocé el stack tecnológico de DAG: YOLOv8, ByteTrack, FastAPI, Next.js, Electron, Go, PostgreSQL, Docker y RabbitMQ trabajando juntos para la gestión ganadera." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: hsl(0,0%,3.9%); --bg-card: hsl(0,0%,7%); --bg-card2: hsl(0,0%,10%); --bg-hover: hsl(0,0%,14.9%);
+      --border: hsl(0,0%,14.9%); --border-2: hsl(0,0%,22%);
+      --brand: rgb(108,172,228); --brand-dk: rgb(86,137,182); --brand-glow: rgba(108,172,228,.18); --brand-dim: rgba(108,172,228,.12); --brand-rim: rgba(108,172,228,.28);
+      --text: hsl(0,0%,98%); --muted: hsl(0,0%,63.9%); --muted2: hsl(0,0%,42%);
+      --destructive: hsl(0,84.2%,60.2%); --amber: hsl(43,74%,66%);
+      --radius: 8px; --radius-lg: 14px; --radius-xl: 20px;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: Arial,Helvetica,sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: 100px; font-size: .72rem; font-weight: 700; letter-spacing: .07em; padding: 4px 14px; text-transform: uppercase; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer; font-family: Arial,Helvetica,sans-serif; font-weight: 700; border-radius: var(--radius); text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .btn-primary { background: var(--brand); color: hsl(210,50%,10%); padding: 13px 28px; font-size: .95rem; box-shadow: 0 0 28px rgba(108,172,228,.3); }
+    .btn-primary:hover { background: var(--brand-dk); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-2); padding: 13px 28px; font-size: .95rem; }
+    .btn-outline:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+    .section-title { font-size: clamp(1.9rem,3.8vw,2.7rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+    .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
+    .hl { color: var(--brand); }
+    .glow { position: absolute; border-radius: 50%; filter: blur(130px); background: var(--brand-glow); pointer-events: none; }
+    .fi { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+    .fi.v { opacity: 1; transform: none; }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 0; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: rgba(10,10,10,.85); border-bottom: 1px solid var(--border); transition: padding .2s; }
+    nav.sc { padding: 10px 0; }
+    .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .nav-logo-icon { width: 34px; height: 34px; border-radius: var(--radius); background: var(--brand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-logo-text { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.03em; }
+    .nav-logo-text em { color: var(--brand); font-style: normal; }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 600; padding: 6px 13px; border-radius: var(--radius); transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--text); background: var(--bg-hover); }
+    .nav-links a.active { color: var(--brand); background: var(--bg-hover); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .lang-toggle { display: flex; background: var(--bg-card); border: 1px solid var(--border-2); border-radius: var(--radius); overflow: hidden; }
+    .lang-btn { padding: 7px 13px; border: none; background: transparent; color: var(--muted); font-size: .8rem; font-weight: 700; cursor: pointer; font-family: Arial,Helvetica,sans-serif; transition: all .2s; }
+    .lang-btn.on { background: var(--brand); color: hsl(210,50%,10%); }
+    .nav-cta { background: var(--brand); color: hsl(210,50%,10%); border: none; font-weight: 700; padding: 8px 20px; border-radius: var(--radius); cursor: pointer; font-family: Arial,Helvetica,sans-serif; font-size: .88rem; transition: background .2s; text-decoration: none; }
+    .nav-cta:hover { background: var(--brand-dk); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+    .mob-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,.97); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { color: var(--text); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
+    .mob-menu .close-btn { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; }
+    /* BREADCRUMB */
+    .breadcrumb { padding: 100px 0 0; }
+    .bc-in { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted2); }
+    .bc-in a { color: var(--muted); text-decoration: none; } .bc-in a:hover { color: var(--brand); }
+    .bc-in .sep { opacity: .5; }
+    /* HERO */
+    .page-hero { padding: 32px 0 80px; position: relative; overflow: hidden; }
+    .ph-g { width: 500px; height: 500px; top: -150px; right: -100px; opacity: .4; }
+    .ph-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; max-width: 780px; }
+    .page-hero-title { font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 900; line-height: 1.1; letter-spacing: -.03em; }
+    .page-hero-sub { color: var(--muted); font-size: 1.1rem; line-height: 1.78; max-width: 580px; }
+    /* SECTION */
+    .section { padding: 80px 0; }
+    .section.alt { background: var(--bg-card); }
+    .sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 52px; }
+    .sec-head.c { align-items: center; text-align: center; }
+    .sec-head.c .section-sub { margin: 0 auto; }
+    /* MICROSERVICE */
+    .ms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .ms-card { background: var(--bg-card2); border: 1px solid var(--border-2); border-radius: var(--radius-xl); padding: 28px; display: flex; flex-direction: column; gap: 14px; transition: border-color .2s, transform .2s; }
+    .ms-card:hover { border-color: var(--brand-rim); transform: translateY(-3px); }
+    .ms-card.ia { border-color: rgba(239,68,68,.3); }
+    .ms-card.ia:hover { border-color: var(--destructive); }
+    .ms-header { display: flex; align-items: flex-start; gap: 14px; }
+    .ms-icon { width: 48px; height: 48px; border-radius: var(--radius-lg); background: var(--brand-dim); border: 1px solid var(--brand-rim); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+    .ms-card.ia .ms-icon { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.25); }
+    .ms-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .ms-stack { font-size: .74rem; color: var(--muted2); }
+    .ms-desc { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+    .ms-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ms-tag { display: inline-block; background: var(--bg-card); border: 1px solid var(--border); color: var(--muted); border-radius: var(--radius); padding: 3px 10px; font-size: .72rem; font-weight: 600; }
+    /* TECH TABLE */
+    .tech-table { width: 100%; border-collapse: collapse; }
+    .tech-table th, .tech-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .tech-table th { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted2); font-weight: 700; }
+    .tech-table td:first-child { font-weight: 700; color: var(--brand); }
+    .tech-table td:nth-child(2) { color: var(--muted2); font-size: .8rem; }
+    .tech-table td:nth-child(3) { color: var(--muted); }
+    /* WHY CARD */
+    .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .why-card { background: var(--bg-card2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; }
+    .why-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+    /* CTA */
+    #cta { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-g { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .5; }
+    .cta-in { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+    /* FOOTER */
+    footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 56px 0 38px; }
+    .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
+    .foot-brand { display: flex; flex-direction: column; gap: 14px; }
+    .foot-brand p { color: var(--muted); font-size: .85rem; line-height: 1.7; max-width: 270px; }
+    .foot-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: var(--radius); padding: 4px 10px; font-size: .74rem; font-weight: 700; }
+    .foot-col h5 { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted2); font-weight: 700; margin-bottom: 14px; }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .foot-col a { color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .foot-col a:hover { color: var(--brand); }
+    .foot-btm { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .foot-copy { color: var(--muted2); font-size: .8rem; }
+    @media(max-width:1024px){ .foot-grid { grid-template-columns: 1fr 1fr; } .why-grid { grid-template-columns: 1fr; } }
+    @media(max-width:768px){ .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .ms-grid { grid-template-columns: 1fr; } .foot-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div class="mob-menu" id="mobMenu">
+  <button class="close-btn" onclick="closeMob()">✕</button>
+  <a href="index.html" onclick="closeMob()">Inicio</a>
+  <a href="caracteristicas.html" onclick="closeMob()">Características</a>
+  <a href="como-funciona.html" onclick="closeMob()">Cómo funciona</a>
+  <a href="dashboard.html" onclick="closeMob()">Dashboard</a>
+  <a href="tecnologia.html" onclick="closeMob()">Tecnología</a>
+  <a href="index.html#cta" class="btn btn-primary">Conocé más</a>
+</div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon"><img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/></div>
+        <span class="nav-logo-text">D<em>AG</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
+        <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+        <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
+        <li><a href="tecnologia.html" class="active" data-es="Tecnología" data-en="Technology">Tecnología</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn on" id="btnES" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="index.html#cta" class="nav-cta" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
+        <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="container">
+    <div class="bc-in fi">
+      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+      <span class="sep">›</span>
+      <span data-es="Tecnología" data-en="Technology">Tecnología</span>
+    </div>
+  </div>
+</div>
+
+<section class="page-hero">
+  <div class="glow ph-g"></div>
+  <div class="container">
+    <div class="ph-inner fi">
+      <span class="tag" data-es="Arquitectura de producción" data-en="Production architecture">Arquitectura de producción</span>
+      <h1 class="page-hero-title">
+        <span data-es="Tecnología diseñada" data-en="Technology designed">Tecnología diseñada</span><br/>
+        <span class="hl" data-es="para escalar con tu campo" data-en="to scale with your property">para escalar con tu campo</span>
+      </h1>
+      <p class="page-hero-sub"
+        data-es="DAG está construido sobre una arquitectura de microservicios desacoplados, comunicados por mensajería asíncrona. Cada componente puede escalar de forma independiente según la carga. Acá explicamos cada pieza y por qué la elegimos."
+        data-en="DAG is built on a decoupled microservices architecture connected by asynchronous messaging. Each component can scale independently according to load. Here we explain each piece and why we chose it.">
+        DAG está construido sobre microservicios desacoplados comunicados por mensajería asíncrona. Cada componente escala de forma independiente. Acá explicamos cada pieza y por qué la elegimos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIAGRAMA ══════════════════════════════════ -->
+<section class="section" id="arquitectura">
+  <div class="container">
+    <div class="sec-head c fi">
+      <span class="tag" data-es="Diagrama de arquitectura" data-en="Architecture diagram">Diagrama de arquitectura</span>
+      <h2 class="section-title" data-es="Cinco microservicios, un sistema" data-en="Five microservices, one system">Cinco microservicios, un sistema</h2>
+      <p class="section-sub"
+        data-es="La arquitectura separa responsabilidades: cada servicio tiene una función clara y se comunica con los demás a través de una cola de mensajes (RabbitMQ) o vía REST para las operaciones sincrónicas."
+        data-en="The architecture separates responsibilities: each service has a clear function and communicates with others through a message queue (RabbitMQ) or via REST for synchronous operations.">
+        Cada servicio tiene una función clara y se comunica a través de RabbitMQ (asíncrono) o REST (sincrónico).
+      </p>
+    </div>
+    <div class="fi" style="text-align:center;margin-bottom:52px;">
+      <div style="border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--border-2);box-shadow:0 20px 50px rgba(0,0,0,.4);max-width:900px;margin:0 auto;background:var(--bg-card2);">
+        <img src="img/diagrama-arquitectura.svg" alt="Diagrama de arquitectura DAG — 5 microservicios con RabbitMQ" style="width:100%;display:block;"/>
+      </div>
+    </div>
+    <div class="ms-grid fi">
+      <!-- Video Processing Service -->
+      <div class="ms-card ia">
+        <div class="ms-header">
+          <div class="ms-icon">🧠</div>
+          <div>
+            <div class="ms-title" data-es="Video Processing Service" data-en="Video Processing Service">Video Processing Service</div>
+            <div class="ms-stack">Python 3.11 · FastAPI · YOLOv8 · ByteTrack · CUDA</div>
+          </div>
+        </div>
+        <p class="ms-desc"
+          data-es="Es el núcleo de inteligencia artificial de DAG. Recibe el video procesable desde la cola RabbitMQ, ejecuta el modelo YOLOv8-seg para detectar y segmentar bovinos fotograma a fotograma, aplica ByteTrack para asignar IDs únicos y confirmar animales con 15 cuadros consecutivos, calcula el GSD a partir de los metadatos del vuelo, estima el área de cada silueta y deriva el peso esperado, aplica z-score para clasificar condición corporal y genera el video anotado y el informe PDF."
+          data-en="The AI core of DAG. Receives the processable video from the RabbitMQ queue, runs the YOLOv8-seg model to detect and segment cattle frame by frame, applies ByteTrack to assign unique IDs and confirm animals with 15 consecutive frames, calculates GSD from flight metadata, estimates each silhouette's area and derives expected weight, applies z-score for body condition classification, and generates the annotated video and PDF report.">
+          El núcleo de IA. Recibe el video por RabbitMQ, ejecuta YOLOv8-seg + ByteTrack, calcula GSD, estima peso, clasifica condición corporal y genera el PDF y video anotado.
+        </p>
+        <div class="ms-tags">
+          <span class="ms-tag">YOLOv8-seg</span>
+          <span class="ms-tag">ByteTrack</span>
+          <span class="ms-tag">FastAPI</span>
+          <span class="ms-tag">ReportLab</span>
+          <span class="ms-tag">OpenCV</span>
+        </div>
+      </div>
+      <!-- Video Service -->
+      <div class="ms-card">
+        <div class="ms-header">
+          <div class="ms-icon">🎬</div>
+          <div>
+            <div class="ms-title">Video Service</div>
+            <div class="ms-stack">Go 1.22 · Gin · PostgreSQL · S3-compatible storage</div>
+          </div>
+        </div>
+        <p class="ms-desc"
+          data-es="Gestiona la recepción, almacenamiento y entrega de los videos. Cuando la app de escritorio o la web sube un video, este servicio lo recibe mediante streaming HTTP chunked para evitar cargar el video entero en memoria, lo almacena en el objeto de storage, y publica un mensaje en RabbitMQ para que el Video Processing Service lo procese. También sirve las URLs de descarga del video anotado."
+          data-en="Manages video reception, storage, and delivery. When the desktop or web app uploads a video, this service receives it via chunked HTTP streaming to avoid loading the whole video into memory, stores it in the object storage, and publishes a message to RabbitMQ for the Video Processing Service. Also serves download URLs for the annotated video.">
+          Recibe el video por HTTP chunked streaming, lo almacena, y publica en RabbitMQ para disparar el procesamiento. También sirve las descargas del video anotado.
+        </p>
+        <div class="ms-tags">
+          <span class="ms-tag">Go/Gin</span>
+          <span class="ms-tag">RabbitMQ</span>
+          <span class="ms-tag">S3 storage</span>
+          <span class="ms-tag">PostgreSQL</span>
+        </div>
+      </div>
+      <!-- Metrics Service -->
+      <div class="ms-card">
+        <div class="ms-header">
+          <div class="ms-icon">📊</div>
+          <div>
+            <div class="ms-title">Metrics Service</div>
+            <div class="ms-stack">Node.js · TypeScript · Prisma · PostgreSQL</div>
+          </div>
+        </div>
+        <p class="ms-desc"
+          data-es="Recibe los resultados del procesamiento desde RabbitMQ (conteo, pesos, condición corporal, alertas) y los persiste en la base de datos relacional. Expone una API REST que consume el frontend para poblar el dashboard con los datos históricos y actuales de cada vuelo."
+          data-en="Receives processing results from RabbitMQ (count, weights, body condition, alerts) and persists them in the relational database. Exposes a REST API consumed by the frontend to populate the dashboard with historical and current data for each flight.">
+          Persiste los resultados del procesamiento IA. Expone la API REST que alimenta el dashboard con datos históricos y actuales de cada vuelo.
+        </p>
+        <div class="ms-tags">
+          <span class="ms-tag">TypeScript</span>
+          <span class="ms-tag">Prisma ORM</span>
+          <span class="ms-tag">PostgreSQL</span>
+          <span class="ms-tag">RabbitMQ</span>
+        </div>
+      </div>
+      <!-- User Service -->
+      <div class="ms-card">
+        <div class="ms-header">
+          <div class="ms-icon">👤</div>
+          <div>
+            <div class="ms-title">User Service</div>
+            <div class="ms-stack">Node.js · TypeScript · Supabase Auth · PostgreSQL</div>
+          </div>
+        </div>
+        <p class="ms-desc"
+          data-es="Gestiona la autenticación, autorización y los datos de usuarios. Utiliza Supabase como capa de autenticación (email/password con tokens JWT) y mantiene los datos de establecimientos, lotes y permisos por usuario en una base de datos propia."
+          data-en="Manages authentication, authorization, and user data. Uses Supabase as the authentication layer (email/password with JWT tokens) and maintains property, paddock, and user permission data in its own database.">
+          Autenticación y autorización. Supabase Auth para login con JWT. Mantiene establecimientos, lotes y permisos por usuario.
+        </p>
+        <div class="ms-tags">
+          <span class="ms-tag">Supabase Auth</span>
+          <span class="ms-tag">JWT</span>
+          <span class="ms-tag">TypeScript</span>
+          <span class="ms-tag">Prisma ORM</span>
+        </div>
+      </div>
+      <!-- Desktop UI -->
+      <div class="ms-card">
+        <div class="ms-header">
+          <div class="ms-icon">🖥️</div>
+          <div>
+            <div class="ms-title">Desktop UI</div>
+            <div class="ms-stack">Next.js 15 · Electron · TypeScript · shadcn/ui · Tailwind CSS</div>
+          </div>
+        </div>
+        <p class="ms-desc"
+          data-es="La interfaz de usuario final, que corre tanto como app de escritorio nativa (Electron envuelve el bundle de Next.js) como en el navegador web. Consume las APIs REST de los microservicios, muestra el dashboard, permite subir videos, reproducir el video anotado, descargar el PDF y gestionar lotes y alertas."
+          data-en="The final user interface, running as both a native desktop app (Electron wraps the Next.js bundle) and in the browser. Consumes microservice REST APIs, shows the dashboard, allows video upload, annotated video playback, PDF download, and paddock and alert management.">
+          Interfaz que corre como app de escritorio (Electron) o en el navegador (Next.js). Consume los microservicios y ofrece todo el dashboard al usuario.
+        </p>
+        <div class="ms-tags">
+          <span class="ms-tag">Next.js 15</span>
+          <span class="ms-tag">Electron</span>
+          <span class="ms-tag">shadcn/ui</span>
+          <span class="ms-tag">Tailwind CSS</span>
+          <span class="ms-tag">TypeScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TABLA DE TECNOLOGÍAS ══════════════════════ -->
+<section class="section alt" id="stack">
+  <div class="container">
+    <div class="sec-head fi">
+      <span class="tag" data-es="Stack completo" data-en="Full stack">Stack completo</span>
+      <h2 class="section-title" data-es="Cada herramienta y su función" data-en="Each tool and its function">Cada herramienta y su función</h2>
+    </div>
+    <div class="fi" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;">
+      <table class="tech-table">
+        <thead><tr>
+          <th data-es="Tecnología" data-en="Technology">Tecnología</th>
+          <th data-es="Categoría" data-en="Category">Categoría</th>
+          <th data-es="Función en DAG" data-en="Function in DAG">Función en DAG</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>YOLOv8-seg</td><td data-es="IA / Visión computacional" data-en="AI / Computer vision">IA / Visión computacional</td><td data-es="Detección y segmentación de bovinos en cada fotograma del video. Genera la máscara de silueta para estimar área." data-en="Detection and segmentation of cattle in each video frame. Generates silhouette mask to estimate area.">Detección y segmentación de bovinos por fotograma. Genera la máscara de silueta.</td></tr>
+          <tr><td>ByteTrack</td><td data-es="Tracking" data-en="Tracking">Tracking</td><td data-es="Asigna un ID único a cada animal detectado y lo rastrea de fotograma en fotograma para evitar conteos duplicados." data-en="Assigns a unique ID to each detected animal and tracks it frame by frame to avoid duplicate counts.">Asigna ID único y rastrea cada animal entre fotogramas. Confirma con 15 cuadros.</td></tr>
+          <tr><td>Python 3.11</td><td data-es="Backend / IA" data-en="Backend / AI">Backend / IA</td><td data-es="Lenguaje del Video Processing Service. Ecosistema maduro para deep learning (PyTorch, OpenCV, NumPy)." data-en="Video Processing Service language. Mature ecosystem for deep learning (PyTorch, OpenCV, NumPy).">Lenguaje del servicio de procesamiento IA. Ecosistema maduro para deep learning.</td></tr>
+          <tr><td>FastAPI</td><td data-es="Framework Python" data-en="Python framework">Framework Python</td><td data-es="Framework web del Video Processing Service. Alta performance para operaciones I/O-bound, documentación OpenAPI automática." data-en="Web framework for the Video Processing Service. High performance for I/O-bound operations, automatic OpenAPI documentation.">Framework del servicio IA. Alta performance async, OpenAPI automático.</td></tr>
+          <tr><td>Go 1.22 / Gin</td><td data-es="Backend" data-en="Backend">Backend</td><td data-es="Lenguaje y framework del Video Service. Excelente para manejo eficiente de archivos grandes y alta concurrencia con goroutines." data-en="Language and framework for the Video Service. Excellent for efficient large file handling and high concurrency with goroutines.">Video Service. Eficiente para archivos grandes y alta concurrencia con goroutines.</td></tr>
+          <tr><td>Node.js / TypeScript</td><td data-es="Backend" data-en="Backend">Backend</td><td data-es="Lenguaje y runtime de Metrics Service y User Service. TypeScript aporta tipado estático que reduce errores en APIs críticas." data-en="Language and runtime for Metrics Service and User Service. TypeScript adds static typing that reduces errors in critical APIs.">Metrics y User Service. TypeScript aporta tipado estático en las APIs críticas.</td></tr>
+          <tr><td>Next.js 15</td><td data-es="Frontend" data-en="Frontend">Frontend</td><td data-es="Framework del Dashboard. Server Components para SSR, App Router para navegación, integración directa con Electron." data-en="Dashboard framework. Server Components for SSR, App Router for navigation, direct Electron integration.">Dashboard. Server Components, App Router, integración directa con Electron.</td></tr>
+          <tr><td>Electron</td><td data-es="App de escritorio" data-en="Desktop app">App de escritorio</td><td data-es="Empaqueta la app Next.js como ejecutable nativo para Windows, macOS y Linux sin reescribir la UI." data-en="Packages the Next.js app as a native executable for Windows, macOS, and Linux without rewriting the UI.">Empaqueta Next.js como ejecutable nativo multiplataforma.</td></tr>
+          <tr><td>RabbitMQ</td><td data-es="Message broker" data-en="Message broker">Message broker</td><td data-es="Bus de mensajería que desacopla el Video Service del Video Processing Service. El procesamiento es asíncrono: el video se recibe y se encola, y el procesamiento corre cuando los recursos están disponibles." data-en="Message broker that decouples the Video Service from the Video Processing Service. Processing is asynchronous: the video is received and queued, and processing runs when resources are available.">Desacopla el Video Service del Processing. El procesamiento es asíncrono y puede escalar independientemente.</td></tr>
+          <tr><td>PostgreSQL</td><td data-es="Base de datos" data-en="Database">Base de datos</td><td data-es="Base de datos relacional para todos los servicios. Almacena métricas, historial de vuelos, usuarios, lotes y alertas." data-en="Relational database for all services. Stores metrics, flight history, users, paddocks, and alerts.">BD relacional de todos los servicios: métricas, historial de vuelos, usuarios, lotes, alertas.</td></tr>
+          <tr><td>Prisma ORM</td><td data-es="ORM" data-en="ORM">ORM</td><td data-es="Capa de acceso a datos tipada para los servicios Node.js. Migraciones automáticas y schema-first development." data-en="Typed data access layer for Node.js services. Automatic migrations and schema-first development.">ORM tipado para Node.js. Migraciones automáticas, schema-first.</td></tr>
+          <tr><td>Supabase</td><td data-es="Auth / BaaS" data-en="Auth / BaaS">Auth / BaaS</td><td data-es="Capa de autenticación del User Service. Maneja registro, login con email/password, reset de contraseña y emisión de JWT." data-en="Authentication layer for the User Service. Handles registration, email/password login, password reset, and JWT issuance.">Autenticación: registro, login, reset de contraseña y emisión de JWT.</td></tr>
+          <tr><td>Docker</td><td data-es="Infraestructura" data-en="Infrastructure">Infraestructura</td><td data-es="Cada microservicio se corre en su propio contenedor Docker. docker-compose orquesta el entorno de desarrollo local." data-en="Each microservice runs in its own Docker container. docker-compose orchestrates the local development environment.">Cada microservicio corre en su contenedor. docker-compose para entorno local.</td></tr>
+          <tr><td>shadcn/ui</td><td data-es="Componentes UI" data-en="UI components">Componentes UI</td><td data-es="Librería de componentes copiables basados en Radix UI y Tailwind CSS que usa el Dashboard." data-en="Copyable component library based on Radix UI and Tailwind CSS used by the Dashboard.">Componentes del Dashboard. Basados en Radix UI + Tailwind CSS.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ POR QUÉ CADA TECNOLOGÍA ═══════════════════ -->
+<section class="section" id="decisiones">
+  <div class="container">
+    <div class="sec-head fi">
+      <span class="tag" data-es="Decisiones de diseño" data-en="Design decisions">Decisiones de diseño</span>
+      <h2 class="section-title" data-es="Por qué elegimos cada pieza" data-en="Why we chose each piece">Por qué elegimos cada pieza</h2>
+      <p class="section-sub"
+        data-es="Las decisiones tecnológicas no son caprichosas. Acá explicamos la lógica detrás de cada elección."
+        data-en="Technology decisions aren't arbitrary. Here we explain the logic behind each choice.">
+        Cada elección tiene una razón. No usamos tecnología de moda sin justificación.
+      </p>
+    </div>
+    <div class="why-grid fi">
+      <div class="why-card">
+        <h4 data-es="¿Por qué YOLOv8 y no un modelo custom?" data-en="Why YOLOv8 and not a custom model?">¿Por qué YOLOv8 y no un modelo custom?</h4>
+        <p data-es="YOLOv8 es el estado del arte en detección en tiempo real. La variante -seg agrega segmentación de instancias (máscaras por animal) sin sacrificar velocidad. Fine-tuning sobre nuestro dataset de bovinos argentinos fue suficiente para lograr alta precisión, sin el costo de entrenar desde cero." data-en="YOLOv8 is state of the art for real-time detection. The -seg variant adds instance segmentation (per-animal masks) without sacrificing speed. Fine-tuning on our Argentine cattle dataset was sufficient for high accuracy, without the cost of training from scratch.">YOLOv8 es el estado del arte en detección real-time. La variante -seg agrega máscaras por animal sin sacrificar velocidad. El fine-tuning sobre nuestro dataset de bovinos fue suficiente, sin el costo de entrenar desde cero.</p>
+      </div>
+      <div class="why-card">
+        <h4 data-es="¿Por qué Go para el Video Service?" data-en="Why Go for the Video Service?">¿Por qué Go para el Video Service?</h4>
+        <p data-es="Subir videos de varios gigabytes requiere streaming eficiente con bajo consumo de memoria. Go es bien conocido por su excelente manejo de goroutines y por ser muy eficiente en operaciones de I/O intensivo. Python o Node.js serían sub-óptimos para este uso específico." data-en="Uploading multi-gigabyte videos requires efficient streaming with low memory consumption. Go is well known for excellent goroutine handling and efficiency in I/O-intensive operations. Python or Node.js would be suboptimal for this specific use case.">Subir videos de varios GB requiere streaming eficiente con bajo consumo de memoria. Go es excelente para I/O intensivo con goroutines. Python o Node.js serían subóptimos para este caso.</p>
+      </div>
+      <div class="why-card">
+        <h4 data-es="¿Por qué RabbitMQ y no llamadas directas entre servicios?" data-en="Why RabbitMQ instead of direct service calls?">¿Por qué RabbitMQ y no llamadas directas?</h4>
+        <p data-es="El procesamiento IA es el cuello de botella: puede tardar minutos. Si el Video Service llamara directamente al Processing Service, la conexión HTTP quedaría abierta todo ese tiempo y el cliente vería un timeout. RabbitMQ desacopla la operación: el video se encola y el procesamiento ocurre cuando hay recursos disponibles, sin bloquear al usuario." data-en="AI processing is the bottleneck: it can take minutes. If the Video Service called the Processing Service directly, the HTTP connection would stay open the whole time and the client would see a timeout. RabbitMQ decouples the operation: the video is queued and processing happens when resources are available, without blocking the user.">El procesamiento IA tarda minutos. Una llamada HTTP directa daría timeout. RabbitMQ desacopla: el video se encola y se procesa cuando hay recursos, sin bloquear al usuario.</p>
+      </div>
+      <div class="why-card">
+        <h4 data-es="¿Por qué Electron para la app de escritorio?" data-en="Why Electron for the desktop app?">¿Por qué Electron para la app de escritorio?</h4>
+        <p data-es="El dashboard ya estaba desarrollado como app web en Next.js. Electron permite empaquetar esa misma interfaz como ejecutable nativo para Windows, macOS y Linux sin reescribir el frontend. La alternativa (Tauri o apps nativas) hubiera multiplicado el trabajo de UI por tres plataformas." data-en="The dashboard was already developed as a Next.js web app. Electron packages that same interface as a native executable for Windows, macOS, and Linux without rewriting the frontend. The alternative (Tauri or native apps) would have multiplied UI work across three platforms.">El dashboard ya estaba en Next.js. Electron empaqueta la misma UI como ejecutable nativo sin reescribirla para tres plataformas. La alternativa hubiera triplicado el trabajo.</p>
+      </div>
+      <div class="why-card">
+        <h4 data-es="¿Por qué z-score para clasificar condición corporal?" data-en="Why z-score for body condition classification?">¿Por qué z-score para condición corporal?</h4>
+        <p data-es="La condición corporal es relativa al rodeo en cuestión. Un animal que pesa 300 kg puede ser normal en un rodeo de Angus liviano o bajo peso en uno de Hereford adulto. Usar z-score sobre la densidad corporal de la tropa hace que la clasificación sea siempre relativa al promedio del lote en ese vuelo, no a un valor absoluto externo." data-en="Body condition is relative to the herd in question. An animal weighing 300 kg may be normal in a light Angus herd or underweight in an adult Hereford herd. Using z-score on the herd's body density makes classification always relative to the paddock's average for that flight, not an external absolute value.">La condición corporal es relativa al rodeo. 300 kg puede ser normal o bajo según la raza y categoría. El z-score sobre densidad corporal clasifica siempre relativo al promedio del lote, no a un valor absoluto externo.</p>
+      </div>
+      <div class="why-card">
+        <h4 data-es="¿Por qué GSD para estimar peso sin balanza?" data-en="Why GSD to estimate weight without a scale?">¿Por qué GSD para estimar peso sin balanza?</h4>
+        <p data-es="El GSD (Ground Sampling Distance) convierte píxeles en metros reales según la altura de vuelo y los parámetros de la cámara. Con el área de la silueta de cada animal en metros cuadrados se puede aplicar un modelo de regresión calibrado con datos de bovinos argentinos para estimar la masa corporal con precisión razonable, sin ningún contacto con el animal." data-en="GSD (Ground Sampling Distance) converts pixels to real meters based on flight altitude and camera parameters. With each animal's silhouette area in square meters, a regression model calibrated with Argentine cattle data can estimate body mass with reasonable accuracy, with no animal contact.">El GSD convierte píxeles en metros reales. Con el área de la silueta en m² se aplica una regresión calibrada con bovinos argentinos para estimar peso sin balanza ni contacto con el animal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════════════ -->
+<section id="cta">
+  <div class="glow cta-g"></div>
+  <div class="container">
+    <div class="cta-in fi">
+      <span class="tag" data-es="¿Querés saber más?" data-en="Want to know more?">¿Querés saber más?</span>
+      <h2 class="section-title" style="text-align:center;">
+        <span data-es="El código es abierto," data-en="The code is open,">El código es abierto,</span><br/>
+        <span class="hl" data-es="la arquitectura también" data-en="the architecture too">la arquitectura también</span>
+      </h2>
+      <p class="section-sub" style="text-align:center;"
+        data-es="Podés revisar el repositorio de GitHub, leer la documentación técnica o contactarnos directamente para hablar de la arquitectura."
+        data-en="You can review the GitHub repository, read the technical documentation, or contact us directly to discuss the architecture.">
+        Podés revisar el repositorio en GitHub, leer la documentación técnica o contactarnos para hablar de la arquitectura.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="https://github.com" target="_blank" class="btn btn-primary" style="font-size:1rem;padding:14px 32px;" data-es="Ver en GitHub" data-en="View on GitHub">Ver en GitHub</a>
+        <a href="mailto:dag@fi.uba.ar" class="btn btn-outline" style="font-size:1rem;padding:14px 32px;" data-es="Escribinos" data-en="Get in touch">Escribinos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon"><img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/></div>
+          <span class="nav-logo-text">D<em>AG</em></span>
+        </a>
+        <p data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e IA." data-en="Active Cattle Detection. Argentine livestock management platform using drones and AI.">Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e IA.</p>
+        <span class="foot-badge">🎓 <span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
+      </div>
+      <div class="foot-col">
+        <h5 data-es="Producto" data-en="Product">Producto</h5>
+        <ul>
+          <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
+          <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="tecnologia.html" data-es="Tecnología" data-en="Technology">Tecnología</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-es="Tecnología" data-en="Technology">Tecnología</h5>
+        <ul>
+          <li><a href="tecnologia.html">YOLOv8</a></li>
+          <li><a href="tecnologia.html">ByteTrack</a></li>
+          <li><a href="tecnologia.html">Next.js</a></li>
+          <li><a href="tecnologia.html">FastAPI</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-es="Proyecto" data-en="Project">Proyecto</h5>
+        <ul>
+          <li><a href="https://fi.uba.ar" target="_blank">FIUBA</a></li>
+          <li><a href="index.html#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
+          <li><a href="https://github.com" target="_blank">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-btm">
+      <span class="foot-copy">© 2024 DAG — <span data-es="Detección Activa de Ganado" data-en="Active Cattle Detection">Detección Activa de Ganado</span></span>
+      <span class="foot-badge">🇦🇷 <span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let lang = 'es';
+  function setLang(l) {
+    lang = l;
+    document.getElementById('btnES').classList.toggle('on', l === 'es');
+    document.getElementById('btnEN').classList.toggle('on', l === 'en');
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-es]').forEach(el => { const t = el.getAttribute('data-' + l); if (t) el.textContent = t; });
+  }
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 36));
+  function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
+  function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('v'), i * 70); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="480" viewBox="0 0 700 480">
+  <rect width="700" height="480" fill="#121212" rx="16"/>
+  <rect x="2" y="2" width="696" height="476" fill="none" stroke="#6CACE4" stroke-width="2.5" stroke-dasharray="14,7" rx="14"/>
+  <!-- Drone silhouette -->
+  <g transform="translate(350,195)">
+    <!-- Body -->
+    <rect x="-28" y="-12" width="56" height="24" rx="6" fill="none" stroke="#6CACE4" stroke-width="2.5"/>
+    <!-- Arms diagonal -->
+    <line x1="-28" y1="-12" x2="-65" y2="-42" stroke="#6CACE4" stroke-width="2.5"/>
+    <line x1="28"  y1="-12" x2="65"  y2="-42" stroke="#6CACE4" stroke-width="2.5"/>
+    <line x1="-28" y1="12"  x2="-65" y2="42"  stroke="#6CACE4" stroke-width="2.5"/>
+    <line x1="28"  y1="12"  x2="65"  y2="42"  stroke="#6CACE4" stroke-width="2.5"/>
+    <!-- Rotors -->
+    <ellipse cx="-65" cy="-42" rx="22" ry="6" fill="none" stroke="#6CACE4" stroke-width="2"/>
+    <ellipse cx="65"  cy="-42" rx="22" ry="6" fill="none" stroke="#6CACE4" stroke-width="2"/>
+    <ellipse cx="-65" cy="42"  rx="22" ry="6" fill="none" stroke="#6CACE4" stroke-width="2"/>
+    <ellipse cx="65"  cy="42"  rx="22" ry="6" fill="none" stroke="#6CACE4" stroke-width="2"/>
+    <!-- Camera -->
+    <circle cx="0" cy="18" r="9" fill="none" stroke="#6CACE4" stroke-width="2"/>
+    <circle cx="0" cy="18" r="4" fill="#6CACE4"/>
+  </g>
+  <text x="350" y="300" fill="#6CACE4" font-family="Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">FOTO A REEMPLAZAR</text>
+  <text x="350" y="330" fill="#A3A3A3" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">Dron sobrevolando un lote de hacienda — DJI u otro modelo</text>
+  <text x="350" y="354" fill="#6B6B6B" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">Recomendado: 700×480 px, formato JPG o PNG</text>
+  <text x="350" y="374" fill="#6B6B6B" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">Nombre de archivo: foto-dron-vuelo.jpg</text>
+</svg>
