@@ -682,10 +682,10 @@
           data-en="Physical contact with livestock">Contacto físico con la hacienda</div>
       </div>
       <div class="stat">
-        <div class="stat-val">YOLOv8</div>
+        <div class="stat-val">&gt;93&nbsp;%</div>
         <div class="stat-lbl"
-          data-es="El mejor modelo de segmentación disponible"
-          data-en="Best available segmentation model">El mejor modelo de segmentación disponible</div>
+          data-es="Precisión de conteo en condiciones reales"
+          data-en="Counting accuracy in real-world conditions">Precisión de conteo en condiciones reales</div>
       </div>
       <div class="stat">
         <div class="stat-val">360°</div>
@@ -987,9 +987,9 @@
         <div class="step-ico">🧠</div>
         <h3 class="step-title" data-es="La IA hace el trabajo" data-en="AI does the work">La IA hace el trabajo</h3>
         <p class="step-desc"
-          data-es="YOLOv8 segmenta cada animal cuadro a cuadro. ByteTrack rastrea cada cabeza. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal."
-          data-en="YOLOv8 segments each animal frame by frame. ByteTrack tracks every head. The system calculates GSD, estimates each animal's weight, and classifies body condition.">
-          YOLOv8 segmenta cada animal cuadro a cuadro. ByteTrack rastrea cada cabeza. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal.
+          data-es="Nuestro modelo de IA segmenta cada animal cuadro a cuadro y rastrea cada cabeza a lo largo del video. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal."
+          data-en="Our AI model segments each animal frame by frame and tracks every head throughout the video. The system calculates GSD, estimates each animal's weight, and classifies body condition.">
+          Nuestro modelo de IA segmenta cada animal cuadro a cuadro y rastrea cada cabeza a lo largo del video. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal.
         </p>
       </div>
       <div class="step">
@@ -1010,7 +1010,8 @@
       </a>
     </div>
   </div>
-</section> ══════════════════════════════ -->
+</section>
+
 <section id="dashboard" class="section" style="background:var(--bg-card);">
   <div class="container">
     <div class="sec-head c fi">
@@ -1153,60 +1154,6 @@
         <span data-es="Explorar el dashboard en detalle" data-en="Explore the dashboard in detail">Explorar el dashboard en detalle</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TECHNOLOGY ════════════════════════════════════ -->
-<section id="tech" class="section">
-  <div class="container">
-    <div class="sec-head c fi">
-      <span class="tag" data-es="Tecnología" data-en="Technology">Tecnología</span>
-      <h2 class="section-title"
-        data-es="Construido sobre lo mejor disponible"
-        data-en="Built on the best available stack">Construido sobre lo mejor disponible</h2>
-      <p class="section-sub"
-        data-es="Arquitectura de microservicios moderna, escalable y probada en producción."
-        data-en="Modern, scalable, production-tested microservices architecture.">
-        Arquitectura de microservicios moderna, escalable y probada en producción.
-      </p>
-    </div>
-    <div class="tech-grid fi">
-      <div class="tech-item"><div class="tech-ico">🤖</div><div class="tech-name">YOLOv8</div></div>
-      <div class="tech-item"><div class="tech-ico">🐍</div><div class="tech-name">Python / FastAPI</div></div>
-      <div class="tech-item"><div class="tech-ico">⚛️</div><div class="tech-name">Next.js 15</div></div>
-      <div class="tech-item"><div class="tech-ico">🖥️</div><div class="tech-name">Electron</div></div>
-      <div class="tech-item"><div class="tech-ico">🐹</div><div class="tech-name">Go / Gin</div></div>
-      <div class="tech-item"><div class="tech-ico">🐘</div><div class="tech-name">PostgreSQL</div></div>
-      <div class="tech-item"><div class="tech-ico">🐋</div><div class="tech-name">Docker</div></div>
-      <div class="tech-item"><div class="tech-ico">🐰</div><div class="tech-name">RabbitMQ</div></div>
-      <div class="tech-item"><div class="tech-ico">🗄️</div><div class="tech-name">Supabase</div></div>
-      <div class="tech-item"><div class="tech-ico">🔲</div><div class="tech-name">ByteTrack</div></div>
-      <div class="tech-item"><div class="tech-ico">🗺️</div><div class="tech-name">OpenStreetMap</div></div>
-      <div class="tech-item"><div class="tech-ico">🔷</div><div class="tech-name">TypeScript</div></div>
-    </div>
-
-    <div style="margin-top:40px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 36px;display:grid;grid-template-columns:1fr 1fr;gap:36px;" class="fi">
-      <div>
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:10px;"
-          data-es="5 microservicios independientes"
-          data-en="5 independent microservices">5 microservicios independientes</h3>
-        <p style="color:var(--muted);font-size:.87rem;line-height:1.7;"
-          data-es="Procesamiento de video (Python/FastAPI), almacenamiento (Go/Gin), métricas (Node.js/Hono), usuarios (Node.js/Hono) e interfaz (Next.js/Electron). Comunicados por RabbitMQ para operaciones asíncronas."
-          data-en="Video processing (Python/FastAPI), storage (Go/Gin), metrics (Node.js/Hono), users (Node.js/Hono), and interface (Next.js/Electron). Communicating via RabbitMQ for asynchronous operations.">
-          Procesamiento de video (Python/FastAPI), almacenamiento (Go/Gin), métricas (Node.js/Hono), usuarios (Node.js/Hono) e interfaz (Next.js/Electron). Comunicados por RabbitMQ para operaciones asíncronas.
-        </p>
-      </div>
-      <div>
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:10px;"
-          data-es="App de escritorio para Windows, macOS y Linux"
-          data-en="Desktop app for Windows, macOS, and Linux">App de escritorio para Windows, macOS y Linux</h3>
-        <p style="color:var(--muted);font-size:.87rem;line-height:1.7;"
-          data-es="Gracias a Electron, la misma interfaz corre como app nativa en cualquier sistema operativo o directamente desde el navegador. El productor elige cómo trabajar."
-          data-en="Thanks to Electron, the same interface runs as a native app on any OS or directly from the browser. The producer chooses how to work.">
-          Gracias a Electron, la misma interfaz corre como app nativa en cualquier sistema operativo o directamente desde el navegador. El productor elige cómo trabajar.
-        </p>
-      </div>
     </div>
   </div>
 </section>
