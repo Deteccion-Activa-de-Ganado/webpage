@@ -5,222 +5,477 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cómo Funciona — DAG Detección Activa de Ganado</title>
   <meta name="description" content="Entendé el proceso completo de DAG: desde el vuelo con el dron hasta el informe PDF con conteo, peso estimado y condición corporal de tu hacienda." />
+  <link rel="icon" type="image/svg+xml" href="img/LOGO.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700&family=Azeret+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: hsl(0,0%,3.9%); --bg-card: hsl(0,0%,7%); --bg-card2: hsl(0,0%,10%); --bg-hover: hsl(0,0%,14.9%);
-      --border: hsl(0,0%,14.9%); --border-2: hsl(0,0%,22%);
-      --brand: rgb(108,172,228); --brand-dk: rgb(86,137,182); --brand-glow: rgba(108,172,228,.18); --brand-dim: rgba(108,172,228,.12); --brand-rim: rgba(108,172,228,.28);
-      --text: hsl(0,0%,98%); --muted: hsl(0,0%,63.9%); --muted2: hsl(0,0%,42%);
-      --destructive: hsl(0,84.2%,60.2%); --amber: hsl(43,74%,66%);
-      --radius: 8px; --radius-lg: 14px; --radius-xl: 20px;
+      --cream:  #FDFBF7;
+      --green:  #1B3A2A;
+      --bordo:  #6B2D3C;
+      --arena:  #B8976A;
+      --text:   #1B3A2A;
+      --muted:  #6a7d72;
+      --muted2: #9ba8a0;
+      --border: #d6d0c7;
+      --white:  #FFFFFF;
     }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: Arial,Helvetica,sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-    .tag { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: 100px; font-size: .72rem; font-weight: 700; letter-spacing: .07em; padding: 4px 14px; text-transform: uppercase; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer; font-family: Arial,Helvetica,sans-serif; font-weight: 700; border-radius: var(--radius); text-decoration: none; transition: all .2s; white-space: nowrap; }
-    .btn-primary { background: var(--brand); color: hsl(210,50%,10%); padding: 13px 28px; font-size: .95rem; box-shadow: 0 0 28px rgba(108,172,228,.3); }
-    .btn-primary:hover { background: var(--brand-dk); transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-2); padding: 13px 28px; font-size: .95rem; }
-    .btn-outline:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
-    .section-title { font-size: clamp(1.9rem,3.8vw,2.7rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
-    .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
-    .hl { color: var(--brand); }
-    .glow { position: absolute; border-radius: 50%; filter: blur(130px); background: var(--brand-glow); pointer-events: none; }
-    .fi { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .mono { font-family: 'Azeret Mono', 'Courier New', monospace; }
+
+    /* ── FADE-IN ── */
+    .fi { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
     .fi.v { opacity: 1; transform: none; }
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 0; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: rgba(10,10,10,.85); border-bottom: 1px solid var(--border); transition: padding .2s; }
-    nav.sc { padding: 10px 0; }
-    .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-    .nav-logo-icon { width: 34px; height: 34px; border-radius: var(--radius); background: var(--brand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .nav-logo-text { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.03em; }
-    .nav-logo-text em { color: var(--brand); font-style: normal; }
-    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 600; padding: 6px 13px; border-radius: var(--radius); transition: color .2s, background .2s; }
-    .nav-links a:hover { color: var(--text); background: var(--bg-hover); }
-    .nav-links a.active { color: var(--brand); background: var(--bg-hover); }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .lang-toggle { display: flex; background: var(--bg-card); border: 1px solid var(--border-2); border-radius: var(--radius); overflow: hidden; }
-    .lang-btn { padding: 7px 13px; border: none; background: transparent; color: var(--muted); font-size: .8rem; font-weight: 700; cursor: pointer; font-family: Arial,Helvetica,sans-serif; transition: all .2s; }
-    .lang-btn.on { background: var(--brand); color: hsl(210,50%,10%); }
-    .nav-cta { background: var(--brand); color: hsl(210,50%,10%); border: none; font-weight: 700; padding: 8px 20px; border-radius: var(--radius); cursor: pointer; font-family: Arial,Helvetica,sans-serif; font-size: .88rem; transition: background .2s; text-decoration: none; }
-    .nav-cta:hover { background: var(--brand-dk); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-    .mob-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,.97); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+
+    /* ── DIVIDER LINE ── */
+    .divider { width: 100%; height: 1px; background: var(--border); }
+    .divider--short { width: 100%; max-width: 360px; height: 1px; background: var(--border); }
+
+    .hl { color: var(--bordo); }
+
+    /* ════════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 20px 0;
+      background: rgba(253,251,247,.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--green);
+      transition: padding .2s ease;
+    }
+    nav.sc { padding: 14px 0; }
+    .nav-in {
+      max-width: 100%; margin: 0; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.6rem; font-weight: 400; color: var(--green);
+      text-decoration: none; letter-spacing: .02em;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo img {
+      height: 1.8rem; width: auto;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; margin-left: auto; margin-right: 24px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .86rem;
+      font-weight: 500; padding: 6px 16px;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+      height: 1px; background: var(--green);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform .3s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links a.active { color: var(--green); }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .lang-toggle {
+      display: flex; border: 1.5px solid var(--border);
+      border-radius: 0; overflow: hidden;
+    }
+    .lang-btn {
+      padding: 5px 11px; border: none; background: transparent;
+      color: var(--muted2); font-size: .75rem; font-weight: 600;
+      cursor: pointer; font-family: 'Lora', Georgia, serif;
+      transition: all .2s;
+    }
+    .lang-btn.on { background: var(--green); color: var(--cream); }
+    .lang-btn:hover:not(.on) { color: var(--green); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--green); }
+
+    .mob-menu {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(253,251,247,.98); flex-direction: column;
+      align-items: center; justify-content: center; gap: 32px;
+    }
     .mob-menu.open { display: flex; }
-    .mob-menu a { color: var(--text); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
-    .mob-menu .close-btn { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; }
-    /* BREADCRUMB */
-    .breadcrumb { padding: 100px 0 0; }
+    .mob-menu a { color: var(--green); text-decoration: none; font-size: 1.3rem; font-weight: 600; }
+    .mob-menu .close-btn {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer;
+    }
+
+    /* ════════════════════════════════════════════
+       BUTTONS
+    ════════════════════════════════════════════ */
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bordo); color: var(--cream);
+      padding: 14px 32px; font-size: .92rem;
+      font-family: 'Lora', Georgia, serif; font-weight: 600;
+      border: none; border-radius: 0; text-decoration: none;
+      cursor: pointer; transition: background .2s, transform .2s;
+      width: fit-content;
+    }
+    .hero-cta:hover { background: #5a2433; transform: translateY(-1px); }
+
+    .btn-detail {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); text-decoration: none; font-weight: 600; font-size: .86rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--green);
+      transition: all .2s;
+    }
+    .btn-detail:hover { color: var(--bordo); border-color: var(--bordo); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--green);
+      padding: 14px 32px; font-size: .92rem;
+      font-family: 'Lora', Georgia, serif; font-weight: 600;
+      border: 1.5px solid var(--border); border-radius: 0; text-decoration: none;
+      cursor: pointer; transition: all .2s;
+    }
+    .btn-outline:hover { border-color: var(--green); }
+
+    /* ════════════════════════════════════════════
+       BREADCRUMB
+    ════════════════════════════════════════════ */
+    .breadcrumb { padding: 100px 48px 0; }
     .bc-in { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted2); }
-    .bc-in a { color: var(--muted); text-decoration: none; } .bc-in a:hover { color: var(--brand); }
+    .bc-in a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .bc-in a:hover { color: var(--green); }
     .bc-in .sep { opacity: .5; }
-    /* HERO */
-    .page-hero { padding: 32px 0 80px; position: relative; overflow: hidden; }
-    .ph-g { width: 500px; height: 500px; top: -150px; right: -100px; opacity: .4; }
-    .ph-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; max-width: 780px; }
-    .page-hero-title { font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 900; line-height: 1.1; letter-spacing: -.03em; }
-    .page-hero-sub { color: var(--muted); font-size: 1.1rem; line-height: 1.78; max-width: 580px; }
-    /* SECTION */
-    .section { padding: 80px 0; }
-    .section.alt { background: var(--bg-card); }
-    .sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 52px; }
+
+    /* ════════════════════════════════════════════
+       PAGE HERO
+    ════════════════════════════════════════════ */
+    .page-hero { padding: 32px 48px 80px; }
+    .ph-inner {
+      display: flex; flex-direction: column; gap: 22px; max-width: 780px;
+    }
+    .page-hero-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 400;
+      line-height: 1.1; letter-spacing: -.02em; color: var(--green);
+    }
+    .page-hero-sub { color: var(--muted); font-size: .98rem; line-height: 1.8; max-width: 580px; }
+
+    /* ════════════════════════════════════════════
+       SECTIONS
+    ════════════════════════════════════════════ */
+    .section { padding: 96px 48px; }
+    .section.alt { background: var(--white); }
+    .sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 56px; }
     .sec-head.c { align-items: center; text-align: center; }
     .sec-head.c .section-sub { margin: 0 auto; }
-    /* STEP DETAIL */
-    .step-detail { display: grid; grid-template-columns: 80px 1fr; gap: 32px; align-items: start; margin-bottom: 64px; }
-    .step-detail:last-child { margin-bottom: 0; }
-    .sd-num { width: 72px; height: 72px; border-radius: 50%; background: var(--bg-card2); border: 2px solid var(--brand); display: flex; align-items: center; justify-content: center; font-size: 1.7rem; font-weight: 900; color: var(--brand); box-shadow: 0 0 24px rgba(108,172,228,.25); flex-shrink: 0; }
-    .sd-body { display: flex; flex-direction: column; gap: 18px; }
-    .sd-title { font-size: clamp(1.4rem,2.8vw,1.9rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; }
-    .sd-text { color: var(--muted); font-size: .97rem; line-height: 1.8; max-width: 700px; }
-    .sd-sub { font-size: .9rem; font-weight: 700; color: var(--muted2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+
+    .sec-label {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--arena);
+    }
+    .section-title {
+      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+      font-weight: 700; line-height: 1.18;
+      color: var(--green);
+    }
+    .section-sub {
+      color: var(--muted); font-size: .95rem; line-height: 1.8; max-width: 520px;
+    }
+
+    /* ════════════════════════════════════════════
+       STEP DETAIL
+    ════════════════════════════════════════════ */
+    .step-detail {
+      display: flex; flex-direction: column; gap: 24px;
+      margin-bottom: 72px; padding-bottom: 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .step-detail:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .sd-header { display: flex; align-items: baseline; gap: 14px; }
+    .sd-num {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .8rem; font-weight: 600; color: var(--arena);
+      letter-spacing: .05em;
+    }
+    .sd-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px;
+      align-items: stretch;
+    }
+    .sd-col { display: flex; flex-direction: column; gap: 18px; }
+    .sd-full { grid-column: 1 / -1; }
+    .sd-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.4rem,2.8vw,1.9rem); font-weight: 500;
+      line-height: 1.2; color: var(--green);
+    }
+    .sd-text { color: var(--muted); font-size: .95rem; line-height: 1.8; max-width: 700px; }
+    .sd-sub {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .72rem; font-weight: 600; color: var(--arena);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px;
+    }
     .sd-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .sd-bullets li { display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; color: var(--muted); }
-    .sd-bullets li::before { content: ''; display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); margin-top: 6px; flex-shrink: 0; }
-    .sd-img { border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border-2); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
-    .sd-img img { width: 100%; display: block; }
-    /* INFO TABLE */
+    .sd-bullets li::before {
+      content: ''; display: block; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--arena); margin-top: 8px; flex-shrink: 0;
+    }
+    .sd-img {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(27,58,42,.06);
+      height: 100%;
+    }
+    .sd-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ════════════════════════════════════════════
+       INFO TABLE
+    ════════════════════════════════════════════ */
+    .info-table-wrap {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; overflow: hidden;
+    }
     .info-table { width: 100%; border-collapse: collapse; }
-    .info-table th, .info-table td { padding: 12px 16px; text-align: left; font-size: .88rem; border-bottom: 1px solid var(--border); }
-    .info-table th { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted2); font-weight: 700; }
+    .info-table th, .info-table td { padding: 12px 16px; text-align: left; font-size: .86rem; border-bottom: 1px solid var(--border); }
+    .info-table th {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted2); font-weight: 600; background: var(--cream);
+    }
     .info-table td:first-child { font-weight: 600; color: var(--text); }
     .info-table td:not(:first-child) { color: var(--muted); }
-    /* TECH BADGE */
-    .tech-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card2); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 5px 12px; font-size: .78rem; font-weight: 600; color: var(--muted); }
-    .tech-badges { display: flex; flex-wrap: wrap; gap: 8px; }
-    /* PIPELINE */
-    .pipeline { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
-    .pipe-step { background: var(--bg-card2); border: 1px solid var(--border-2); border-radius: var(--radius-lg); padding: 16px 20px; flex: 1; min-width: 140px; }
-    .pipe-step h4 { font-size: .88rem; font-weight: 700; margin-bottom: 6px; }
+    .info-table tbody tr:last-child td { border-bottom: none; }
+    .td-green { color: var(--green) !important; font-weight: 600; }
+    .td-arena { color: var(--arena) !important; font-weight: 600; }
+    .td-bordo { color: var(--bordo) !important; font-weight: 600; }
+
+    /* ════════════════════════════════════════════
+       PIPELINE
+    ════════════════════════════════════════════ */
+    .pipeline { display: flex; flex-direction: column; gap: 0; }
+    .pipe-step {
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .pipe-step:last-child { border-bottom: none; }
+    .pipe-step h4 { font-size: .84rem; font-weight: 600; margin-bottom: 4px; color: var(--green); }
     .pipe-step p { font-size: .78rem; color: var(--muted); line-height: 1.5; }
-    .pipe-arrow { color: var(--brand); font-size: 1.4rem; padding: 0 6px; flex-shrink: 0; }
-    /* FOOTER */
-    footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 56px 0 38px; }
+
+    /* ════════════════════════════════════════════
+       TECH BADGES
+    ════════════════════════════════════════════ */
+    .tech-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tech-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 4px; padding: 5px 12px;
+      font-size: .72rem; font-weight: 600; color: var(--muted);
+    }
+
+    /* ════════════════════════════════════════════
+       CALLOUT BOX
+    ════════════════════════════════════════════ */
+    .callout {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; padding: 20px 24px; max-width: 640px;
+    }
+    .callout p { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+    .callout-title { font-size: .88rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+
+    /* ════════════════════════════════════════════
+       REQUIREMENTS CARDS
+    ════════════════════════════════════════════ */
+    .req-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .req-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; padding: 28px;
+    }
+    .req-card .req-icon {
+      width: 48px; height: 48px; border-radius: 6px;
+      background: rgba(27,58,42,.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); margin-bottom: 14px;
+    }
+    .req-card h3 { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    .req-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ════════════════════════════════════════════
+       CTA
+    ════════════════════════════════════════════ */
+    #cta {
+      padding: 120px 48px; text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, rgba(27,58,42,.03) 50%, var(--cream) 100%);
+    }
+    .cta-in {
+      max-width: 580px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    footer { background: var(--green); color: rgba(253,251,247,.7); padding: 56px 48px 38px; }
+    .foot-inner { max-width: 100%; }
     .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
     .foot-brand { display: flex; flex-direction: column; gap: 14px; }
-    .foot-brand p { color: var(--muted); font-size: .85rem; line-height: 1.7; max-width: 270px; }
-    .foot-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: var(--radius); padding: 4px 10px; font-size: .74rem; font-weight: 700; }
-    .foot-col h5 { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted2); font-weight: 700; margin-bottom: 14px; }
-    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .foot-col a { color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
-    .foot-col a:hover { color: var(--brand); }
-    .foot-btm { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .foot-copy { color: var(--muted2); font-size: .8rem; }
-    #cta { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
-    .cta-g { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .5; }
-    .cta-in { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-    @media(max-width:1024px){ .foot-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:768px){ .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .step-detail { grid-template-columns: 1fr; } .sd-num { width: 54px; height: 54px; font-size: 1.3rem; } .pipe-arrow { display: none; } .pipe-step { min-width: 100%; } .foot-grid { grid-template-columns: 1fr; } }
+    .foot-brand .foot-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.4rem; font-weight: 400; color: var(--cream);
+      text-decoration: none; letter-spacing: .08em;
+    }
+    .foot-brand p { color: rgba(253,251,247,.5); font-size: .84rem; line-height: 1.7; max-width: 280px; }
+    .foot-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(253,251,247,.06); border: 1px solid rgba(253,251,247,.12);
+      color: var(--arena); border-radius: 4px; padding: 4px 10px;
+      font-size: .68rem; font-weight: 600;
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+    }
+    .foot-col h5 {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .12em;
+      color: rgba(253,251,247,.3); font-weight: 600; margin-bottom: 16px;
+    }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .foot-col a { color: rgba(253,251,247,.55); text-decoration: none; font-size: .84rem; transition: color .2s; }
+    .foot-col a:hover { color: var(--cream); }
+    .foot-btm {
+      border-top: 1px solid rgba(253,251,247,.08); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .foot-copy { color: rgba(253,251,247,.3); font-size: .76rem; }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media(max-width:1024px){
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .req-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-in, .section, .breadcrumb, .page-hero, #cta, footer { padding-left: 24px; padding-right: 24px; }
+      .sd-body { grid-template-columns: 1fr; }
+      .pipe-arrow { display: none; }
+      .pipe-step { min-width: 100%; }
+      .req-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .section { padding: 72px 24px; }
+    }
   </style>
 </head>
 <body>
 
+<!-- ══ MOBILE MENU ══ -->
 <div class="mob-menu" id="mobMenu">
-  <button class="close-btn" onclick="closeMob()">✕</button>
+  <button class="close-btn" onclick="closeMob()">&#10005;</button>
   <a href="index.html" onclick="closeMob()">Inicio</a>
-  <a href="caracteristicas.html" onclick="closeMob()">Características</a>
-  <a href="como-funciona.html" onclick="closeMob()">Cómo funciona</a>
-  <a href="dashboard.html" onclick="closeMob()">Dashboard</a>
-  <a href="index.html#cta" class="btn btn-primary">Conocé más</a>
+  <a href="caracteristicas.html" onclick="closeMob()" data-es="Características" data-en="Features">Características</a>
+  <a href="como-funciona.html" onclick="closeMob()" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a>
+  <a href="dashboard.html" onclick="closeMob()" data-es="Dashboard" data-en="Dashboard">Dashboard</a>
+  <a href="index.html#cta" onclick="closeMob()" class="hero-cta" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
 </div>
 
+<!-- ══ NAV ══ -->
 <nav id="nav">
-  <div class="container">
-    <div class="nav-in">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon"><img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/></div>
-        <span class="nav-logo-text">D<em>AG</em></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
-        <li><a href="como-funciona.html" class="active" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
-        <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
-      </ul>
-      <div class="nav-right">
-        <div class="lang-toggle">
-          <button class="lang-btn on" id="btnES" onclick="setLang('es')">ES</button>
-          <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="index.html#cta" class="nav-cta" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
-        <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo"><img src="img/logo-dag.svg" alt="DAG logo">DAG</a>
+    <ul class="nav-links">
+      <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
+      <li><a href="como-funciona.html" class="active" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+      <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn on" id="btnES" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
       </div>
+      <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
+<!-- ══ BREADCRUMB ══ -->
 <div class="breadcrumb">
-  <div class="container">
-    <div class="bc-in fi">
-      <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
-      <span class="sep">›</span>
-      <span data-es="Cómo funciona" data-en="How it works">Cómo funciona</span>
-    </div>
+  <div class="bc-in fi">
+    <a href="index.html" data-es="Inicio" data-en="Home">Inicio</a>
+    <span class="sep">›</span>
+    <span data-es="Cómo funciona" data-en="How it works">Cómo funciona</span>
   </div>
 </div>
 
+<!-- ══ PAGE HERO ══ -->
 <section class="page-hero">
-  <div class="glow ph-g"></div>
-  <div class="container">
-    <div class="ph-inner fi">
-      <span class="tag" data-es="Del campo al dashboard en cuatro pasos" data-en="From field to dashboard in four steps">Del campo al dashboard en cuatro pasos</span>
-      <h1 class="page-hero-title">
-        <span data-es="Del vuelo al informe," data-en="From flight to report,">Del vuelo al informe,</span><br/>
-        <span class="hl" data-es="sin complicaciones" data-en="no complications">sin complicaciones</span>
-      </h1>
-      <p class="page-hero-sub"
-        data-es="Todo el proceso es automático una vez que subís el video. No hace falta ser técnico ni tener conocimientos de IA. Si sabés volar un dron y usar una app, alcanza."
-        data-en="The entire process is automatic once you upload the video. No technical background or AI knowledge needed. If you can fly a drone and use an app, that's enough.">
-        Todo el proceso es automático una vez que subís el video. No hace falta ser técnico ni tener conocimientos de IA. Si sabés volar un dron y usar una app, alcanza.
-      </p>
-    </div>
+  <div class="ph-inner fi">
+    <span class="sec-label" data-es="Del campo al dashboard en cuatro pasos" data-en="From field to dashboard in four steps">Del campo al dashboard en cuatro pasos</span>
+    <h1 class="page-hero-title">
+      <span data-es="Del vuelo al informe," data-en="From flight to report,">Del vuelo al informe,</span><br/>
+      <span class="hl" data-es="sin complicaciones" data-en="no complications">sin complicaciones</span>
+    </h1>
+    <div class="divider--short"></div>
+    <p class="page-hero-sub"
+      data-es="Todo el proceso es automático una vez que subís el video. No hace falta ser técnico ni tener conocimientos de IA. Si sabés volar un dron y usar una app, alcanza."
+      data-en="The entire process is automatic once you upload the video. No technical background or AI knowledge needed. If you can fly a drone and use an app, that's enough.">
+      Todo el proceso es automático una vez que subís el video. No hace falta ser técnico ni tener conocimientos de IA. Si sabés volar un dron y usar una app, alcanza.
+    </p>
   </div>
 </section>
 
-<!-- ══ PASO 1 — VUELO ═════════════════════════════ -->
-<section class="section" id="vuelo">
-  <div class="container">
-    <div class="sec-head fi">
-      <span class="tag" data-es="El proceso paso a paso" data-en="Step by step process">El proceso paso a paso</span>
-      <h2 class="section-title" data-es="Cuatro pasos, un rodeo conocido" data-en="Four steps, a known herd">Cuatro pasos, un rodeo conocido</h2>
-    </div>
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
 
-    <div class="step-detail fi">
-      <div class="sd-num">1</div>
-      <div class="sd-body">
-        <div>
-          <div style="font-size:2rem;margin-bottom:8px;">🚁</div>
-          <h2 class="sd-title" data-es="Sobrevolás el lote con el dron" data-en="Fly the drone over the paddock">Sobrevolás el lote con el dron</h2>
-        </div>
+<!-- ══ PASO 1 — VUELO ══ -->
+<section class="section" id="vuelo">
+  <div class="sec-head fi">
+    <span class="sec-label" data-es="El proceso paso a paso" data-en="Step by step process">El proceso paso a paso</span>
+    <h2 class="section-title" data-es="Cuatro pasos, un rodeo conocido" data-en="Four steps, a known herd">Cuatro pasos, un rodeo conocido</h2>
+  </div>
+
+  <div class="step-detail fi">
+    <div class="sd-header">
+      <span class="sd-num">01</span>
+      <h2 class="sd-title" data-es="Sobrevolás el lote con el dron" data-en="Fly the drone over the paddock">Sobrevolás el lote con el dron</h2>
+    </div>
+    <div class="sd-body">
+      <div class="sd-col">
         <p class="sd-text"
           data-es="Tomás el dron, lo despegás y sobrevolás el lote en modo manual o automático (grid mission). El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo."
           data-en="You take the drone, take off, and fly over the paddock in manual or automatic mode (grid mission). The only requirement is that the flight maintains constant altitude and the video is stored on the device. No additional hardware or special flight application is needed.">
           Tomás el dron, lo despegás y sobrevolás el lote en modo manual o automático (grid mission). El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.
         </p>
-        <div>
-          <p class="sd-sub" data-es="Alturas recomendadas" data-en="Recommended altitudes">Alturas recomendadas</p>
-          <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
-            <table class="info-table">
-              <thead><tr>
-                <th data-es="Altura (metros)" data-en="Altitude (meters)">Altura (metros)</th>
-                <th data-es="Precisión estimada" data-en="Estimated accuracy">Precisión estimada</th>
-                <th data-es="Animales visibles" data-en="Visible animals">Animales visibles</th>
-                <th data-es="Recomendado para" data-en="Recommended for">Recomendado para</th>
-              </tr></thead>
-              <tbody>
-                <tr><td>30 m</td><td style="color:var(--brand);" data-es="Muy alta" data-en="Very high">Muy alta</td><td data-es="Lotes chicos (&lt; 50 ha)" data-en="Small paddocks (&lt; 50 ha)">Lotes chicos (&lt; 50 ha)</td><td data-es="Hacienda fina, terneros" data-en="Fine livestock, calves">Hacienda fina, terneros</td></tr>
-                <tr><td>40–50 m</td><td style="color:var(--brand);" data-es="Alta — óptima" data-en="High — optimal">Alta — óptima</td><td data-es="Lotes medianos (50–200 ha)" data-en="Medium paddocks (50–200 ha)">Lotes medianos (50–200 ha)</td><td data-es="La mayoría de los casos" data-en="Most use cases">La mayoría de los casos</td></tr>
-                <tr><td>60 m</td><td style="color:var(--amber);" data-es="Buena" data-en="Good">Buena</td><td data-es="Lotes grandes (&gt; 200 ha)" data-en="Large paddocks (&gt; 200 ha)">Lotes grandes (&gt; 200 ha)</td><td data-es="Rodeos numerosos" data-en="Larger herds">Rodeos numerosos</td></tr>
-                <tr><td>&gt; 80 m</td><td style="color:var(--destructive);" data-es="Reducida" data-en="Reduced">Reducida</td><td data-es="Cobertura máxima" data-en="Maximum coverage">Cobertura máxima</td><td data-es="Solo conteo, sin peso preciso" data-en="Count only, no precise weight">Solo conteo, sin peso preciso</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
         <div>
           <p class="sd-sub" data-es="Drones compatibles" data-en="Compatible drones">Drones compatibles</p>
           <ul class="sd-bullets">
@@ -230,26 +485,55 @@
             <li data-es="Si no sabés el sensor de tu cámara, lo podés buscar en el manual del equipo o en las especificaciones técnicas del fabricante." data-en="If you don't know your camera sensor, you can look it up in the equipment manual or the manufacturer's technical specs.">Si no sabés el sensor, está en el manual del equipo o en la web del fabricante.</li>
           </ul>
         </div>
-        <div class="sd-img" style="max-width:660px;">
-          <!-- Reemplazá con foto real de un dron sobrevolando un lote -->
-          <img src="img/foto-dron-vuelo.svg" alt="Dron sobrevolando un lote de hacienda en Argentina"/>
+      </div>
+      <div class="sd-col">
+        <div class="sd-img">
+          <img src="img/Gemini_Generated_Image_akmx3oakmx3oakmx.png" alt="Dron sobrevolando un lote de hacienda en Argentina" loading="lazy"/>
+        </div>
+      </div>
+      <div class="sd-full">
+        <p class="sd-sub" data-es="Alturas recomendadas" data-en="Recommended altitudes">Alturas recomendadas</p>
+        <div class="info-table-wrap">
+          <table class="info-table">
+            <thead><tr>
+              <th data-es="Altura (metros)" data-en="Altitude (meters)">Altura (metros)</th>
+              <th data-es="Precisión estimada" data-en="Estimated accuracy">Precisión estimada</th>
+              <th data-es="Animales visibles" data-en="Visible animals">Animales visibles</th>
+              <th data-es="Recomendado para" data-en="Recommended for">Recomendado para</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>30 m</td><td class="td-green" data-es="Muy alta" data-en="Very high">Muy alta</td><td data-es="Lotes chicos (&lt; 50 ha)" data-en="Small paddocks (&lt; 50 ha)">Lotes chicos (&lt; 50 ha)</td><td data-es="Hacienda fina, terneros" data-en="Fine livestock, calves">Hacienda fina, terneros</td></tr>
+              <tr><td>40–50 m</td><td class="td-green" data-es="Alta — óptima" data-en="High — optimal">Alta — óptima</td><td data-es="Lotes medianos (50–200 ha)" data-en="Medium paddocks (50–200 ha)">Lotes medianos (50–200 ha)</td><td data-es="La mayoría de los casos" data-en="Most use cases">La mayoría de los casos</td></tr>
+              <tr><td>60 m</td><td class="td-arena" data-es="Buena" data-en="Good">Buena</td><td data-es="Lotes grandes (&gt; 200 ha)" data-en="Large paddocks (&gt; 200 ha)">Lotes grandes (&gt; 200 ha)</td><td data-es="Rodeos numerosos" data-en="Larger herds">Rodeos numerosos</td></tr>
+              <tr><td>&gt; 80 m</td><td class="td-bordo" data-es="Reducida" data-en="Reduced">Reducida</td><td data-es="Cobertura máxima" data-en="Maximum coverage">Cobertura máxima</td><td data-es="Solo conteo, sin peso preciso" data-en="Count only, no precise weight">Solo conteo, sin peso preciso</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- PASO 2 -->
-    <div class="step-detail fi">
-      <div class="sd-num">2</div>
-      <div class="sd-body">
-        <div>
-          <div style="font-size:2rem;margin-bottom:8px;">⬆️</div>
-          <h2 class="sd-title" data-es="Subís el video con los datos del vuelo" data-en="Upload the video with flight data">Subís el video con los datos del vuelo</h2>
-        </div>
+  <!-- ══ PASO 2 ══ -->
+  <div class="step-detail fi">
+    <div class="sd-header">
+      <span class="sd-num">02</span>
+      <h2 class="sd-title" data-es="Subís el video con los datos del vuelo" data-en="Upload the video with flight data">Subís el video con los datos del vuelo</h2>
+    </div>
+    <div class="sd-body">
+      <div class="sd-col">
         <p class="sd-text"
           data-es="Con el video descargado del dron, abrís la app de escritorio DAG (Windows, macOS o Linux) o entrás a la web. Seleccionás el video, completás los datos del vuelo y confirmás. Eso es todo por tu parte."
           data-en="With the video downloaded from your drone, you open the DAG desktop app (Windows, macOS, or Linux) or go to the web. Select the video, fill in the flight data, and confirm. That's all you need to do.">
           Con el video descargado del dron, abrís la app de escritorio DAG o entrás a la web. Seleccionás el video, completás los datos del vuelo y lo enviás. Eso es todo por tu parte.
         </p>
+        <div class="callout">
+          <p data-es="El video podés subirlo estando en el campo (si tenés señal) o cuando llegás a la casa. El procesamiento corre en los servidores de DAG, no en tu computadora, así que no necesitás una PC potente."
+            data-en="You can upload the video from the field (if you have signal) or when you get home. Processing runs on DAG's servers, not your computer, so you don't need a powerful PC.">
+            El video podés subirlo en el campo (si tenés señal) o cuando llegás a la casa. El procesamiento corre en los servidores de DAG, no en tu computadora.
+          </p>
+        </div>
+      </div>
+      <div class="sd-col">
         <div>
           <p class="sd-sub" data-es="Datos que ingresás" data-en="Data you enter">Datos que ingresás</p>
           <ul class="sd-bullets">
@@ -259,66 +543,59 @@
             <li data-es="Fecha y hora del vuelo (por defecto, el sistema la lee de los metadatos del video)." data-en="Date and time (by default the system reads it from the video metadata).">Fecha y hora (el sistema la lee de los metadatos del video por defecto).</li>
           </ul>
         </div>
-        <div style="background:var(--bg-card);border:1px solid var(--border-2);border-radius:var(--radius-lg);padding:20px 24px;max-width:600px;">
-          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;"
-            data-es="💡 El video podés subirlo estando en el campo (si tenés señal) o cuando llegás a la casa. El procesamiento corre en los servidores de DAG, no en tu computadora, así que no necesitás una PC potente."
-            data-en="💡 You can upload the video from the field (if you have signal) or when you get home. Processing runs on DAG's servers, not your computer, so you don't need a powerful PC.">
-            💡 El video podés subirlo en el campo (si tenés señal) o cuando llegás a la casa. El procesamiento corre en los servidores de DAG, no en tu computadora.
-          </p>
-        </div>
       </div>
     </div>
+  </div>
 
-    <!-- PASO 3 -->
-    <div class="step-detail fi">
-      <div class="sd-num">3</div>
-      <div class="sd-body">
-        <div>
-          <div style="font-size:2rem;margin-bottom:8px;">🧠</div>
-          <h2 class="sd-title" data-es="La IA procesa el video automáticamente" data-en="AI automatically processes the video">La IA procesa el video automáticamente</h2>
-        </div>
+  <!-- ══ PASO 3 ══ -->
+  <div class="step-detail fi">
+    <div class="sd-header">
+      <span class="sd-num">03</span>
+      <h2 class="sd-title" data-es="La IA procesa el video automáticamente" data-en="AI automatically processes the video">La IA procesa el video automáticamente</h2>
+    </div>
+    <div class="sd-body">
+      <div class="sd-col">
         <p class="sd-text"
           data-es="Una vez que el video llega a los servidores de DAG, el pipeline de Inteligencia Artificial se ejecuta automáticamente. No hace falta hacer nada. El sistema te notifica cuando termina."
           data-en="Once the video reaches DAG's servers, the Artificial Intelligence pipeline runs automatically. Nothing else needed. The system notifies you when it's done.">
           Una vez que el video llega a los servidores, el pipeline de IA se ejecuta automáticamente. No hace falta hacer nada más. El sistema te avisa cuando termina.
         </p>
+        <div class="callout">
+          <p class="callout-title" data-es="¿Cuánto tarda?" data-en="How long does it take?">¿Cuánto tarda?</p>
+          <p data-es="El tiempo de procesamiento depende de la duración y resolución del video y de la carga actual de los servidores. Como referencia orientativa: un video de 10 minutos en 1080p tarda entre 15 y 30 minutos en procesarse completamente. Recibís una notificación en la app cuando los resultados están disponibles."
+            data-en="Processing time depends on video duration, resolution, and current server load. As a rough reference: a 10-minute 1080p video takes between 15 and 30 minutes to fully process. You receive an app notification when results are available.">
+            Como referencia: un video de 10 minutos en 1080p tarda entre 15 y 30 minutos. Recibís una notificación en la app cuando los resultados están listos.
+          </p>
+        </div>
+      </div>
+      <div class="sd-col">
         <div>
           <p class="sd-sub" data-es="Pipeline de procesamiento" data-en="Processing pipeline">Pipeline de procesamiento</p>
-          <div class="pipeline" style="gap:0;">
+          <div class="pipeline">
             <div class="pipe-step">
               <h4 data-es="1. Detección" data-en="1. Detection">1. Detección</h4>
               <p data-es="YOLOv8 analiza cada fotograma y detecta todos los bovinos visibles en el cuadro, generando una máscara de segmentación para cada animal." data-en="YOLOv8 analyzes each frame and detects all visible cattle, generating a segmentation mask for each animal.">YOLOv8 analiza cada fotograma y detecta todos los bovinos, generando una máscara de segmentación.</p>
             </div>
-            <div class="pipe-arrow">→</div>
             <div class="pipe-step">
               <h4 data-es="2. Tracking" data-en="2. Tracking">2. Tracking</h4>
               <p data-es="ByteTrack asigna un ID único a cada animal y lo rastrea de fotograma en fotograma. Solo confirma un animal cuando aparece en 15 cuadros consecutivos." data-en="ByteTrack assigns a unique ID to each animal and tracks it frame by frame. An animal is only confirmed after 15 consecutive frames.">ByteTrack asigna un ID único y rastrea cada animal. Confirma a partir de 15 cuadros consecutivos.</p>
             </div>
-            <div class="pipe-arrow">→</div>
             <div class="pipe-step">
               <h4 data-es="3. GSD y peso" data-en="3. GSD & weight">3. GSD y peso</h4>
               <p data-es="Usando la altura del vuelo y los parámetros de la cámara, calcula el GSD y lo usa para obtener el área real de cada silueta, de donde deriva el peso estimado." data-en="Using flight altitude and camera parameters, calculates GSD and uses it to get each silhouette's real area, from which it derives estimated weight.">Calcula el GSD con los parámetros de vuelo y estima el área real de cada animal para derivar su peso.</p>
             </div>
-            <div class="pipe-arrow">→</div>
             <div class="pipe-step">
               <h4 data-es="4. Clasificación" data-en="4. Classification">4. Clasificación</h4>
               <p data-es="Aplica análisis por z-score sobre la densidad corporal de toda la tropa para clasificar a cada animal en NORMAL, TERNERO, BAJO PESO o SOBREPESO." data-en="Applies z-score analysis on the entire herd's body density to classify each animal as NORMAL, CALF, UNDERWEIGHT, or OVERWEIGHT.">Z-score sobre densidad corporal de la tropa: NORMAL, TERNERO, BAJO PESO, SOBREPESO.</p>
             </div>
-            <div class="pipe-arrow">→</div>
             <div class="pipe-step">
               <h4 data-es="5. PDF + video" data-en="5. PDF + video">5. PDF + video</h4>
               <p data-es="Genera el informe PDF completo y el video anotado con los IDs y datos de cada animal superpuestos." data-en="Generates the complete PDF report and annotated video with each animal's IDs and data overlaid.">Genera el PDF del vuelo y el video anotado con IDs y datos de cada animal.</p>
             </div>
           </div>
         </div>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;max-width:640px;">
-          <p style="font-size:.88rem;font-weight:700;margin-bottom:6px;" data-es="⏱ ¿Cuánto tarda?" data-en="⏱ How long does it take?">⏱ ¿Cuánto tarda?</p>
-          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;"
-            data-es="El tiempo de procesamiento depende de la duración y resolución del video y de la carga actual de los servidores. Como referencia orientativa: un video de 10 minutos en 1080p tarda entre 15 y 30 minutos en procesarse completamente. Recibís una notificación en la app cuando los resultados están disponibles."
-            data-en="Processing time depends on video duration, resolution, and current server load. As a rough reference: a 10-minute 1080p video takes between 15 and 30 minutes to fully process. You receive an app notification when results are available.">
-            Como referencia: un video de 10 minutos en 1080p tarda entre 15 y 30 minutos. Recibís una notificación en la app cuando los resultados están listos.
-          </p>
-        </div>
+      </div>
+      <div class="sd-full">
         <div class="tech-badges">
           <span class="tech-badge">YOLOv8-seg</span>
           <span class="tech-badge">ByteTrack</span>
@@ -328,15 +605,16 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- PASO 4 -->
-    <div class="step-detail fi">
-      <div class="sd-num">4</div>
-      <div class="sd-body">
-        <div>
-          <div style="font-size:2rem;margin-bottom:8px;">📊</div>
-          <h2 class="sd-title" data-es="Chequeás los resultados y tomás decisiones" data-en="Review results and make decisions">Chequeás los resultados y tomás decisiones</h2>
-        </div>
+  <!-- ══ PASO 4 ══ -->
+  <div class="step-detail fi">
+    <div class="sd-header">
+      <span class="sd-num">04</span>
+      <h2 class="sd-title" data-es="Chequeás los resultados y tomás decisiones" data-en="Review results and make decisions">Chequeás los resultados y tomás decisiones</h2>
+    </div>
+    <div class="sd-body">
+      <div class="sd-col">
         <p class="sd-text"
           data-es="El dashboard se actualiza automáticamente con los datos del vuelo procesado. Podés ver el conteo de cabezas, el peso promedio, la distribución de condición corporal y el video anotado. Si algún animal generó una alerta, aparece resaltado. El informe PDF ya está disponible para descargar o compartir."
           data-en="The dashboard automatically updates with the processed flight data. You can see head count, average weight, body condition distribution, and annotated video. If any animal triggered an alert, it's highlighted. The PDF report is available to download or share.">
@@ -349,94 +627,100 @@
           <li data-es="Todo el historial queda guardado. Podés comparar cualquier vuelo con vuelos de meses anteriores." data-en="All history is saved. You can compare any flight with flights from months earlier.">Todo el historial queda guardado. Podés comparar con vuelos de meses anteriores.</li>
         </ul>
         <div>
-          <a href="dashboard.html" class="btn btn-primary" data-es="Ver el dashboard en detalle" data-en="View dashboard in detail">Ver el dashboard en detalle →</a>
+          <a href="dashboard.html" class="hero-cta" data-es="Ver el dashboard en detalle" data-en="View dashboard in detail">Ver el dashboard en detalle →</a>
         </div>
+      </div>
+      <div class="sd-col">
         <div class="sd-img" style="max-width:720px;">
-          <!-- Reemplazá con screenshot real del dashboard después de un vuelo procesado -->
-          <img src="img/captura-pantalla-app.svg" alt="Dashboard DAG mostrando los resultados de un vuelo procesado"/>
+          <img src="img/captura-pantalla-app.svg" alt="Dashboard DAG mostrando los resultados de un vuelo procesado" loading="lazy"/>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ REQUISITOS ════════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ REQUISITOS ══ -->
 <section class="section alt" id="requisitos">
-  <div class="container">
-    <div class="sec-head c fi">
-      <span class="tag" data-es="Requisitos" data-en="Requirements">Requisitos</span>
-      <h2 class="section-title" data-es="¿Qué necesitás para empezar?" data-en="What do you need to get started?">¿Qué necesitás para empezar?</h2>
-      <p class="section-sub"
-        data-es="Los mínimos son pocos y accesibles para cualquier productor ganadero moderno."
-        data-en="The requirements are minimal and accessible for any modern livestock producer.">
-        Los mínimos son pocos y accesibles para cualquier productor ganadero moderno.
+  <div class="sec-head c fi">
+    <span class="sec-label" data-es="Requisitos" data-en="Requirements">Requisitos</span>
+    <h2 class="section-title" data-es="¿Qué necesitás para empezar?" data-en="What do you need to get started?">¿Qué necesitás para empezar?</h2>
+    <p class="section-sub"
+      data-es="Los mínimos son pocos y accesibles para cualquier productor ganadero moderno."
+      data-en="The requirements are minimal and accessible for any modern livestock producer.">
+      Los mínimos son pocos y accesibles para cualquier productor ganadero moderno.
+    </p>
+  </div>
+  <div class="req-grid fi">
+    <div class="req-card">
+      <div class="req-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l1-3h10l1 3h4"/><circle cx="12" cy="12" r="2"/><path d="M5 12v-1a1 1 0 0 1 1-1h2"/><path d="M19 12v-1a1 1 0 0 0-1-1h-2"/></svg>
+      </div>
+      <h3 data-es="Un dron con cámara" data-en="A drone with camera">Un dron con cámara</h3>
+      <p data-es="Cualquier dron que grabe video en MP4, AVI o MOV a mínimo 1080p. DJI, Autel, Parrot o equivalentes. No hace falta un equipo de alta gama."
+        data-en="Any drone recording MP4, AVI, or MOV at minimum 1080p. DJI, Autel, Parrot, or equivalents. No high-end equipment needed.">
+        Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. No hace falta un equipo de alta gama.
       </p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="fi">
-      <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
-        <div style="font-size:2rem;margin-bottom:14px;">🚁</div>
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:10px;" data-es="Un dron con cámara" data-en="A drone with camera">Un dron con cámara</h3>
-        <p style="font-size:.88rem;color:var(--muted);line-height:1.65;"
-          data-es="Cualquier dron que grabe video en MP4, AVI o MOV a mínimo 1080p. DJI, Autel, Parrot o equivalentes. No hace falta un equipo de alta gama."
-          data-en="Any drone recording MP4, AVI, or MOV at minimum 1080p. DJI, Autel, Parrot, or equivalents. No high-end equipment needed.">
-          Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. No hace falta un equipo de alta gama.
-        </p>
+    <div class="req-card">
+      <div class="req-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       </div>
-      <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
-        <div style="font-size:2rem;margin-bottom:14px;">💻</div>
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:10px;" data-es="PC o celular con internet" data-en="PC or phone with internet">PC o celular con internet</h3>
-        <p style="font-size:.88rem;color:var(--muted);line-height:1.65;"
-          data-es="La app corre en Windows, macOS y Linux. También funciona desde cualquier navegador moderno. Para subir el video solo necesitás conexión de banda ancha estándar."
-          data-en="The app runs on Windows, macOS, and Linux. Also works from any modern browser. To upload the video you only need a standard broadband connection.">
-          La app corre en Windows, macOS y Linux, o desde el navegador. Conexión de banda ancha estándar.
-        </p>
+      <h3 data-es="PC o celular con internet" data-en="PC or phone with internet">PC o celular con internet</h3>
+      <p data-es="La app corre en Windows, macOS y Linux. También funciona desde cualquier navegador moderno. Para subir el video solo necesitás conexión de banda ancha estándar."
+        data-en="The app runs on Windows, macOS, and Linux. Also works from any modern browser. To upload the video you only need a standard broadband connection.">
+        La app corre en Windows, macOS y Linux, o desde el navegador. Conexión de banda ancha estándar.
+      </p>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
       </div>
-      <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
-        <div style="font-size:2rem;margin-bottom:14px;">📋</div>
-        <h3 style="font-size:1rem;font-weight:700;margin-bottom:10px;" data-es="Datos del vuelo" data-en="Flight data">Datos del vuelo</h3>
-        <p style="font-size:.88rem;color:var(--muted);line-height:1.65;"
-          data-es="Altura de vuelo en metros y parámetros de la cámara (sensor y focal). Están en el manual del dron o en las especificaciones del fabricante."
-          data-en="Flight altitude in meters and camera parameters (sensor and focal). They're in the drone manual or manufacturer's specifications.">
-          Altura de vuelo en metros y parámetros de la cámara (sensor y focal). Están en el manual del dron.
-        </p>
-      </div>
+      <h3 data-es="Datos del vuelo" data-en="Flight data">Datos del vuelo</h3>
+      <p data-es="Altura de vuelo en metros y parámetros de la cámara (sensor y focal). Están en el manual del dron o en las especificaciones del fabricante."
+        data-en="Flight altitude in meters and camera parameters (sensor and focal). They're in the drone manual or manufacturer's specifications.">
+        Altura de vuelo en metros y parámetros de la cámara (sensor y focal). Están en el manual del dron.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA ════════════════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ CTA ══ -->
 <section id="cta">
-  <div class="glow cta-g"></div>
-  <div class="container">
-    <div class="cta-in fi">
-      <span class="tag" data-es="¿Tenés el dron? El resto lo hacemos nosotros." data-en="Got a drone? We'll handle the rest.">¿Tenés el dron? El resto lo hacemos nosotros.</span>
-      <h2 class="section-title" style="text-align:center;">
-        <span data-es="Empezá a conocer tu rodeo" data-en="Start knowing your herd">Empezá a conocer tu rodeo</span><br/>
-        <span class="hl" data-es="en el próximo vuelo" data-en="on the next flight">en el próximo vuelo</span>
-      </h2>
-      <p class="section-sub" style="text-align:center;"
-        data-es="Escribinos y te mostramos cómo funciona en tu establecimiento, con tus lotes y tu hacienda."
-        data-en="Reach out and we'll show you how it works on your property, with your paddocks and your herd.">
-        Escribinos y te mostramos cómo funciona en tu establecimiento, con tus lotes y tu hacienda.
-      </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a href="mailto:dag@fi.uba.ar" class="btn btn-primary" style="font-size:1rem;padding:14px 32px;" data-es="Escribinos" data-en="Get in touch">Escribinos</a>
-        <a href="caracteristicas.html" class="btn btn-outline" style="font-size:1rem;padding:14px 32px;" data-es="Ver características" data-en="See features">Ver características</a>
-      </div>
+  <div class="cta-in fi">
+    <span class="sec-label" data-es="¿Tenés el dron? El resto lo hacemos nosotros." data-en="Got a drone? We'll handle the rest.">¿Tenés el dron? El resto lo hacemos nosotros.</span>
+    <h2 class="section-title" style="text-align:center;">
+      <span data-es="Empezá a conocer tu rodeo" data-en="Start knowing your herd">Empezá a conocer tu rodeo</span><br/>
+      <span class="hl" data-es="en el próximo vuelo" data-en="on the next flight">en el próximo vuelo</span>
+    </h2>
+    <p class="section-sub" style="text-align:center;"
+      data-es="Escribinos y te mostramos cómo funciona en tu establecimiento, con tus lotes y tu hacienda."
+      data-en="Reach out and we'll show you how it works on your property, with your paddocks and your herd.">
+      Escribinos y te mostramos cómo funciona en tu establecimiento, con tus lotes y tu hacienda.
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <a href="mailto:dag@fi.uba.ar" class="hero-cta" style="font-size:.95rem;padding:16px 36px;" data-es="Escribinos" data-en="Get in touch">Escribinos</a>
+      <a href="caracteristicas.html" class="btn-outline" style="font-size:.95rem;padding:16px 36px;" data-es="Ver características" data-en="See features">Ver características</a>
     </div>
   </div>
 </section>
 
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="container">
+  <div class="foot-inner">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="index.html" class="nav-logo">
-          <div class="nav-logo-icon"><img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/></div>
-          <span class="nav-logo-text">D<em>AG</em></span>
-        </a>
-        <p data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e IA." data-en="Active Cattle Detection. Argentine livestock management platform using drones and AI.">Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e IA.</p>
-        <span class="foot-badge">🎓 <span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
+        <a href="index.html" class="foot-logo">DAG</a>
+        <p data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial."
+           data-en="Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence.">
+          Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial.
+        </p>
+        <span class="foot-badge"><span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
       </div>
       <div class="foot-col">
         <h5 data-es="Producto" data-en="Product">Producto</h5>
@@ -450,18 +734,19 @@
         <h5 data-es="Proyecto" data-en="Project">Proyecto</h5>
         <ul>
           <li><a href="https://fi.uba.ar" target="_blank">FIUBA</a></li>
-          <li><a href="index.html#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
-          <li><a href="https://github.com" target="_blank">GitHub</a></li>
+          <li><a href="mailto:dag@fi.uba.ar" data-es="Contacto" data-en="Contact">Contacto</a></li>
+          <li><a href="https://github.com/fiuba-dag" target="_blank">GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-btm">
       <span class="foot-copy">© 2024 DAG — <span data-es="Detección Activa de Ganado" data-en="Active Cattle Detection">Detección Activa de Ganado</span></span>
-      <span class="foot-badge">🇦🇷 <span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
+      <span class="foot-badge"><span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
     </div>
   </div>
 </footer>
 
+<!-- ══ JS ══ -->
 <script>
   let lang = 'es';
   function setLang(l) {
@@ -469,14 +754,29 @@
     document.getElementById('btnES').classList.toggle('on', l === 'es');
     document.getElementById('btnEN').classList.toggle('on', l === 'en');
     document.documentElement.lang = l;
-    document.querySelectorAll('[data-es]').forEach(el => { const t = el.getAttribute('data-' + l); if (t) el.textContent = t; });
+    i18nEls.forEach(el => {
+      const t = el.getAttribute('data-' + l);
+      if (t) el.textContent = t;
+    });
+    document.title = l === 'es'
+      ? 'Cómo Funciona — DAG Detección Activa de Ganado'
+      : 'How It Works — DAG Active Cattle Detection';
   }
+
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 36));
+  const i18nEls = document.querySelectorAll('[data-es]');
+  window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 36), { passive: true });
+
   function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
   function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('v'), i * 70); io.unobserve(e.target); } });
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('v'), i * 70);
+        io.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fi').forEach(el => io.observe(el));
 </script>

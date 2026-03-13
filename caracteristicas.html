@@ -5,187 +5,414 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Características — DAG Detección Activa de Ganado</title>
   <meta name="description" content="Conocé en detalle las seis funcionalidades de DAG: conteo automático, peso estimado sin manga, condición corporal, dashboard, informes PDF y alertas configurables." />
+  <link rel="icon" type="image/svg+xml" href="img/LOGO.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700&family=Azeret+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg:        hsl(0, 0%, 3.9%);
-      --bg-card:   hsl(0, 0%, 7%);
-      --bg-card2:  hsl(0, 0%, 10%);
-      --bg-hover:  hsl(0, 0%, 14.9%);
-      --border:    hsl(0, 0%, 14.9%);
-      --border-2:  hsl(0, 0%, 22%);
-      --brand:     rgb(108, 172, 228);
-      --brand-dk:  rgb(86, 137, 182);
-      --brand-glow: rgba(108, 172, 228, 0.18);
-      --brand-dim:  rgba(108, 172, 228, 0.12);
-      --brand-rim:  rgba(108, 172, 228, 0.28);
-      --text:      hsl(0, 0%, 98%);
-      --muted:     hsl(0, 0%, 63.9%);
-      --muted2:    hsl(0, 0%, 42%);
-      --destructive: hsl(0, 84.2%, 60.2%);
-      --amber:     hsl(43, 74%, 66%);
-      --radius: 8px; --radius-lg: 14px; --radius-xl: 20px;
+      --cream:  #FDFBF7;
+      --green:  #1B3A2A;
+      --bordo:  #6B2D3C;
+      --arena:  #B8976A;
+      --text:   #1B3A2A;
+      --muted:  #6a7d72;
+      --muted2: #9ba8a0;
+      --border: #d6d0c7;
+      --white:  #FFFFFF;
     }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { font-family: Arial, Helvetica, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-    ::-webkit-scrollbar { width: 5px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-    .tag { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: 100px; font-size: .72rem; font-weight: 700; letter-spacing: .07em; padding: 4px 14px; text-transform: uppercase; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; cursor: pointer; font-family: Arial, Helvetica, sans-serif; font-weight: 700; border-radius: var(--radius); text-decoration: none; transition: all .2s ease; white-space: nowrap; }
-    .btn-primary { background: var(--brand); color: hsl(210,50%,10%); padding: 13px 28px; font-size: .95rem; box-shadow: 0 0 28px rgba(108,172,228,.3); }
-    .btn-primary:hover { background: var(--brand-dk); box-shadow: 0 0 40px rgba(108,172,228,.45); transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-2); padding: 13px 28px; font-size: .95rem; }
-    .btn-outline:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
-    .section-title { font-size: clamp(1.9rem, 3.8vw, 2.7rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
-    .section-sub { color: var(--muted); font-size: 1.05rem; line-height: 1.75; max-width: 640px; }
-    .hl { color: var(--brand); }
-    .glow { position: absolute; border-radius: 50%; filter: blur(130px); background: var(--brand-glow); pointer-events: none; }
-    .fi { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+
+    html { scroll-behavior: smooth; font-size: 17px; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9999;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .mono { font-family: 'Azeret Mono', 'Courier New', monospace; }
+
+    /* ── FADE-IN ── */
+    .fi { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
     .fi.v { opacity: 1; transform: none; }
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 0; backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); background: rgba(10,10,10,.85); border-bottom: 1px solid var(--border); transition: padding .2s ease; }
-    nav.sc { padding: 10px 0; }
-    .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .nav-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-    .nav-logo-icon { width: 34px; height: 34px; border-radius: var(--radius); background: var(--brand); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .nav-logo-text { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -.03em; }
-    .nav-logo-text em { color: var(--brand); font-style: normal; }
-    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 600; padding: 6px 13px; border-radius: var(--radius); transition: color .2s, background .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg-hover); }
-    .nav-links a.active { color: var(--brand); }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .lang-toggle { display: flex; background: var(--bg-card); border: 1px solid var(--border-2); border-radius: var(--radius); overflow: hidden; }
-    .lang-btn { padding: 7px 13px; border: none; background: transparent; color: var(--muted); font-size: .8rem; font-weight: 700; cursor: pointer; font-family: Arial, Helvetica, sans-serif; transition: all .2s; }
-    .lang-btn.on { background: var(--brand); color: hsl(210,50%,10%); }
-    .lang-btn:hover:not(.on) { color: var(--text); }
-    .nav-cta { background: var(--brand); color: hsl(210,50%,10%); border: none; font-weight: 700; padding: 8px 20px; border-radius: var(--radius); cursor: pointer; font-family: Arial, Helvetica, sans-serif; font-size: .88rem; transition: background .2s; text-decoration: none; }
-    .nav-cta:hover { background: var(--brand-dk); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-    .mob-menu { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,.97); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+
+    /* ── DIVIDER LINE ── */
+    .divider { width: 100%; height: 1px; background: var(--border); }
+    .divider--short { width: 100%; max-width: 360px; height: 1px; background: var(--border); }
+
+    .container { padding: 0 48px; }
+
+    .hl { color: var(--bordo); }
+
+    /* ════════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 20px 0;
+      background: rgba(253,251,247,.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--green);
+      transition: padding .2s ease, border-color .3s ease;
+    }
+    nav.sc { padding: 14px 0; border-bottom-color: var(--green); }
+    .nav-in {
+      max-width: 100%; margin: 0; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.6rem; font-weight: 400; color: var(--green);
+      text-decoration: none; letter-spacing: .02em;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo img {
+      height: 1.8rem; width: auto;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; margin-left: auto; margin-right: 24px; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .86rem;
+      font-weight: 500; padding: 6px 16px;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+      height: 1px; background: var(--green);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform .3s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links a.active { color: var(--green); }
+    .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .lang-toggle {
+      display: flex; border: 1.5px solid var(--border);
+      border-radius: 0; overflow: hidden;
+    }
+    .lang-btn {
+      padding: 5px 11px; border: none; background: transparent;
+      color: var(--muted2); font-size: .75rem; font-weight: 600;
+      cursor: pointer; font-family: 'Lora', Georgia, serif;
+      transition: all .2s;
+    }
+    .lang-btn.on { background: var(--green); color: var(--cream); }
+    .lang-btn:hover:not(.on) { color: var(--green); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--green); }
+
+    .mob-menu {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(253,251,247,.98); flex-direction: column;
+      align-items: center; justify-content: center; gap: 32px;
+    }
     .mob-menu.open { display: flex; }
-    .mob-menu a { color: var(--text); text-decoration: none; font-size: 1.5rem; font-weight: 700; }
-    .mob-menu .close-btn { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer; }
-    /* BREADCRUMB */
-    .breadcrumb { padding: 100px 0 0; }
+    .mob-menu a { color: var(--green); text-decoration: none; font-size: 1.3rem; font-weight: 600; }
+    .mob-menu .close-btn {
+      position: absolute; top: 24px; right: 24px;
+      background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer;
+    }
+
+    /* ════════════════════════════════════════════
+       BREADCRUMB
+    ════════════════════════════════════════════ */
+    .breadcrumb { padding: 100px 0 0; background: var(--cream); }
     .bc-in { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted2); }
-    .bc-in a { color: var(--muted); text-decoration: none; } .bc-in a:hover { color: var(--brand); }
+    .bc-in a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .bc-in a:hover { color: var(--green); }
     .bc-in .sep { opacity: .5; }
     .bc-in .cur { color: var(--muted); }
-    /* HERO */
-    .page-hero { padding: 32px 0 80px; position: relative; overflow: hidden; }
-    .ph-g1 { width: 600px; height: 600px; top: -200px; right: -150px; opacity: .45; }
-    .ph-inner { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 22px; max-width: 780px; }
-    .page-hero-title { font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 900; line-height: 1.1; letter-spacing: -.03em; }
-    .page-hero-sub { color: var(--muted); font-size: 1.1rem; line-height: 1.78; max-width: 580px; }
-    /* SECTIONS */
-    .section { padding: 80px 0; }
-    .section.alt { background: var(--bg-card); }
-    .sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; }
+
+    /* ════════════════════════════════════════════
+       PAGE HERO
+    ════════════════════════════════════════════ */
+    .page-hero { padding: 32px 0 80px; background: var(--cream); }
+    .ph-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; gap: 22px; max-width: 780px;
+    }
+    .page-hero-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 400; line-height: 1.1; letter-spacing: -.02em;
+      color: var(--green);
+    }
+    .page-hero-sub { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 580px; }
+
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bordo); color: var(--cream);
+      padding: 14px 32px; font-size: .92rem;
+      font-family: 'Lora', Georgia, serif; font-weight: 600;
+      border: none; border-radius: 0; text-decoration: none;
+      cursor: pointer; transition: background .2s, transform .2s;
+      width: fit-content;
+    }
+    .hero-cta:hover { background: #5a2433; transform: translateY(-1px); }
+
+    .btn-detail {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); text-decoration: none; font-weight: 600; font-size: .86rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--green);
+      transition: all .2s;
+    }
+    .btn-detail:hover { color: var(--bordo); border-color: var(--bordo); }
+    .btn-detail svg { transition: transform .2s; width: 14px; height: 14px; }
+    .btn-detail:hover svg { transform: translateX(4px); }
+
+    /* ════════════════════════════════════════════
+       SECTIONS
+    ════════════════════════════════════════════ */
+    .section { padding: 96px 48px; }
+    .section.alt { background: var(--white); }
+    .sec-head { display: flex; flex-direction: column; gap: 14px; margin-bottom: 56px; }
     .sec-head.c { align-items: center; text-align: center; }
     .sec-head.c .section-sub { margin: 0 auto; }
-    /* FEATURE DETAIL */
+
+    .sec-label {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--arena);
+    }
+    .section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+      font-weight: 700; line-height: 1.18;
+      color: var(--green);
+    }
+    .section-sub {
+      color: var(--muted); font-size: .95rem; line-height: 1.8; max-width: 520px;
+    }
+
+    /* ════════════════════════════════════════════
+       FEATURE DETAIL
+    ════════════════════════════════════════════ */
     .feat-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     .feat-detail.rev { direction: rtl; }
     .feat-detail.rev > * { direction: ltr; }
     .fd-content { display: flex; flex-direction: column; gap: 22px; }
-    .fd-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--brand-dim); border: 1px solid var(--brand-rim); display: flex; align-items: center; justify-content: center; color: var(--brand); font-size: 1.5rem; }
-    .fd-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; line-height: 1.2; letter-spacing: -.02em; }
-    .fd-text { color: var(--muted); font-size: .97rem; line-height: 1.8; }
+    .fd-icon {
+      width: 52px; height: 52px; border-radius: 6px;
+      background: rgba(27,58,42,.06); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green); font-size: 1.5rem;
+    }
+    .fd-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500; line-height: 1.2; letter-spacing: -.02em;
+      color: var(--green);
+    }
+    .fd-text { color: var(--muted); font-size: .95rem; line-height: 1.8; }
     .fd-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .fd-bullets li { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; }
-    .fd-bullets li::before { content: ''; display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); margin-top: 7px; flex-shrink: 0; }
-    .fd-img { border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border-2); box-shadow: 0 24px 64px rgba(0,0,0,.5); }
+    .fd-bullets li { display: flex; gap: 12px; align-items: flex-start; font-size: .9rem; color: var(--muted); line-height: 1.7; }
+    .fd-bullets li::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--arena); margin-top: 9px; flex-shrink: 0; }
+    .fd-img {
+      border-radius: 8px; overflow: hidden; border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(27,58,42,.06);
+    }
     .fd-img img { width: 100%; display: block; }
-    /* TECH BADGE */
-    .tech-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card2); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 5px 12px; font-size: .78rem; font-weight: 600; color: var(--muted); }
+
+    /* ════════════════════════════════════════════
+       TECH BADGES
+    ════════════════════════════════════════════ */
     .tech-badges { display: flex; flex-wrap: wrap; gap: 8px; }
-    /* COMPARISON TABLE */
-    .cmp-table { width: 100%; border-collapse: collapse; }
-    .cmp-table th, .cmp-table td { padding: 14px 18px; text-align: left; font-size: .9rem; border-bottom: 1px solid var(--border); }
-    .cmp-table th { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted2); font-weight: 700; }
-    .cmp-table td:first-child { color: var(--muted); }
-    .cmp-table .bad { color: var(--destructive); }
-    .cmp-table .good { color: var(--brand); font-weight: 600; }
-    /* CONDITION CARDS */
+    .tech-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(27,58,42,.04); border: 1px solid var(--border);
+      border-radius: 4px; padding: 5px 12px;
+      font-size: .72rem; font-weight: 600; color: var(--muted);
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+    }
+
+    /* ════════════════════════════════════════════
+       CONDITION CARDS
+    ════════════════════════════════════════════ */
     .cond-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .cond-card { border-radius: var(--radius-lg); padding: 22px 18px; border: 1px solid; }
-    .cond-card.normal { background: var(--brand-dim); border-color: var(--brand-rim); }
-    .cond-card.calf { background: rgba(99,140,220,.1); border-color: rgba(99,140,220,.25); }
-    .cond-card.thin { background: rgba(242,82,82,.06); border-color: rgba(242,82,82,.18); }
-    .cond-card.fat { background: rgba(232,193,99,.07); border-color: rgba(232,193,99,.22); }
-    .cond-label { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px; }
-    .cond-card.normal .cond-label { color: var(--brand); }
-    .cond-card.calf   .cond-label { color: hsl(220,70%,65%); }
-    .cond-card.thin   .cond-label { color: var(--destructive); }
-    .cond-card.fat    .cond-label { color: var(--amber); }
+    .cond-card { border-radius: 6px; padding: 22px 18px; border: 1px solid; }
+    .cond-card.normal { background: rgba(27,58,42,.04); border-color: rgba(27,58,42,.15); }
+    .cond-card.calf   { background: rgba(184,151,106,.06); border-color: rgba(184,151,106,.2); }
+    .cond-card.thin   { background: rgba(107,45,60,.04); border-color: rgba(107,45,60,.15); }
+    .cond-card.fat    { background: rgba(184,151,106,.06); border-color: rgba(184,151,106,.2); }
+    .cond-label {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; margin-bottom: 8px;
+    }
+    .cond-card.normal .cond-label { color: var(--green); }
+    .cond-card.calf   .cond-label { color: var(--arena); }
+    .cond-card.thin   .cond-label { color: var(--bordo); }
+    .cond-card.fat    .cond-label { color: var(--arena); }
     .cond-desc { font-size: .84rem; color: var(--muted); line-height: 1.6; }
     .cond-action { margin-top: 12px; font-size: .8rem; font-weight: 600; }
-    /* FOOTER */
-    footer { background: var(--bg-card); border-top: 1px solid var(--border); padding: 56px 0 38px; }
+
+    /* ════════════════════════════════════════════
+       COMPARISON TABLE
+    ════════════════════════════════════════════ */
+    .cmp-table { width: 100%; border-collapse: collapse; }
+    .cmp-table th, .cmp-table td { padding: 14px 18px; text-align: left; font-size: .9rem; border-bottom: 1px solid var(--border); }
+    .cmp-table th {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .68rem; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted2); font-weight: 600;
+    }
+    .cmp-table td:first-child { color: var(--muted); }
+    .cmp-table .bad { color: var(--bordo); }
+    .cmp-table .good { color: var(--green); font-weight: 600; }
+
+    /* ════════════════════════════════════════════
+       CTA SECTION
+    ════════════════════════════════════════════ */
+    #cta {
+      padding: 120px 48px; text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, rgba(27,58,42,.03) 50%, var(--cream) 100%);
+    }
+    .cta-in {
+      max-width: 640px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+    .cta-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2rem, 3.8vw, 2.8rem); font-weight: 700;
+      letter-spacing: -.02em; line-height: 1.15; color: var(--green);
+    }
+    .cta-sub { color: var(--muted); font-size: .95rem; line-height: 1.8; }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    footer { background: var(--green); color: rgba(253,251,247,.7); padding: 56px 48px 38px; }
+    .foot-inner { max-width: 100%; }
     .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
     .foot-brand { display: flex; flex-direction: column; gap: 14px; }
-    .foot-brand p { color: var(--muted); font-size: .85rem; line-height: 1.7; max-width: 270px; }
-    .foot-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--brand-dim); border: 1px solid var(--brand-rim); color: var(--brand); border-radius: var(--radius); padding: 4px 10px; font-size: .74rem; font-weight: 700; }
-    .foot-col h5 { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted2); font-weight: 700; margin-bottom: 14px; }
-    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .foot-col a { color: var(--muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
-    .foot-col a:hover { color: var(--brand); }
-    .foot-btm { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .foot-copy { color: var(--muted2); font-size: .8rem; }
-    /* CTA SECTION */
-    #cta { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
-    .cta-g { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%,-50%); opacity: .5; }
-    .cta-in { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-    /* RESPONSIVE */
-    @media(max-width:1024px){ .feat-detail { gap: 40px; } .cond-grid { grid-template-columns: repeat(2,1fr); } .foot-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:768px){ .nav-links, .nav-cta { display: none; } .hamburger { display: flex; } .feat-detail, .feat-detail.rev { grid-template-columns: 1fr; direction: ltr; } .cond-grid { grid-template-columns: 1fr 1fr; } .foot-grid { grid-template-columns: 1fr; } }
-    @media(max-width:480px){ .cond-grid { grid-template-columns: 1fr; } }
+    .foot-brand .foot-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.4rem; font-weight: 400; color: var(--cream);
+      text-decoration: none; letter-spacing: .08em;
+    }
+    .foot-brand p { color: rgba(253,251,247,.5); font-size: .84rem; line-height: 1.7; max-width: 280px; }
+    .foot-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(253,251,247,.06); border: 1px solid rgba(253,251,247,.12);
+      color: var(--arena); border-radius: 4px; padding: 4px 10px;
+      font-size: .68rem; font-weight: 600;
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+    }
+    .foot-col h5 {
+      font-family: 'Azeret Mono', 'Courier New', monospace;
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .12em;
+      color: rgba(253,251,247,.3); font-weight: 600; margin-bottom: 16px;
+    }
+    .foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .foot-col a { color: rgba(253,251,247,.55); text-decoration: none; font-size: .84rem;
+      transition: color .2s; }
+    .foot-col a:hover { color: var(--cream); }
+    .foot-btm {
+      border-top: 1px solid rgba(253,251,247,.08); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; flex-wrap: wrap;
+    }
+    .foot-copy { color: rgba(253,251,247,.3); font-size: .76rem; }
+
+    /* ════════════════════════════════════════════
+       Z-SCORE BOX
+    ════════════════════════════════════════════ */
+    .zscore-box {
+      margin-top: 48px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 6px; padding: 28px 36px;
+    }
+    .zscore-box h3 {
+      font-size: 1.02rem; font-weight: 700; margin-bottom: 12px; color: var(--green);
+    }
+    .zscore-box p {
+      color: var(--muted); font-size: .9rem; line-height: 1.75; max-width: 820px;
+    }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media(max-width:1024px){
+      .feat-detail { gap: 40px; }
+      .cond-grid { grid-template-columns: repeat(2,1fr); }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-in { padding-left: 24px; padding-right: 24px; }
+      .container { padding-left: 24px; padding-right: 24px; }
+      .section, #cta, footer { padding-left: 24px; padding-right: 24px; }
+      .feat-detail, .feat-detail.rev { grid-template-columns: 1fr; direction: ltr; }
+      .cond-grid { grid-template-columns: 1fr 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .section { padding: 72px 24px; }
+    }
+    @media(max-width:480px){
+      .cond-grid { grid-template-columns: 1fr; }
+      html { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ══ MOBILE MENU ══════════════════════════════════ -->
+<!-- ══ MOBILE MENU ══ -->
 <div class="mob-menu" id="mobMenu">
-  <button class="close-btn" onclick="closeMob()">✕</button>
-  <a href="index.html" onclick="closeMob()">Inicio</a>
-  <a href="caracteristicas.html" onclick="closeMob()">Características</a>
-  <a href="como-funciona.html" onclick="closeMob()">Cómo funciona</a>
-  <a href="dashboard.html" onclick="closeMob()">Dashboard</a>
-  <a href="index.html#cta" class="btn btn-primary">Conocé más</a>
+  <button class="close-btn" onclick="closeMob()">&#10005;</button>
+  <a href="index.html" onclick="closeMob()" data-es="Inicio" data-en="Home">Inicio</a>
+  <a href="caracteristicas.html" onclick="closeMob()" data-es="Características" data-en="Features">Características</a>
+  <a href="como-funciona.html" onclick="closeMob()" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a>
+  <a href="dashboard.html" onclick="closeMob()" data-es="Dashboard" data-en="Dashboard">Dashboard</a>
+  <a href="index.html#cta" onclick="closeMob()" class="hero-cta"
+    data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
 </div>
 
-<!-- ══ NAV ══════════════════════════════════════════ -->
+<!-- ══ NAV ══ -->
 <nav id="nav">
-  <div class="container">
-    <div class="nav-in">
-      <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">
-          <img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/>
-        </div>
-        <span class="nav-logo-text">D<em>AG</em></span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="caracteristicas.html" class="active" data-es="Características" data-en="Features">Características</a></li>
-        <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
-        <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
-      </ul>
-      <div class="nav-right">
-        <div class="lang-toggle">
-          <button class="lang-btn on" id="btnES" onclick="setLang('es')">ES</button>
-          <button class="lang-btn"    id="btnEN" onclick="setLang('en')">EN</button>
-        </div>
-        <a href="index.html#cta" class="nav-cta" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
-        <button class="hamburger" onclick="openMob()">
-          <span></span><span></span><span></span>
-        </button>
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo"><img src="img/logo-dag.svg" alt="DAG logo">DAG</a>
+    <ul class="nav-links">
+      <li><a href="caracteristicas.html" class="active" data-es="Características" data-en="Features">Características</a></li>
+      <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+      <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn on" id="btnES" onclick="setLang('es')">ES</button>
+        <button class="lang-btn"    id="btnEN" onclick="setLang('en')">EN</button>
       </div>
+      <button class="hamburger" onclick="openMob()">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
 
-<!-- ══ BREADCRUMB ══════════════════════════════════ -->
+<!-- ══ BREADCRUMB ══ -->
 <div class="breadcrumb">
   <div class="container">
     <div class="bc-in fi">
@@ -196,42 +423,35 @@
   </div>
 </div>
 
-<!-- ══ PAGE HERO ════════════════════════════════════ -->
+<!-- ══ PAGE HERO ══ -->
 <section class="page-hero">
-  <div class="glow ph-g1"></div>
   <div class="container">
     <div class="ph-inner fi">
-      <span class="tag" data-es="Seis herramientas, un solo sistema" data-en="Six tools, one system">Seis herramientas, un solo sistema</span>
+      <span class="sec-label" data-es="Seis herramientas, un solo sistema" data-en="Six tools, one system">Seis herramientas, un solo sistema</span>
       <h1 class="page-hero-title">
         <span data-es="Todo lo que necesitás para" data-en="Everything you need to">Todo lo que necesitás para</span><br/>
         <span class="hl" data-es="conocer tu hacienda de verdad" data-en="truly know your herd">conocer tu hacienda de verdad</span>
       </h1>
+      <div class="divider--short"></div>
       <p class="page-hero-sub"
         data-es="Cada función de DAG fue diseñada para reducir el trabajo manual del productor ganadero y darte información exacta sobre tu rodeo sin tener que tocar un solo animal."
         data-en="Every DAG feature was designed to reduce manual work for the cattle producer and give you precise information about your herd without having to touch a single animal.">
         Cada función de DAG fue diseñada para reducir el trabajo manual del productor ganadero y darte información exacta sobre tu rodeo sin tener que tocar un solo animal.
       </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="como-funciona.html" class="btn btn-primary" data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
-        <a href="index.html#cta" class="btn btn-outline" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 1. CONTEO AUTOMÁTICO ════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 1. CONTEO AUTOMÁTICO ══ -->
 <section class="section" id="conteo">
   <div class="container">
     <div class="feat-detail fi">
       <div class="fd-content">
         <div>
-          <span class="tag" data-es="Función 1 de 6" data-en="Feature 1 of 6">Función 1 de 6</span>
-        </div>
-        <div class="fd-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
+          <span class="sec-label" data-es="Función 1 de 6" data-en="Feature 1 of 6">Función 1 de 6</span>
         </div>
         <h2 class="fd-title" data-es="Conteo automático del rodeo" data-en="Automatic herd counting">Conteo automático del rodeo</h2>
         <p class="fd-text"
@@ -252,27 +472,87 @@
           <span class="tech-badge">Python 3.11</span>
         </div>
       </div>
-      <div class="fd-img">
-        <!-- Reemplazá con una captura real del sistema detectando animales -->
-        <img src="img/hero-drone-deteccion.svg" alt="Sistema DAG detectando y contando animales en un lote"/>
+      <div class="fd-img" style="position:relative;">
+        <img src="img/muchasvacas.jpg" alt="Vacas detectadas por el sistema DAG en un lote" loading="lazy"/>
+        <!-- Detection marcos overlay -->
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 1000 667" xmlns="http://www.w3.org/2000/svg">
+
+          <!-- Vaca 2 — colorada, centro (130x105 como ID:05) -->
+          <g style="animation: marco-float 6s ease-in-out infinite .8s;">
+            <rect x="400" y="300" width="130" height="105" rx="2" fill="none" stroke="rgba(253,251,247,.7)" stroke-width="2"/>
+            <path d="M400 318 L400 300 L425 300" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M505 300 L530 300 L530 318" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M400 387 L400 405 L425 405" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M505 405 L530 405 L530 387" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <rect x="400" y="300" width="130" height="20" fill="#1B3A2A" opacity=".88"/>
+            <text x="408" y="314" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">ID:02  412kg</text>
+            <rect x="420" y="385" width="110" height="20" fill="#1B3A2A" opacity=".88"/>
+            <text x="428" y="399" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">NORMAL</text>
+            <line x1="400" y1="353" x2="530" y2="353" stroke="rgba(253,251,247,.2)" stroke-width="1" stroke-dasharray="6 4">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3s" repeatCount="indefinite"/>
+            </line>
+          </g>
+
+          <!-- Vaca 4 — negra, derecha (130x105 como ID:05) -->
+          <g style="animation: marco-float 6s ease-in-out infinite 2.4s;">
+            <rect x="720" y="320" width="130" height="105" rx="2" fill="none" stroke="rgba(253,251,247,.7)" stroke-width="2"/>
+            <path d="M720 338 L720 320 L745 320" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M825 320 L850 320 L850 338" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M720 407 L720 425 L745 425" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <path d="M825 425 L850 425 L850 407" fill="none" stroke="#FDFBF7" stroke-width="3" stroke-linecap="square"/>
+            <rect x="720" y="320" width="130" height="20" fill="#1B3A2A" opacity=".88"/>
+            <text x="728" y="334" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">ID:04  451kg</text>
+            <rect x="740" y="405" width="110" height="20" fill="#1B3A2A" opacity=".88"/>
+            <text x="748" y="419" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">NORMAL</text>
+            <line x1="720" y1="373" x2="850" y2="373" stroke="rgba(253,251,247,.2)" stroke-width="1" stroke-dasharray="6 4">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="3s" repeatCount="indefinite"/>
+            </line>
+          </g>
+
+          <!-- Vaca 5 — bajo peso (movida a la derecha y arriba) -->
+          <g style="animation: marco-float 6s ease-in-out infinite 3.2s;">
+            <rect x="120" y="300" width="130" height="105" rx="2" fill="none" stroke="rgba(107,45,60,.7)" stroke-width="2" stroke-dasharray="6 3"/>
+            <path d="M120 318 L120 300 L145 300" fill="none" stroke="#6B2D3C" stroke-width="3" stroke-linecap="square"/>
+            <path d="M225 300 L250 300 L250 318" fill="none" stroke="#6B2D3C" stroke-width="3" stroke-linecap="square"/>
+            <path d="M120 387 L120 405 L145 405" fill="none" stroke="#6B2D3C" stroke-width="3" stroke-linecap="square"/>
+            <path d="M225 405 L250 405 L250 387" fill="none" stroke="#6B2D3C" stroke-width="3" stroke-linecap="square"/>
+            <rect x="120" y="300" width="130" height="20" fill="#6B2D3C" opacity=".9"/>
+            <text x="126" y="314" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">ID:05 284kg ⚠</text>
+            <rect x="140" y="385" width="110" height="20" fill="#6B2D3C" opacity=".9"/>
+            <text x="148" y="399" font-family="'Azeret Mono',monospace" font-size="10" font-weight="600" fill="#FDFBF7" letter-spacing=".04em">BAJO PESO</text>
+          </g>
+
+          <!-- HUD overlay: info panel top-left -->
+          <g>
+            <rect x="20" y="20" width="230" height="110" rx="4" fill="rgba(27,58,42,.82)"/>
+            <circle cx="36" cy="38" r="5" fill="#4ade80"/>
+            <text x="46" y="42" font-family="'Azeret Mono',monospace" font-size="11" font-weight="700" fill="#FDFBF7" letter-spacing=".06em">DETECCIÓN EN VIVO</text>
+            <text x="30" y="62" font-family="'Azeret Mono',monospace" font-size="10" font-weight="500" fill="rgba(253,251,247,.8)">Cabezas: 3 | Área: 4.2 ha</text>
+            <text x="30" y="78" font-family="'Azeret Mono',monospace" font-size="10" font-weight="500" fill="rgba(253,251,247,.8)">Peso promedio: 354 kg</text>
+            <text x="30" y="94" font-family="'Azeret Mono',monospace" font-size="10" font-weight="500" fill="#f59e0b">⚠ Alertas: 1 (bajo peso)</text>
+            <text x="30" y="118" font-family="'Azeret Mono',monospace" font-size="9" font-weight="400" fill="rgba(253,251,247,.5)">Vuelo: 2024-10-15 Alt: 45m</text>
+          </g>
+
+          <!-- Frame counter bottom-right -->
+          <rect x="830" y="640" width="160" height="22" rx="2" fill="rgba(27,58,42,.6)"/>
+          <text x="840" y="656" font-family="'Azeret Mono',monospace" font-size="10" font-weight="500" fill="rgba(253,251,247,.6)">Frame 847 / 3200</text>
+
+        </svg>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 2. PESO ESTIMADO ════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 2. PESO ESTIMADO ══ -->
 <section class="section alt" id="peso">
   <div class="container">
     <div class="feat-detail rev fi">
       <div class="fd-content">
         <div>
-          <span class="tag" data-es="Función 2 de 6" data-en="Feature 2 of 6">Función 2 de 6</span>
-        </div>
-        <div class="fd-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9-3 9 3"/>
-            <path d="M3 6c0 5-1 8-1 11h20c0-3-1-6-1-11"/><path d="M5 17H19"/>
-          </svg>
+          <span class="sec-label" data-es="Función 2 de 6" data-en="Feature 2 of 6">Función 2 de 6</span>
         </div>
         <h2 class="fd-title" data-es="Peso estimado sin tolva ni manga" data-en="Estimated weight — no crush, no scale">Peso estimado sin tolva ni manga</h2>
         <p class="fd-text"
@@ -294,17 +574,20 @@
       </div>
       <div class="fd-img">
         <!-- Reemplazá con foto de hacienda en lote o captura del sistema mostrando pesos -->
-        <img src="img/foto-hacienda-lote.svg" alt="Hacienda bovina en lote — estimación de peso desde dron"/>
+        <img src="img/foto-hacienda-lote.svg" alt="Hacienda bovina en lote — estimación de peso desde dron" loading="lazy"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 3. CONDICIÓN CORPORAL ════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 3. CONDICIÓN CORPORAL ══ -->
 <section class="section" id="condicion">
   <div class="container">
     <div class="sec-head fi">
-      <span class="tag" data-es="Función 3 de 6" data-en="Feature 3 of 6">Función 3 de 6</span>
+      <span class="sec-label" data-es="Función 3 de 6" data-en="Feature 3 of 6">Función 3 de 6</span>
       <h2 class="section-title" data-es="Clasificación de condición corporal" data-en="Body condition classification">Clasificación de condición corporal</h2>
       <p class="section-sub"
         data-es="Cada animal del lote queda clasificado automáticamente en una de 4 categorías usando análisis estadístico por z-score sobre la densidad corporal de toda la tropa. Sin revisión manual, sin subjetividad."
@@ -320,7 +603,7 @@
           data-en="The animal's weight is within the expected range for its silhouette size. Optimal production condition.">
           El animal tiene un peso dentro del rango esperado para su tamaño de silueta. Condición óptima de producción.
         </p>
-        <p class="cond-action" style="color:var(--brand);" data-es="✓ Sin acción requerida" data-en="✓ No action required">✓ Sin acción requerida</p>
+        <p class="cond-action" style="color:var(--green);" data-es="✓ Sin acción requerida" data-en="✓ No action required">✓ Sin acción requerida</p>
       </div>
       <div class="cond-card calf">
         <div class="cond-label" data-es="Ternero" data-en="Calf">Ternero</div>
@@ -329,7 +612,7 @@
           data-en="Animal with a significantly smaller silhouette than the herd average. Detected as a calf or yearling heifer.">
           Animal con silueta significativamente más pequeña que el promedio del rodeo. Detectado como ternero o vaquillona de año.
         </p>
-        <p class="cond-action" style="color:hsl(220,70%,65%);" data-es="ℹ Registrar y hacer seguimiento" data-en="ℹ Record and follow up">ℹ Registrar y hacer seguimiento</p>
+        <p class="cond-action" style="color:var(--arena);" data-es="ℹ Registrar y hacer seguimiento" data-en="ℹ Record and follow up">ℹ Registrar y hacer seguimiento</p>
       </div>
       <div class="cond-card thin">
         <div class="cond-label" data-es="Bajo Peso" data-en="Underweight">Bajo Peso</div>
@@ -338,7 +621,7 @@
           data-en="The silhouette area is unusually small relative to the estimated weight, which may indicate health problems, parasites, or genetic issues.">
           El área de silueta es inusualmente pequeña en relación al peso estimado. Puede indicar problemas sanitarios, parasitosis o carga subóptima.
         </p>
-        <p class="cond-action" style="color:var(--destructive);" data-es="⚠ Revisar con veterinario" data-en="⚠ Review with vet">⚠ Revisar con veterinario</p>
+        <p class="cond-action" style="color:var(--bordo);" data-es="⚠ Revisar con veterinario" data-en="⚠ Review with vet">⚠ Revisar con veterinario</p>
       </div>
       <div class="cond-card fat">
         <div class="cond-label" data-es="Sobrepeso" data-en="Overweight">Sobrepeso</div>
@@ -347,34 +630,23 @@
           data-en="The animal significantly exceeds the herd average weight. May indicate successful fattening or an anomaly worth reviewing.">
           El animal supera significativamente el peso promedio del rodeo. Puede indicar engorde exitoso o ser una anomalía que merezca revisión.
         </p>
-        <p class="cond-action" style="color:var(--amber);" data-es="→ Evaluar aptitud para venta" data-en="→ Evaluate sale readiness">→ Evaluar aptitud para venta</p>
+        <p class="cond-action" style="color:var(--arena);" data-es="→ Evaluar aptitud para venta" data-en="→ Evaluate sale readiness">→ Evaluar aptitud para venta</p>
       </div>
     </div>
 
-    <div style="margin-top:48px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 36px;" class="fi">
-      <h3 style="font-size:1.02rem;font-weight:700;margin-bottom:12px;" data-es="¿Cómo funciona el z-score?" data-en="How does z-score work?">¿Cómo funciona el z-score?</h3>
-      <p style="color:var(--muted);font-size:.9rem;line-height:1.75;max-width:820px;"
-        data-es="Para cada vuelo, el sistema calcula la densidad corporal de cada animal (peso estimado dividido por el área de su silueta). Luego obtiene la media y el desvío estándar de esa distribución dentro del lote. Los animales con un z-score menor a -1.5 son marcados como BAJO PESO; los que superan +1.5 como SOBREPESO; los que tienen un área de silueta muy pequeña en términos absolutos son clasificados como TERNERO. El resto es NORMAL."
-        data-en="For each flight, the system calculates each animal's body density (estimated weight divided by silhouette area). It then gets the mean and standard deviation of that distribution within the paddock. Animals with z-score below -1.5 are flagged UNDERWEIGHT; those above +1.5 as OVERWEIGHT; those with an absolutely very small silhouette area are classified as CALF. The rest are NORMAL.">
-        Para cada vuelo, el sistema calcula la densidad corporal de cada animal (peso estimado dividido por el área de su silueta). Luego obtiene la media y el desvío estándar de esa distribución dentro del lote. Los animales con un z-score menor a -1.5 son marcados como BAJO PESO; los que superan +1.5 como SOBREPESO; los que tienen un área de silueta muy pequeña en términos absolutos son clasificados como TERNERO. El resto es NORMAL.
-      </p>
-    </div>
   </div>
 </section>
 
-<!-- ══ 4. DASHBOARD ════════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 4. DASHBOARD ══ -->
 <section class="section alt" id="dashboard">
   <div class="container">
     <div class="feat-detail fi">
       <div class="fd-content">
         <div>
-          <span class="tag" data-es="Función 4 de 6" data-en="Feature 4 of 6">Función 4 de 6</span>
-        </div>
-        <div class="fd-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
-            <line x1="6"  y1="20" x2="6"  y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
-          </svg>
+          <span class="sec-label" data-es="Función 4 de 6" data-en="Feature 4 of 6">Función 4 de 6</span>
         </div>
         <h2 class="fd-title" data-es="Dashboard por establecimiento" data-en="Dashboard per property">Dashboard por establecimiento</h2>
         <p class="fd-text"
@@ -389,31 +661,29 @@
           <li data-es="La app funciona como software de escritorio (Windows, macOS, Linux) y como aplicación web desde cualquier navegador." data-en="The app runs as desktop software (Windows, macOS, Linux) and as a web application from any browser.">La app funciona en escritorio (Windows, macOS, Linux) y como web desde cualquier navegador.</li>
         </ul>
         <div style="margin-top:8px;">
-          <a href="dashboard.html" class="btn btn-primary" data-es="Ver el dashboard en detalle" data-en="See the dashboard in detail">Ver el dashboard en detalle →</a>
+          <a href="dashboard.html" class="btn-detail" data-es="Ver el dashboard en detalle" data-en="See the dashboard in detail">Ver el dashboard en detalle
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </div>
       <div class="fd-img">
         <!-- Reemplazá con screenshot real del dashboard DAG -->
-        <img src="img/captura-pantalla-app.svg" alt="Dashboard DAG — evolución de peso y condición corporal del rodeo"/>
+        <img src="img/captura-pantalla-app.svg" alt="Dashboard DAG — evolución de peso y condición corporal del rodeo" loading="lazy"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 5. INFORME PDF ══════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 5. INFORME PDF ══ -->
 <section class="section" id="pdf">
   <div class="container">
     <div class="feat-detail rev fi">
       <div class="fd-content">
         <div>
-          <span class="tag" data-es="Función 5 de 6" data-en="Feature 5 of 6">Función 5 de 6</span>
-        </div>
-        <div class="fd-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
+          <span class="sec-label" data-es="Función 5 de 6" data-en="Feature 5 of 6">Función 5 de 6</span>
         </div>
         <h2 class="fd-title" data-es="Informe PDF por vuelo" data-en="PDF report per flight">Informe PDF por vuelo</h2>
         <p class="fd-text"
@@ -421,7 +691,7 @@
           data-en="Once processing finishes, the system automatically generates a complete PDF flight report. The report is structured to be understood by producers, veterinarians, and livestock buyers without any technical knowledge.">
           Una vez que finaliza el procesamiento, el sistema genera automáticamente un informe PDF completo. Está estructurado para ser entendido por productores, veterinarios y compradores de hacienda sin conocimientos técnicos.
         </p>
-        <p style="font-size:.88rem;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-top:4px;"
+        <p class="sec-label" style="margin-top:4px;"
           data-es="El informe incluye:" data-en="The report includes:">El informe incluye:</p>
         <ul class="fd-bullets">
           <li data-es="Portada con nombre del establecimiento, lote, fecha y hora del vuelo, altura y parámetros de la cámara." data-en="Cover with property name, paddock, flight date and time, altitude, and camera parameters.">Portada con nombre del establecimiento, lote, fecha del vuelo y parámetros de vuelo.</li>
@@ -437,25 +707,22 @@
       </div>
       <div class="fd-img" style="display:flex;flex-direction:column;gap:16px;">
         <!-- Reemplazá con foto o screenshot de un informe PDF real generado por DAG -->
-        <img src="img/foto-productor-tablet.svg" alt="Productor ganadero revisando el informe PDF de DAG en su tablet"/>
+        <img src="img/foto-productor-tablet.svg" alt="Productor ganadero revisando el informe PDF de DAG en su tablet" loading="lazy"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 6. ALERTAS ══════════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ 6. ALERTAS ══ -->
 <section class="section alt" id="alertas">
   <div class="container">
     <div class="feat-detail fi">
       <div class="fd-content">
         <div>
-          <span class="tag" data-es="Función 6 de 6" data-en="Feature 6 of 6">Función 6 de 6</span>
-        </div>
-        <div class="fd-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
+          <span class="sec-label" data-es="Función 6 de 6" data-en="Feature 6 of 6">Función 6 de 6</span>
         </div>
         <h2 class="fd-title" data-es="Alertas configurables por lote" data-en="Configurable alerts per paddock">Alertas configurables por lote</h2>
         <p class="fd-text"
@@ -471,20 +738,23 @@
         </ul>
       </div>
       <div class="fd-img">
-        <img src="img/foto-productor-tablet.svg" alt="Productor recibiendo alertas de DAG sobre su hacienda"/>
+        <img src="img/foto-productor-tablet.svg" alt="Productor recibiendo alertas de DAG sobre su hacienda" loading="lazy"/>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ TABLA COMPARATIVA ════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ TABLA COMPARATIVA ══ -->
 <section class="section" id="comparacion">
   <div class="container">
     <div class="sec-head c fi">
-      <span class="tag" data-es="Comparativa" data-en="Comparison">Comparativa</span>
+      <span class="sec-label" data-es="Comparativa" data-en="Comparison">Comparativa</span>
       <h2 class="section-title" data-es="DAG vs. métodos tradicionales" data-en="DAG vs. traditional methods">DAG vs. métodos tradicionales</h2>
     </div>
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;" class="fi">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;overflow:hidden;" class="fi">
       <table class="cmp-table">
         <thead>
           <tr>
@@ -525,42 +795,41 @@
   </div>
 </section>
 
-<!-- ══ CTA ════════════════════════════════════════ -->
+<!-- ══ LINE ══ -->
+<div class="divider"></div>
+
+<!-- ══ CTA ══ -->
 <section id="cta">
-  <div class="glow cta-g"></div>
-  <div class="container">
-    <div class="cta-in fi">
-      <span class="tag" data-es="¿Querés verlo en tu campo?" data-en="Want to see it on your farm?">¿Querés verlo en tu campo?</span>
-      <h2 class="section-title" style="text-align:center;">
-        <span data-es="Gestioná tu hacienda" data-en="Manage your livestock">Gestioná tu hacienda</span><br/>
-        <span class="hl" data-es="de otra manera" data-en="a different way">de otra manera</span>
-      </h2>
-      <p class="section-sub" style="text-align:center;"
-        data-es="Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu establecimiento."
-        data-en="We're a team of Argentine engineers. Reach out and we'll show you how it works on your property.">
-        Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu establecimiento.
-      </p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a href="mailto:dag@fi.uba.ar" class="btn btn-primary" style="font-size:1rem;padding:14px 32px;"
-          data-es="Escribinos" data-en="Get in touch">Escribinos</a>
-        <a href="como-funciona.html" class="btn btn-outline" style="font-size:1rem;padding:14px 32px;"
-          data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
-      </div>
+  <div class="cta-in fi">
+    <span class="sec-label" data-es="¿Querés verlo en tu campo?" data-en="Want to see it on your farm?">¿Querés verlo en tu campo?</span>
+    <h2 class="cta-title">
+      <span data-es="Gestioná tu hacienda" data-en="Manage your livestock">Gestioná tu hacienda</span><br/>
+      <span class="hl" data-es="de otra manera" data-en="a different way">de otra manera</span>
+    </h2>
+    <p class="cta-sub"
+      data-es="Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu establecimiento."
+      data-en="We're a team of Argentine engineers. Reach out and we'll show you how it works on your property.">
+      Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu establecimiento.
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <a href="mailto:dag@fi.uba.ar" class="hero-cta" style="font-size:.95rem;padding:16px 36px;"
+        data-es="Escribinos" data-en="Get in touch">Escribinos</a>
+      <a href="como-funciona.html" class="btn-detail" style="font-size:.95rem;padding:12px 0;"
+        data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ══ FOOTER ════════════════════════════════════ -->
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="container">
+  <div class="foot-inner">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="index.html" class="nav-logo">
-          <div class="nav-logo-icon"><img src="img/logo-dag-icon.svg" width="20" height="20" alt="DAG logo"/></div>
-          <span class="nav-logo-text">D<em>AG</em></span>
-        </a>
+        <a href="index.html" class="foot-logo">DAG</a>
         <p data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial." data-en="Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence.">Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial.</p>
-        <span class="foot-badge">🎓 <span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
+        <span class="foot-badge"><span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
       </div>
       <div class="foot-col">
         <h5 data-es="Producto" data-en="Product">Producto</h5>
@@ -574,18 +843,19 @@
         <h5 data-es="Proyecto" data-en="Project">Proyecto</h5>
         <ul>
           <li><a href="https://fi.uba.ar" target="_blank">FIUBA</a></li>
-          <li><a href="index.html#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
-          <li><a href="https://github.com" target="_blank">GitHub</a></li>
+          <li><a href="mailto:dag@fi.uba.ar" data-es="Contacto" data-en="Contact">Contacto</a></li>
+          <li><a href="https://github.com/fiuba-dag" target="_blank">GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-btm">
       <span class="foot-copy">© 2024 DAG — <span data-es="Detección Activa de Ganado" data-en="Active Cattle Detection">Detección Activa de Ganado</span></span>
-      <span class="foot-badge">🇦🇷 <span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
+      <span class="foot-badge"><span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
     </div>
   </div>
 </footer>
 
+<!-- ══ JS ══ -->
 <script>
   let lang = 'es';
   function setLang(l) {
@@ -593,13 +863,14 @@
     document.getElementById('btnES').classList.toggle('on', l === 'es');
     document.getElementById('btnEN').classList.toggle('on', l === 'en');
     document.documentElement.lang = l;
-    document.querySelectorAll('[data-es]').forEach(el => {
+    i18nEls.forEach(el => {
       const t = el.getAttribute('data-' + l);
       if (t) el.textContent = t;
     });
   }
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 36));
+  const i18nEls = document.querySelectorAll('[data-es]');
+  window.addEventListener('scroll', () => nav.classList.toggle('sc', scrollY > 36), { passive: true });
   function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
   function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
   const io = new IntersectionObserver((entries) => {
