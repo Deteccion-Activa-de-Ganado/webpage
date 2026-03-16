@@ -589,13 +589,13 @@
 
 <script>
   // Apply texts from the content file
-  if (window.TEXTS) {
+  if (window.DAG_TEXTS) {
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
-      if (window.TEXTS[key]) {
-        el.setAttribute('data-es', window.TEXTS[key].es);
-        el.setAttribute('data-en', window.TEXTS[key].en);
-        el.textContent = window.TEXTS[key].es;
+      if (window.DAG_TEXTS[key]) {
+        el.setAttribute('data-es', window.DAG_TEXTS[key].es);
+        el.setAttribute('data-en', window.DAG_TEXTS[key].en);
+        el.textContent = window.DAG_TEXTS[key].es;
       }
     });
   }
