@@ -461,17 +461,18 @@
       .dash-body { grid-template-columns: 1fr; }
     }
   </style>
+  <script src="texts/index.js"></script>
 </head>
 <body>
 
 <!-- ══ MOBILE MENU ══════════════════════════════════ -->
 <div class="mob-menu" id="mobMenu">
   <button class="close-btn" onclick="closeMob()">✕</button>
-  <a href="caracteristicas.html" onclick="closeMob()" data-es="Características" data-en="Features">Características</a>
-  <a href="como-funciona.html" onclick="closeMob()" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a>
-  <a href="dashboard.html" onclick="closeMob()" data-es="Dashboard" data-en="Dashboard">Dashboard</a>
+  <a href="caracteristicas.html" onclick="closeMob()" data-key="nav.caracteristicas" data-es="Características" data-en="Features">Características</a>
+  <a href="como-funciona.html" onclick="closeMob()" data-key="nav.como_funciona" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a>
+  <a href="dashboard.html" onclick="closeMob()" data-key="nav.dashboard" data-es="Dashboard" data-en="Dashboard">Dashboard</a>
   <a href="#cta" onclick="closeMob()" class="btn btn-primary"
-    data-es="Conocé más" data-en="Learn more">Conocé más</a>
+    data-key="nav.conoce_mas" data-es="Conocé más" data-en="Learn more">Conocé más</a>
 </div>
 
 <!-- ══ NAV ══════════════════════════════════════════ -->
@@ -486,9 +487,9 @@
         <span class="nav-logo-text">D<em>AG</em></span>
       </a>
       <ul class="nav-links">
-        <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
-        <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
-        <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
+        <li><a href="caracteristicas.html" data-key="nav.caracteristicas" data-es="Características" data-en="Features">Características</a></li>
+        <li><a href="como-funciona.html" data-key="nav.como_funciona" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+        <li><a href="dashboard.html" data-key="nav.dashboard" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
       </ul>
       <div class="nav-right">
         <div class="lang-toggle">
@@ -496,7 +497,7 @@
           <button class="lang-btn"    id="btnEN" onclick="setLang('en')">EN</button>
         </div>
         <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})"
-          data-es="Conocé más" data-en="Learn more">Conocé más</button>
+          data-key="nav.conoce_mas" data-es="Conocé más" data-en="Learn more">Conocé más</button>
         <button class="hamburger" onclick="openMob()">
           <span></span><span></span><span></span>
         </button>
@@ -513,29 +514,29 @@
     <div class="hero-in">
       <!-- Copy -->
       <div class="hero-content fi">
-        <div><span class="tag" data-es="Tecnología para el campo argentino" data-en="Technology for Argentine farms">Tecnología para el campo argentino</span></div>
+        <div><span class="tag" data-key="hero.tecnologia_para_el_campo_argen" data-es="Tecnología para el campo argentino" data-en="Technology for Argentine farms">Tecnología para el campo argentino</span></div>
 
         <h1 class="hero-title">
-          <span data-es="Conocé tu rodeo" data-en="Know your herd">Conocé tu rodeo</span><br/>
-          <span class="hl" data-es="vuelo a vuelo" data-en="flight by flight">vuelo a vuelo</span>
+          <span data-key="hero.conoce_tu_rodeo" data-es="Conocé tu rodeo" data-en="Know your herd">Conocé tu rodeo</span><br/>
+          <span class="hl" data-key="hero.vuelo_a_vuelo" data-es="vuelo a vuelo" data-en="flight by flight">vuelo a vuelo</span>
         </h1>
 
         <p class="hero-sub"
-          data-es="Sobrevolá tus lotes con el dron y obtené conteo exacto, peso estimado y condición corporal de cada animal. Sin arrear, sin manga, sin estrés para la hacienda."
+          data-key="hero.sobrevola_tus_lotes_con_el_dro" data-es="Sobrevolá tus lotes con el dron y obtené conteo exacto, peso estimado y condición corporal de cada animal. Sin arrear, sin manga, sin estrés para la hacienda."
           data-en="Fly your drone over your paddocks and get exact headcounts, estimated weights, and body condition scores for each animal. No herding, no crush, no livestock stress.">
           Sobrevolá tus lotes con el dron y obtené conteo exacto, peso estimado y condición corporal de cada animal. Sin arrear, sin manga, sin estrés para la hacienda.
         </p>
 
         <div class="hero-actions">
           <a href="#cta" class="btn btn-primary"
-            data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
+            data-key="hero.pedi_una_demo" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
           <a href="como-funciona.html" class="btn btn-outline"
-            data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
+            data-key="hero.ver_como_funciona" data-es="Ver cómo funciona" data-en="See how it works">Ver cómo funciona</a>
         </div>
 
         <div class="hero-note">
           <span class="check">✓</span>
-          <span data-es="Funciona con cualquier dron que grabe en MP4 — sin hardware adicional"
+          <span data-key="hero.funciona_con_cualquier_dron_qu" data-es="Funciona con cualquier dron que grabe en MP4 — sin hardware adicional"
                 data-en="Works with any drone recording in MP4 — no additional hardware needed">
             Funciona con cualquier dron que grabe en MP4 — sin hardware adicional
           </span>
@@ -549,7 +550,7 @@
           <div class="dot dot-y"></div>
           <div class="dot dot-g"></div>
           <span class="mkp-ttl"
-            data-es="DAG — Procesando lote_norte_oct24.mp4"
+            data-key="hero.mockup_processing_title" data-es="DAG — Procesando lote_norte_oct24.mp4"
             data-en="DAG — Processing north_paddock_oct24.mp4">
             DAG — Procesando lote_norte_oct24.mp4
           </span>
@@ -678,25 +679,25 @@
       <div class="stat">
         <div class="stat-val">0</div>
         <div class="stat-lbl"
-          data-es="Contacto físico con la hacienda"
+          data-key="stats.contacto_fisico_con_la_haciend" data-es="Contacto físico con la hacienda"
           data-en="Physical contact with livestock">Contacto físico con la hacienda</div>
       </div>
       <div class="stat">
         <div class="stat-val">&gt;93&nbsp;%</div>
         <div class="stat-lbl"
-          data-es="Precisión de conteo en condiciones reales"
+          data-key="stats.precision_de_conteo_en_condici" data-es="Precisión de conteo en condiciones reales"
           data-en="Counting accuracy in real-world conditions">Precisión de conteo en condiciones reales</div>
       </div>
       <div class="stat">
         <div class="stat-val">360°</div>
         <div class="stat-lbl"
-          data-es="Cobertura del lote en un solo vuelo"
+          data-key="stats.cobertura_del_lote_en_un_solo" data-es="Cobertura del lote en un solo vuelo"
           data-en="Full paddock coverage in one flight">Cobertura del lote en un solo vuelo</div>
       </div>
       <div class="stat">
         <div class="stat-val">4</div>
         <div class="stat-lbl"
-          data-es="Condiciones corporales detectadas automáticamente"
+          data-key="stats.condiciones_corporales_detecta" data-es="Condiciones corporales detectadas automáticamente"
           data-en="Body conditions detected automatically">Condiciones corporales detectadas automáticamente</div>
       </div>
     </div>
@@ -708,10 +709,10 @@
   <div class="container">
     <div class="sec-head fi">
       <span class="tag"
-        data-es="El problema del campo hoy"
+        data-key="problem.el_problema_del_campo_hoy" data-es="El problema del campo hoy"
         data-en="The challenge of modern farming">El problema del campo hoy</span>
       <h2 class="section-title"
-        data-es="El campo siempre tuvo sus formas. Nosotros las mejoramos."
+        data-key="problem.el_campo_siempre_tuvo_sus_form" data-es="El campo siempre tuvo sus formas. Nosotros las mejoramos."
         data-en="Traditional methods work well. We make them better.">
         El campo siempre tuvo sus formas.<br/>Nosotros las mejoramos.
       </h2>
@@ -721,14 +722,14 @@
       <!-- Problemas -->
       <div>
         <p class="ps-col-title prob"
-          data-es="Métodos tradicionales"
+          data-key="problem.metodos_tradicionales" data-es="Métodos tradicionales"
           data-en="Traditional methods">Métodos tradicionales</p>
 
         <div class="ps-item prob">
           <div class="ps-ico prob">⏳</div>
           <div class="ps-txt">
-            <h4 data-es="Conteo recorriendo el campo" data-en="Counting by riding the field">Conteo recorriendo el campo</h4>
-            <p data-es="Llevar adelante un recuento preciso a caballo o en camioneta lleva horas y siempre tiene su margen de error, especialmente en campos grandes o con montes."
+            <h4 data-key="problem.conteo_recorriendo_el_campo" data-es="Conteo recorriendo el campo" data-en="Counting by riding the field">Conteo recorriendo el campo</h4>
+            <p data-key="problem.llevar_adelante_un_recuento_pr" data-es="Llevar adelante un recuento preciso a caballo o en camioneta lleva horas y siempre tiene su margen de error, especialmente en campos grandes o con montes."
                data-en="Conducting an accurate count on horseback or by truck takes hours and always carries a margin of error, especially on large properties with dense bush.">
               Llevar adelante un recuento preciso a caballo o en camioneta lleva horas y siempre tiene su margen de error, especialmente en campos grandes o con montes.
             </p>
@@ -738,8 +739,8 @@
         <div class="ps-item prob">
           <div class="ps-ico prob">⚖️</div>
           <div class="ps-txt">
-            <h4 data-es="La manga estresa a la tropa" data-en="The crush stresses the herd">La manga estresa a la tropa</h4>
-            <p data-es="Arrear, encerrar y pesar en balanza genera estrés en el animal. Se documentó que el estrés pre-venta puede bajar el peso vivo en un 3-5 %."
+            <h4 data-key="problem.la_manga_estresa_a_la_tropa" data-es="La manga estresa a la tropa" data-en="The crush stresses the herd">La manga estresa a la tropa</h4>
+            <p data-key="problem.arrear_encerrar_y_pesar_en_bal" data-es="Arrear, encerrar y pesar en balanza genera estrés en el animal. Se documentó que el estrés pre-venta puede bajar el peso vivo en un 3-5 %."
                data-en="Herding, penning, and scale-weighing causes livestock stress. Studies show pre-sale stress can reduce live weight by 3–5%.">
               Arrear, encerrar y pesar en balanza genera estrés en el animal. Se documentó que el estrés pre-venta puede bajar el peso vivo en un 3–5&nbsp;%.
             </p>
@@ -749,8 +750,8 @@
         <div class="ps-item prob">
           <div class="ps-ico prob">📋</div>
           <div class="ps-txt">
-            <h4 data-es="Registros en papel o en Excel" data-en="Paper records or spreadsheets">Registros en papel o en Excel</h4>
-            <p data-es="Los cuadernos de campo y las planillas no permiten ver tendencias del rodeo de manera rápida ni recibir alertas tempranas."
+            <h4 data-key="problem.registros_en_papel_o_en_excel" data-es="Registros en papel o en Excel" data-en="Paper records or spreadsheets">Registros en papel o en Excel</h4>
+            <p data-key="problem.los_cuadernos_de_campo_y_las_p" data-es="Los cuadernos de campo y las planillas no permiten ver tendencias del rodeo de manera rápida ni recibir alertas tempranas."
                data-en="Field notebooks and spreadsheets don't allow quick herd-trend visualization or early-warning alerts.">
               Los cuadernos de campo y las planillas no permiten ver tendencias del rodeo de manera rápida ni recibir alertas tempranas.
             </p>
@@ -760,8 +761,8 @@
         <div class="ps-item prob">
           <div class="ps-ico prob">🔍</div>
           <div class="ps-txt">
-            <h4 data-es="El animal flaco que nadie ve" data-en="The underweight animal nobody notices">El animal flaco que nadie ve</h4>
-            <p data-es="Un animal con bajo peso o algún problema de condición corporal suele detectarse tarde, cuando el daño productivo ya está hecho."
+            <h4 data-key="problem.el_animal_flaco_que_nadie_ve" data-es="El animal flaco que nadie ve" data-en="The underweight animal nobody notices">El animal flaco que nadie ve</h4>
+            <p data-key="problem.un_animal_con_bajo_peso_o_algu" data-es="Un animal con bajo peso o algún problema de condición corporal suele detectarse tarde, cuando el daño productivo ya está hecho."
                data-en="An underweight or poor-condition animal is often noticed too late, when production damage is already done.">
               Un animal con bajo peso o algún problema de condición corporal suele detectarse tarde, cuando el daño productivo ya está hecho.
             </p>
@@ -772,14 +773,14 @@
       <!-- Soluciones -->
       <div>
         <p class="ps-col-title sol"
-          data-es="Con DAG"
+          data-key="problem.con_dag" data-es="Con DAG"
           data-en="With DAG">Con DAG</p>
 
         <div class="ps-item sol">
           <div class="ps-ico sol">🚁</div>
           <div class="ps-txt">
-            <h4 data-es="Los números antes del almuerzo" data-en="Numbers before lunch">Los números antes del almuerzo</h4>
-            <p data-es="Un vuelo de 10 minutos sobre el lote alcanza para que el sistema te devuelva el conteo exacto y el video procesado con cada animal identificado."
+            <h4 data-key="problem.los_numeros_antes_del_almuerzo" data-es="Los números antes del almuerzo" data-en="Numbers before lunch">Los números antes del almuerzo</h4>
+            <p data-key="problem.un_vuelo_de_10_minutos_sobre_e" data-es="Un vuelo de 10 minutos sobre el lote alcanza para que el sistema te devuelva el conteo exacto y el video procesado con cada animal identificado."
                data-en="A 10-minute flight over the paddock is enough for the system to return an exact headcount and processed video with every animal identified.">
               Un vuelo de 10 minutos sobre el lote alcanza para que el sistema te devuelva el conteo exacto y el video procesado con cada animal identificado.
             </p>
@@ -789,8 +790,8 @@
         <div class="ps-item sol">
           <div class="ps-ico sol">🧠</div>
           <div class="ps-txt">
-            <h4 data-es="Peso estimado sin tocar el animal" data-en="Estimated weight without touching the animal">Peso estimado sin tocar el animal</h4>
-            <p data-es="La IA mide el área de cada animal en el video usando la altura de vuelo y los parámetros de la cámara para estimar el peso vivo desde el aire."
+            <h4 data-key="problem.peso_estimado_sin_tocar_el_ani" data-es="Peso estimado sin tocar el animal" data-en="Estimated weight without touching the animal">Peso estimado sin tocar el animal</h4>
+            <p data-key="problem.la_ia_mide_el_area_de_cada_ani" data-es="La IA mide el área de cada animal en el video usando la altura de vuelo y los parámetros de la cámara para estimar el peso vivo desde el aire."
                data-en="The AI measures each animal's area in the video using flight altitude and camera parameters to estimate live weight from the air.">
               La IA mide el área de cada animal en el video usando la altura de vuelo y los parámetros de la cámara para estimar el peso vivo desde el aire.
             </p>
@@ -800,8 +801,8 @@
         <div class="ps-item sol">
           <div class="ps-ico sol">📈</div>
           <div class="ps-txt">
-            <h4 data-es="Historial del rodeo siempre disponible" data-en="Herd history always available">Historial del rodeo siempre disponible</h4>
-            <p data-es="Cada vuelo alimenta el dashboard. La curva de peso de la tropa, la distribución de condición corporal y el área recorrida quedan guardados sin planillas."
+            <h4 data-key="problem.historial_del_rodeo_siempre_di" data-es="Historial del rodeo siempre disponible" data-en="Herd history always available">Historial del rodeo siempre disponible</h4>
+            <p data-key="problem.cada_vuelo_alimenta_el_dashboa" data-es="Cada vuelo alimenta el dashboard. La curva de peso de la tropa, la distribución de condición corporal y el área recorrida quedan guardados sin planillas."
                data-en="Every flight feeds the dashboard. Herd weight curves, body-condition distribution, and covered area are stored automatically — no spreadsheets.">
               Cada vuelo alimenta el dashboard. La curva de peso de la tropa, la distribución de condición corporal y el área recorrida quedan guardados sin planillas.
             </p>
@@ -811,8 +812,8 @@
         <div class="ps-item sol">
           <div class="ps-ico sol">🔔</div>
           <div class="ps-txt">
-            <h4 data-es="Te avisa antes de que sea un problema" data-en="Alerts you before it becomes a problem">Te avisa antes de que sea un problema</h4>
-            <p data-es="Configurás umbrales de peso mínimo y máximo por lote, y el sistema te notifica automáticamente si alguna cabeza está fuera de parámetros."
+            <h4 data-key="problem.te_avisa_antes_de_que_sea_un_p" data-es="Te avisa antes de que sea un problema" data-en="Alerts you before it becomes a problem">Te avisa antes de que sea un problema</h4>
+            <p data-key="problem.configuras_umbrales_de_peso_mi" data-es="Configurás umbrales de peso mínimo y máximo por lote, y el sistema te notifica automáticamente si alguna cabeza está fuera de parámetros."
                data-en="Set minimum and maximum weight thresholds per paddock, and the system automatically notifies you if any animal is out of range.">
               Configurás umbrales de peso mínimo y máximo por lote, y el sistema te notifica automáticamente si alguna cabeza está fuera de parámetros.
             </p>
@@ -827,14 +828,14 @@
 <section id="features" class="section">
   <div class="container">
     <div class="sec-head c fi">
-      <span class="tag" data-es="Características" data-en="Features">Características</span>
+      <span class="tag" data-key="nav.caracteristicas" data-es="Características" data-en="Features">Características</span>
       <h2 class="section-title"
-        data-es="Todo lo que necesitás para manejar tu establecimiento"
+        data-key="features.todo_lo_que_necesitas_para_man" data-es="Todo lo que necesitás para manejar tu establecimiento"
         data-en="Everything you need to manage your property">
         Todo lo que necesitás para manejar tu establecimiento
       </h2>
       <p class="section-sub"
-        data-es="Una plataforma completa, del vuelo al informe, sin saltar entre herramientas."
+        data-key="features.una_plataforma_completa_del_vu" data-es="Una plataforma completa, del vuelo al informe, sin saltar entre herramientas."
         data-en="A complete platform, from flight to report, without jumping between tools.">
         Una plataforma completa, del vuelo al informe, sin saltar entre herramientas.
       </p>
@@ -850,9 +851,9 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Conteo automático del rodeo" data-en="Automatic herd counting">Conteo automático del rodeo</h3>
+        <h3 class="feat-title" data-key="features.conteo_automatico_del_rodeo" data-es="Conteo automático del rodeo" data-en="Automatic herd counting">Conteo automático del rodeo</h3>
         <p class="feat-desc"
-          data-es="Un solo vuelo te da el número exacto de cabezas en el lote. Sin recorrer el campo, sin contar a ojo, sin margen de error."
+          data-key="features.un_solo_vuelo_te_da_el_numero" data-es="Un solo vuelo te da el número exacto de cabezas en el lote. Sin recorrer el campo, sin contar a ojo, sin margen de error."
           data-en="One flight gives you the exact headcount for the paddock. No riding the field, no counting by eye, no margin for error.">
           Un solo vuelo te da el número exacto de cabezas en el lote. Sin recorrer el campo, sin contar a ojo, sin margen de error.
         </p>
@@ -867,9 +868,9 @@
             <path d="M5 17H19"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Peso estimado sin manga" data-en="Estimated weight without crush">Peso estimado sin manga</h3>
+        <h3 class="feat-title" data-key="features.peso_estimado_sin_manga" data-es="Peso estimado sin manga" data-en="Estimated weight without crush">Peso estimado sin manga</h3>
         <p class="feat-desc"
-          data-es="La IA mide cada animal desde el aire y te devuelve el peso vivo estimado de cada cabeza. Sin arrear, sin balanza, sin estrés para la hacienda."
+          data-key="features.la_ia_mide_cada_animal_desde_e" data-es="La IA mide cada animal desde el aire y te devuelve el peso vivo estimado de cada cabeza. Sin arrear, sin balanza, sin estrés para la hacienda."
           data-en="The AI measures each animal from the air and returns each animal's estimated live weight. No herding, no scales, no livestock stress.">
           La IA mide cada animal desde el aire y te devuelve el peso vivo estimado de cada cabeza. Sin arrear, sin balanza, sin estrés para la hacienda.
         </p>
@@ -881,9 +882,9 @@
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Condición corporal de cada animal" data-en="Body condition per animal">Condición corporal de cada animal</h3>
+        <h3 class="feat-title" data-key="features.condicion_corporal_de_cada_ani" data-es="Condición corporal de cada animal" data-en="Body condition per animal">Condición corporal de cada animal</h3>
         <p class="feat-desc"
-          data-es="Cada animal queda clasificado en 4 categorías: NORMAL, TERNERO, BAJO PESO o SOBREPESO. Al instante, sin tener que revisar la tropa a ojo."
+          data-key="features.cada_animal_queda_clasificado" data-es="Cada animal queda clasificado en 4 categorías: NORMAL, TERNERO, BAJO PESO o SOBREPESO. Al instante, sin tener que revisar la tropa a ojo."
           data-en="Each animal is classified in 4 categories: NORMAL, CALF, UNDERWEIGHT, or OVERWEIGHT. Instantly, without having to visually inspect the herd.">
           Cada animal queda clasificado en 4 categorías: NORMAL, TERNERO, BAJO PESO o SOBREPESO. Al instante, sin tener que revisar la tropa a ojo.
         </p>
@@ -896,9 +897,9 @@
             <line x1="6"  y1="20" x2="6"  y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Dashboard por establecimiento" data-en="Dashboard per property">Dashboard por establecimiento</h3>
+        <h3 class="feat-title" data-key="features.dashboard_por_establecimiento" data-es="Dashboard por establecimiento" data-en="Dashboard per property">Dashboard por establecimiento</h3>
         <p class="feat-desc"
-          data-es="Todos los vuelos de todos tus lotes en un solo lugar. La curva de peso de tu tropa, el mapa del campo y el historial completo, siempre disponibles."
+          data-key="features.todos_los_vuelos_de_todos_tus" data-es="Todos los vuelos de todos tus lotes en un solo lugar. La curva de peso de tu tropa, el mapa del campo y el historial completo, siempre disponibles."
           data-en="All flights from all your paddocks in one place. Your herd's weight curve, farm map, and full history, always available.">
           Todos los vuelos de todos tus lotes en un solo lugar. La curva de peso de tu tropa, el mapa del campo y el historial completo, siempre disponibles.
         </p>
@@ -914,9 +915,9 @@
             <polyline points="10 9 9 9 8 9"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Informe PDF por vuelo" data-en="PDF report per flight">Informe PDF por vuelo</h3>
+        <h3 class="feat-title" data-key="features.informe_pdf_por_vuelo" data-es="Informe PDF por vuelo" data-en="PDF report per flight">Informe PDF por vuelo</h3>
         <p class="feat-desc"
-          data-es="Al terminar el procesamiento, el sistema genera un PDF con conteo, kilos por animal y cuadros del video anotado. Listo para guardar o compartir con el veterinario."
+          data-key="features.al_terminar_el_procesamiento_e" data-es="Al terminar el procesamiento, el sistema genera un PDF con conteo, kilos por animal y cuadros del video anotado. Listo para guardar o compartir con el veterinario."
           data-en="When processing finishes, the system generates a PDF with headcount, per-animal weight, and annotated video frames. Ready to save or share with your vet.">
           Al terminar el procesamiento, el sistema genera un PDF con conteo, kilos por animal y cuadros del video anotado. Listo para guardar o compartir con el veterinario.
         </p>
@@ -929,9 +930,9 @@
             <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
           </svg>
         </div>
-        <h3 class="feat-title" data-es="Alertas configurables por lote" data-en="Configurable alerts per paddock">Alertas configurables por lote</h3>
+        <h3 class="feat-title" data-key="features.alertas_configurables_por_lote" data-es="Alertas configurables por lote" data-en="Configurable alerts per paddock">Alertas configurables por lote</h3>
         <p class="feat-desc"
-          data-es="Vos fijás el peso mínimo aceptable para cada lote. El sistema te avisa automáticamente cuando un animal está fuera de parámetros — sin que tengas que revisar nada a mano."
+          data-key="features.vos_fijas_el_peso_minimo_acept" data-es="Vos fijás el peso mínimo aceptable para cada lote. El sistema te avisa automáticamente cuando un animal está fuera de parámetros — sin que tengas que revisar nada a mano."
           data-en="You set the minimum acceptable weight per paddock. The system automatically notifies you when any animal falls out of range — without you having to check anything manually.">
           Vos fijás el peso mínimo aceptable para cada lote. El sistema te avisa automáticamente cuando un animal está fuera de parámetros — sin que tengas que revisar nada a mano.
         </p>
@@ -940,7 +941,7 @@
     </div>
     <div class="sec-detail fi">
       <a href="caracteristicas.html" class="btn-detail">
-        <span data-es="Ver todas las características en detalle" data-en="See all features in detail">Ver todas las características en detalle</span>
+        <span data-key="features.ver_todas_las_caracteristicas" data-es="Ver todas las características en detalle" data-en="See all features in detail">Ver todas las características en detalle</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -951,12 +952,12 @@
 <section id="how" class="section">
   <div class="container">
     <div class="sec-head c fi">
-      <span class="tag" data-es="Cómo funciona" data-en="How it works">Cómo funciona</span>
+      <span class="tag" data-key="nav.como_funciona" data-es="Cómo funciona" data-en="How it works">Cómo funciona</span>
       <h2 class="section-title"
-        data-es="De vuelo a resultados, sin complicaciones"
+        data-key="how.de_vuelo_a_resultados_sin_comp" data-es="De vuelo a resultados, sin complicaciones"
         data-en="From flight to results, no complications">De vuelo a resultados, sin complicaciones</h2>
       <p class="section-sub"
-        data-es="El proceso es automático una vez que subís el video. No hace falta ser informático."
+        data-key="how.el_proceso_es_automatico_una_v" data-es="El proceso es automático una vez que subís el video. No hace falta ser informático."
         data-en="The process is fully automatic once you upload the video. No technical background needed.">
         El proceso es automático una vez que subís el video. No hace falta ser informático.
       </p>
@@ -965,9 +966,9 @@
       <div class="step">
         <div class="step-n">1</div>
         <div class="step-ico">🚁</div>
-        <h3 class="step-title" data-es="Sobrevolás el lote" data-en="Fly over the paddock">Sobrevolás el lote</h3>
+        <h3 class="step-title" data-key="how.sobrevolas_el_lote" data-es="Sobrevolás el lote" data-en="Fly over the paddock">Sobrevolás el lote</h3>
         <p class="step-desc"
-          data-es="Salís con el dron a una altura constante sobre el campo. Cualquier equipo que grabe en MP4, AVI o MOV sirve — DJI, Autel, lo que tengas."
+          data-key="how.salis_con_el_dron_a_una_altura" data-es="Salís con el dron a una altura constante sobre el campo. Cualquier equipo que grabe en MP4, AVI o MOV sirve — DJI, Autel, lo que tengas."
           data-en="Take your drone out at a constant height over the field. Any equipment recording in MP4, AVI, or MOV works — DJI, Autel, whatever you have.">
           Salís con el dron a una altura constante sobre el campo. Cualquier equipo que grabe en MP4, AVI o MOV sirve&nbsp;— DJI, Autel, lo que tengas.
         </p>
@@ -975,9 +976,9 @@
       <div class="step">
         <div class="step-n">2</div>
         <div class="step-ico">⬆️</div>
-        <h3 class="step-title" data-es="Subís el video" data-en="Upload the video">Subís el video</h3>
+        <h3 class="step-title" data-key="how.subis_el_video" data-es="Subís el video" data-en="Upload the video">Subís el video</h3>
         <p class="step-desc"
-          data-es="Desde la app de escritorio (Windows, macOS o Linux) o desde la web, cargás el video con los datos del vuelo: altura, tipo de lente, tamaño del sensor y el lote."
+          data-key="how.desde_la_app_de_escritorio_win" data-es="Desde la app de escritorio (Windows, macOS o Linux) o desde la web, cargás el video con los datos del vuelo: altura, tipo de lente, tamaño del sensor y el lote."
           data-en="From the desktop app (Windows, macOS, or Linux) or from the web, upload the video with flight data: altitude, lens type, sensor size, and paddock.">
           Desde la app de escritorio (Windows, macOS o Linux) o desde la web, cargás el video con los datos del vuelo: altura, tipo de lente, tamaño del sensor y el lote.
         </p>
@@ -985,9 +986,9 @@
       <div class="step">
         <div class="step-n">3</div>
         <div class="step-ico">🧠</div>
-        <h3 class="step-title" data-es="La IA hace el trabajo" data-en="AI does the work">La IA hace el trabajo</h3>
+        <h3 class="step-title" data-key="how.la_ia_hace_el_trabajo" data-es="La IA hace el trabajo" data-en="AI does the work">La IA hace el trabajo</h3>
         <p class="step-desc"
-          data-es="Nuestro modelo de IA segmenta cada animal cuadro a cuadro y rastrea cada cabeza a lo largo del video. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal."
+          data-key="how.nuestro_modelo_de_ia_segmenta" data-es="Nuestro modelo de IA segmenta cada animal cuadro a cuadro y rastrea cada cabeza a lo largo del video. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal."
           data-en="Our AI model segments each animal frame by frame and tracks every head throughout the video. The system calculates GSD, estimates each animal's weight, and classifies body condition.">
           Nuestro modelo de IA segmenta cada animal cuadro a cuadro y rastrea cada cabeza a lo largo del video. El sistema calcula el GSD, estima el peso de cada animal y clasifica su condición corporal.
         </p>
@@ -995,9 +996,9 @@
       <div class="step">
         <div class="step-n">4</div>
         <div class="step-ico">📊</div>
-        <h3 class="step-title" data-es="Chequeás los resultados" data-en="Review the results">Chequeás los resultados</h3>
+        <h3 class="step-title" data-key="how.chequeas_los_resultados" data-es="Chequeás los resultados" data-en="Review the results">Chequeás los resultados</h3>
         <p class="step-desc"
-          data-es="El dashboard muestra conteo, kilos promedio, video anotado y el PDF del vuelo. Si algún animal disparó una alerta, aparece destacado al instante."
+          data-key="how.el_dashboard_muestra_conteo_ki" data-es="El dashboard muestra conteo, kilos promedio, video anotado y el PDF del vuelo. Si algún animal disparó una alerta, aparece destacado al instante."
           data-en="The dashboard shows headcount, average weight, annotated video, and the flight PDF. If any animal triggered an alert, it appears highlighted immediately.">
           El dashboard muestra conteo, kilos promedio, video anotado y el PDF del vuelo. Si algún animal disparó una alerta, aparece destacado al instante.
         </p>
@@ -1005,7 +1006,7 @@
     </div>
     <div class="sec-detail fi">
       <a href="como-funciona.html" class="btn-detail">
-        <span data-es="Ver el proceso completo paso a paso" data-en="See the full step-by-step process">Ver el proceso completo paso a paso</span>
+        <span data-key="how.ver_el_proceso_completo_paso_a" data-es="Ver el proceso completo paso a paso" data-en="See the full step-by-step process">Ver el proceso completo paso a paso</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -1015,12 +1016,12 @@
 <section id="dashboard" class="section" style="background:var(--bg-card);">
   <div class="container">
     <div class="sec-head c fi">
-      <span class="tag" data-es="Dashboard" data-en="Dashboard">Dashboard</span>
+      <span class="tag" data-key="nav.dashboard" data-es="Dashboard" data-en="Dashboard">Dashboard</span>
       <h2 class="section-title"
-        data-es="Todo tu rodeo en una pantalla"
+        data-key="dashprev.todo_tu_rodeo_en_una_pantalla" data-es="Todo tu rodeo en una pantalla"
         data-en="Your entire herd on one screen">Todo tu rodeo en una pantalla</h2>
       <p class="section-sub"
-        data-es="Una interfaz pensada para el productor, no para el ingeniero de sistemas."
+        data-key="dashprev.una_interfaz_pensada_para_el_p" data-es="Una interfaz pensada para el productor, no para el ingeniero de sistemas."
         data-en="An interface designed for the producer, not the systems engineer.">
         Una interfaz pensada para el productor, no para el ingeniero de sistemas.
       </p>
@@ -1028,31 +1029,31 @@
     <div class="dash-wrap fi">
       <div class="dash-top">
         <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-        <div class="dash-tab on" data-es="Inicio" data-en="Home">Inicio</div>
-        <div class="dash-tab" data-es="Vuelos" data-en="Flights">Vuelos</div>
-        <div class="dash-tab" data-es="Analytics" data-en="Analytics">Analytics</div>
-        <div class="dash-tab" data-es="Configuración" data-en="Settings">Configuración</div>
+        <div class="dash-tab on" data-key="dashprev.inicio" data-es="Inicio" data-en="Home">Inicio</div>
+        <div class="dash-tab" data-key="dashprev.vuelos" data-es="Vuelos" data-en="Flights">Vuelos</div>
+        <div class="dash-tab" data-key="dashprev.analytics" data-es="Analytics" data-en="Analytics">Analytics</div>
+        <div class="dash-tab" data-key="dashprev.configuracion" data-es="Configuración" data-en="Settings">Configuración</div>
       </div>
       <div class="dash-body">
         <div class="kpi">
-          <div class="kpi-lbl" data-es="Vuelos este mes" data-en="Flights this month">Vuelos este mes</div>
+          <div class="kpi-lbl" data-key="dashprev.vuelos_este_mes" data-es="Vuelos este mes" data-en="Flights this month">Vuelos este mes</div>
           <div class="kpi-val">12</div>
-          <div class="kpi-delta up" data-es="↑ +3 vs mes anterior" data-en="↑ +3 vs last month">↑ +3 vs mes anterior</div>
+          <div class="kpi-delta up" data-key="dashprev.kpi_flights_delta" data-es="↑ +3 vs mes anterior" data-en="↑ +3 vs last month">↑ +3 vs mes anterior</div>
         </div>
         <div class="kpi">
-          <div class="kpi-lbl" data-es="Peso promedio" data-en="Average weight">Peso promedio</div>
+          <div class="kpi-lbl" data-key="dashprev.peso_promedio" data-es="Peso promedio" data-en="Average weight">Peso promedio</div>
           <div class="kpi-val">395 kg</div>
-          <div class="kpi-delta up" data-es="↑ +11 kg vs sept." data-en="↑ +11 kg vs Sept.">↑ +11 kg vs sept.</div>
+          <div class="kpi-delta up" data-key="dashprev.kpi_weight_delta" data-es="↑ +11 kg vs sept." data-en="↑ +11 kg vs Sept.">↑ +11 kg vs sept.</div>
         </div>
         <div class="kpi">
-          <div class="kpi-lbl" data-es="Alertas activas" data-en="Active alerts">Alertas activas</div>
+          <div class="kpi-lbl" data-key="dashprev.alertas_activas" data-es="Alertas activas" data-en="Active alerts">Alertas activas</div>
           <div class="kpi-val" style="color:var(--amber)">2</div>
-          <div class="kpi-delta warn" data-es="⚠ Revisar lote Norte" data-en="⚠ Review North paddock">⚠ Revisar lote Norte</div>
+          <div class="kpi-delta warn" data-key="dashprev.revisar_lote_norte" data-es="⚠ Revisar lote Norte" data-en="⚠ Review North paddock">⚠ Revisar lote Norte</div>
         </div>
         <!-- Chart -->
         <div class="kpi">
           <div class="kpi-lbl" style="margin-bottom:12px;"
-            data-es="Evolución de peso — últimos 6 vuelos"
+            data-key="dashprev.evolucion_de_peso_ultimos_6_vu" data-es="Evolución de peso — últimos 6 vuelos"
             data-en="Weight evolution — last 6 flights">Evolución de peso — últimos 6 vuelos</div>
           <svg viewBox="0 0 380 118" style="width:100%;display:block;">
             <defs>
@@ -1092,31 +1093,31 @@
         <!-- Condición corporal -->
         <div class="kpi">
           <div class="kpi-lbl" style="margin-bottom:14px;"
-            data-es="Condición corporal" data-en="Body condition">Condición corporal</div>
+            data-key="dashprev.condicion_corporal" data-es="Condición corporal" data-en="Body condition">Condición corporal</div>
           <div style="display:flex;flex-direction:column;gap:9px;">
             <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:.78rem;color:var(--muted);" data-es="Normal" data-en="Normal">Normal</span>
+              <span style="font-size:.78rem;color:var(--muted);" data-key="dashprev.normal" data-es="Normal" data-en="Normal">Normal</span>
               <span style="font-size:.83rem;font-weight:700;color:rgb(108,172,228)">78&nbsp;%</span>
             </div>
             <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;">
               <div style="width:78%;height:100%;background:rgb(108,172,228);border-radius:4px;"></div>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:.78rem;color:var(--muted);" data-es="Terneros" data-en="Calves">Terneros</span>
+              <span style="font-size:.78rem;color:var(--muted);" data-key="dashprev.terneros" data-es="Terneros" data-en="Calves">Terneros</span>
               <span style="font-size:.83rem;font-weight:700;">14&nbsp;%</span>
             </div>
             <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;">
               <div style="width:14%;height:100%;background:hsl(220,70%,50%);border-radius:4px;"></div>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:.78rem;color:var(--muted);" data-es="Bajo peso" data-en="Underweight">Bajo peso</span>
+              <span style="font-size:.78rem;color:var(--muted);" data-key="dashprev.bajo_peso" data-es="Bajo peso" data-en="Underweight">Bajo peso</span>
               <span style="font-size:.83rem;font-weight:700;color:var(--destructive)">5&nbsp;%</span>
             </div>
             <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;">
               <div style="width:5%;height:100%;background:var(--destructive);border-radius:4px;"></div>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:.78rem;color:var(--muted);" data-es="Sobrepeso" data-en="Overweight">Sobrepeso</span>
+              <span style="font-size:.78rem;color:var(--muted);" data-key="dashprev.sobrepeso" data-es="Sobrepeso" data-en="Overweight">Sobrepeso</span>
               <span style="font-size:.83rem;font-weight:700;color:var(--amber)">3&nbsp;%</span>
             </div>
             <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;">
@@ -1128,22 +1129,22 @@
         <!-- Últimos vuelos -->
         <div class="kpi" style="grid-column:span 2;">
           <div class="kpi-lbl" style="margin-bottom:12px;"
-            data-es="Últimos vuelos" data-en="Recent flights">Últimos vuelos</div>
+            data-key="dashprev.ultimos_vuelos" data-es="Últimos vuelos" data-en="Recent flights">Últimos vuelos</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border-radius:var(--radius);">
               <span style="font-size:.82rem;">🚁 Lote Norte — 2024-10-15</span>
               <span style="background:var(--brand-dim);color:var(--brand);font-size:.75rem;padding:3px 10px;border-radius:var(--radius);font-weight:700;"
-                data-es="Procesado" data-en="Processed">Procesado</span>
+                data-key="dashprev.procesado" data-es="Procesado" data-en="Processed">Procesado</span>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border-radius:var(--radius);">
               <span style="font-size:.82rem;">🚁 Lote Sur — 2024-10-10</span>
               <span style="background:var(--brand-dim);color:var(--brand);font-size:.75rem;padding:3px 10px;border-radius:var(--radius);font-weight:700;"
-                data-es="Procesado" data-en="Processed">Procesado</span>
+                data-key="dashprev.procesado" data-es="Procesado" data-en="Processed">Procesado</span>
             </div>
             <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border-radius:var(--radius);">
               <span style="font-size:.82rem;">🚁 Lote Este — 2024-10-05</span>
               <span style="background:rgba(232,193,99,.1);color:var(--amber);font-size:.75rem;padding:3px 10px;border-radius:var(--radius);font-weight:700;"
-                data-es="Procesando..." data-en="Processing...">Procesando...</span>
+                data-key="dashprev.procesando" data-es="Procesando..." data-en="Processing...">Procesando...</span>
             </div>
           </div>
         </div>
@@ -1151,7 +1152,7 @@
     </div>
     <div class="sec-detail fi">
       <a href="dashboard.html" class="btn-detail">
-        <span data-es="Explorar el dashboard en detalle" data-en="Explore the dashboard in detail">Explorar el dashboard en detalle</span>
+        <span data-key="dashprev.explorar_el_dashboard_en_detal" data-es="Explorar el dashboard en detalle" data-en="Explore the dashboard in detail">Explorar el dashboard en detalle</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
@@ -1163,24 +1164,24 @@
   <div class="glow cta-g"></div>
   <div class="container">
     <div class="cta-in fi">
-      <span class="tag" data-es="¿Querés verlo en tu campo?" data-en="Want to see it on your farm?">¿Querés verlo en tu campo?</span>
+      <span class="tag" data-key="cta.queres_verlo_en_tu_campo" data-es="¿Querés verlo en tu campo?" data-en="Want to see it on your farm?">¿Querés verlo en tu campo?</span>
       <h2 class="cta-title">
-        <span data-es="Gestioná tu hacienda" data-en="Manage your livestock">Gestioná tu hacienda</span><br/>
-        <span class="hl" data-es="de otra manera" data-en="a different way">de otra manera</span>
+        <span data-key="cta.gestiona_tu_hacienda" data-es="Gestioná tu hacienda" data-en="Manage your livestock">Gestioná tu hacienda</span><br/>
+        <span class="hl" data-key="cta.de_otra_manera" data-es="de otra manera" data-en="a different way">de otra manera</span>
       </h2>
       <p class="cta-sub"
-        data-es="Somos un equipo de ingenieros argentinos que desarrollamos esta plataforma para el productor ganadero moderno. Escribinos y te mostramos cómo funciona en tu establecimiento."
+        data-key="cta.somos_un_equipo_de_ingenieros" data-es="Somos un equipo de ingenieros argentinos que desarrollamos esta plataforma para el productor ganadero moderno. Escribinos y te mostramos cómo funciona en tu establecimiento."
         data-en="We're a team of Argentine engineers who built this platform for the modern livestock producer. Reach out and we'll show you how it works on your property.">
         Somos un equipo de ingenieros argentinos que desarrollamos esta plataforma para el productor ganadero moderno. Escribinos y te mostramos cómo funciona en tu establecimiento.
       </p>
       <div class="cta-actions">
         <a href="mailto:dag@fi.uba.ar" class="btn btn-primary" style="font-size:1rem;padding:14px 32px;"
-          data-es="Escribinos" data-en="Get in touch">Escribinos</a>
+          data-key="cta.escribinos" data-es="Escribinos" data-en="Get in touch">Escribinos</a>
         <a href="https://github.com/fiuba-dag" target="_blank" class="btn btn-outline" style="font-size:1rem;padding:14px 32px;"
-          data-es="Ver el proyecto" data-en="View the project">Ver el proyecto</a>
+          data-key="cta.ver_el_proyecto" data-es="Ver el proyecto" data-en="View the project">Ver el proyecto</a>
       </div>
       <p class="cta-note"
-        data-es="Proyecto de ingeniería finalista — FIUBA · Facultad de Ingeniería, UBA"
+        data-key="cta.proyecto_de_ingenieria_finalis" data-es="Proyecto de ingeniería finalista — FIUBA · Facultad de Ingeniería, UBA"
         data-en="Engineering capstone project — FIUBA · Faculty of Engineering, UBA">
         Proyecto de ingeniería finalista — FIUBA · Facultad de Ingeniería, UBA
       </p>
@@ -1200,38 +1201,50 @@
           <span class="nav-logo-text">D<em>AG</em></span>
         </a>
         <p
-          data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial."
+          data-key="footer.deteccion_activa_de_ganado_pla" data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial."
           data-en="Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence.">
           Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial.
         </p>
-        <span class="foot-badge">🎓 <span data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
+        <span class="foot-badge">🎓 <span data-key="footer.proyecto_final_fiuba_2024" data-es="Proyecto Final FIUBA 2024" data-en="FIUBA Final Project 2024">Proyecto Final FIUBA 2024</span></span>
       </div>
       <div class="foot-col">
-        <h5 data-es="Producto" data-en="Product">Producto</h5>
+        <h5 data-key="footer.producto" data-es="Producto" data-en="Product">Producto</h5>
         <ul>
-          <li><a href="caracteristicas.html" data-es="Características" data-en="Features">Características</a></li>
-          <li><a href="como-funciona.html" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
-          <li><a href="dashboard.html" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
+          <li><a href="caracteristicas.html" data-key="nav.caracteristicas" data-es="Características" data-en="Features">Características</a></li>
+          <li><a href="como-funciona.html" data-key="nav.como_funciona" data-es="Cómo funciona" data-en="How it works">Cómo funciona</a></li>
+          <li><a href="dashboard.html" data-key="nav.dashboard" data-es="Dashboard" data-en="Dashboard">Dashboard</a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h5 data-es="Proyecto" data-en="Project">Proyecto</h5>
+        <h5 data-key="footer.proyecto" data-es="Proyecto" data-en="Project">Proyecto</h5>
         <ul>
           <li><a href="https://fi.uba.ar" target="_blank">FIUBA</a></li>
-          <li><a href="#cta" data-es="Contacto" data-en="Contact">Contacto</a></li>
+          <li><a href="#cta" data-key="footer.contacto" data-es="Contacto" data-en="Contact">Contacto</a></li>
           <li><a href="https://github.com" target="_blank">GitHub</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-btm">
-      <span class="foot-copy">© 2024 DAG — <span data-es="Detección Activa de Ganado" data-en="Active Cattle Detection">Detección Activa de Ganado</span></span>
-      <span class="foot-badge">🇦🇷 <span data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
+      <span class="foot-copy">© 2024 DAG — <span data-key="footer.deteccion_activa_de_ganado" data-es="Detección Activa de Ganado" data-en="Active Cattle Detection">Detección Activa de Ganado</span></span>
+      <span class="foot-badge">🇦🇷 <span data-key="footer.hecho_en_argentina" data-es="Hecho en Argentina" data-en="Made in Argentina">Hecho en Argentina</span></span>
     </div>
   </div>
 </footer>
 
 <!-- ══ JS ═════════════════════════════════════════════ -->
 <script>
+  // Apply texts from the content file
+  if (window.TEXTS) {
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (window.TEXTS[key]) {
+        el.setAttribute('data-es', window.TEXTS[key].es);
+        el.setAttribute('data-en', window.TEXTS[key].en);
+        el.textContent = window.TEXTS[key].es;
+      }
+    });
+  }
+
   // Language toggle
   let lang = 'es';
   function setLang(l) {
