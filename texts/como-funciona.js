@@ -14,7 +14,7 @@ window.DAG_TEXTS = window.DAG_TEXTS || {};
 window.DAG_TEXTS["nav.mob.caracteristicas"] = { es: "Características", en: "Features" };
 window.DAG_TEXTS["nav.mob.como-funciona"]   = { es: "Cómo funciona",   en: "How it works" };
 window.DAG_TEXTS["nav.mob.dashboard"]       = { es: "Dashboard",       en: "Dashboard" };
-window.DAG_TEXTS["nav.mob.cta"]             = { es: "Pedí una demo",   en: "Request a demo" };
+window.DAG_TEXTS["nav.mob.cta"]             = { es: "Contactanos",    en: "Contact us"  };
 
 /* ════════════════════════════════════════════════════════════
    NAVEGACIÓN — BARRA SUPERIOR
@@ -41,13 +41,13 @@ window.DAG_TEXTS["hero.sub"]         = { es: "Todo el proceso es automático una
    PASOS — ENCABEZADO DE SECCIÓN
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["steps.label"] = { es: "El proceso paso a paso", en: "Step by step process" };
-window.DAG_TEXTS["steps.title"] = { es: "Cuatro pasos, un rodeo conocido", en: "Four steps, a known herd" };
+window.DAG_TEXTS["steps.title"] = { es: "Cuatro pasos, un ganado conocido", en: "Four steps, a known cattle" };
 
 /* ════════════════════════════════════════════════════════════
    PASO 1 — VUELO
 ════════════════════════════════════════════════════════════ */
-window.DAG_TEXTS["p1.title"]        = { es: "Sobrevolás el lote con el dron",   en: "Fly the drone over the paddock" };
-window.DAG_TEXTS["p1.text"]         = { es: "Tomás el dron, lo despegás y sobrevolás el lote en modo manual o automático (grid mission). El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.", en: "You take the drone, take off, and fly over the paddock in manual or automatic mode (grid mission). The only requirement is that the flight maintains constant altitude and the video is stored on the device. No additional hardware or special flight application is needed." };
+window.DAG_TEXTS["p1.title"]        = { es: "Sobrevolás el ganado con el dron",   en: "Fly the drone over the cattle" };
+window.DAG_TEXTS["p1.text"]         = { es: "Tomás el dron, lo despegás y sobrevolás el ganado en modo manual o automático (grid mission). El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.", en: "You take the drone, take off, and fly over the cattle in manual or automatic mode (grid mission). The only requirement is that the flight maintains constant altitude and the video is stored on the device. No additional hardware or special flight application is needed." };
 window.DAG_TEXTS["p1.drones.label"] = { es: "Drones compatibles",              en: "Compatible drones" };
 window.DAG_TEXTS["p1.drone1"]       = { es: "Cualquier dron que grabe video en MP4, AVI o MOV con resolución mínima 1080p.", en: "Any drone recording video in MP4, AVI, or MOV with minimum 1080p resolution." };
 window.DAG_TEXTS["p1.drone2"]       = { es: "DJI Mini, DJI Air, DJI Mavic, DJI Phantom: todos compatibles si conocés el tamaño del sensor y la focal de la cámara.", en: "DJI Mini, DJI Air, DJI Mavic, DJI Phantom: all compatible if you know the camera sensor size and focal length." };
@@ -59,14 +59,14 @@ window.DAG_TEXTS["p1.table.prec"]   = { es: "Precisión estimada",              
 window.DAG_TEXTS["p1.table.vis"]    = { es: "Animales visibles",               en: "Visible animals" };
 window.DAG_TEXTS["p1.table.rec"]    = { es: "Recomendado para",                en: "Recommended for" };
 window.DAG_TEXTS["p1.r1.prec"]     = { es: "Muy alta",                        en: "Very high" };
-window.DAG_TEXTS["p1.r1.vis"]      = { es: "Lotes chicos (< 50 ha)",          en: "Small paddocks (< 50 ha)" };
-window.DAG_TEXTS["p1.r1.rec"]      = { es: "Hacienda fina, terneros",         en: "Fine livestock, calves" };
+window.DAG_TEXTS["p1.r1.vis"]      = { es: "ganados chicos (< 50 ha)",          en: "Small cattles (< 50 ha)" };
+window.DAG_TEXTS["p1.r1.rec"]      = { es: "campo fina, terneros",         en: "Fine livestock, calves" };
 window.DAG_TEXTS["p1.r2.prec"]     = { es: "Alta — óptima",                   en: "High — optimal" };
-window.DAG_TEXTS["p1.r2.vis"]      = { es: "Lotes medianos (50–200 ha)",      en: "Medium paddocks (50–200 ha)" };
+window.DAG_TEXTS["p1.r2.vis"]      = { es: "ganados medianos (50–200 ha)",      en: "Medium cattles (50–200 ha)" };
 window.DAG_TEXTS["p1.r2.rec"]      = { es: "La mayoría de los casos",         en: "Most use cases" };
 window.DAG_TEXTS["p1.r3.prec"]     = { es: "Buena",                           en: "Good" };
-window.DAG_TEXTS["p1.r3.vis"]      = { es: "Lotes grandes (> 200 ha)",        en: "Large paddocks (> 200 ha)" };
-window.DAG_TEXTS["p1.r3.rec"]      = { es: "Rodeos numerosos",                en: "Larger herds" };
+window.DAG_TEXTS["p1.r3.vis"]      = { es: "ganados grandes (> 200 ha)",        en: "Large cattles (> 200 ha)" };
+window.DAG_TEXTS["p1.r3.rec"]      = { es: "ganados numerosos",                en: "Larger cattles" };
 window.DAG_TEXTS["p1.r4.prec"]     = { es: "Reducida",                        en: "Reduced" };
 window.DAG_TEXTS["p1.r4.vis"]      = { es: "Cobertura máxima",                en: "Maximum coverage" };
 window.DAG_TEXTS["p1.r4.rec"]      = { es: "Solo conteo, sin peso preciso",   en: "Count only, no precise weight" };
@@ -78,7 +78,7 @@ window.DAG_TEXTS["p2.title"]        = { es: "Subís el video con los datos del v
 window.DAG_TEXTS["p2.text"]         = { es: "Con el video descargado del dron, abrís la app de escritorio DAG (Windows, macOS o Linux) o entrás a la web. Seleccionás el video, completás los datos del vuelo y confirmás. Eso es todo por tu parte.", en: "With the video downloaded from your drone, you open the DAG desktop app (Windows, macOS, or Linux) or go to the web. Select the video, fill in the flight data, and confirm. That's all you need to do." };
 window.DAG_TEXTS["p2.callout"]      = { es: "El video podés subirlo estando en el campo (si tenés señal) o cuando llegás a la casa. El procesamiento corre en los servidores de DAG, no en tu computadora, así que no necesitás una PC potente.", en: "You can upload the video from the field (if you have signal) or when you get home. Processing runs on DAG's servers, not your computer, so you don't need a powerful PC." };
 window.DAG_TEXTS["p2.datos.label"]  = { es: "Datos que ingresás",             en: "Data you enter" };
-window.DAG_TEXTS["p2.dato1"]        = { es: "Establecimiento y lote al que pertenece el vuelo.", en: "Property and paddock the flight belongs to." };
+window.DAG_TEXTS["p2.dato1"]        = { es: "Establecimiento y ganado al que pertenece el vuelo.", en: "Property and cattle the flight belongs to." };
 window.DAG_TEXTS["p2.dato2"]        = { es: "Altura de vuelo en metros (podés leerla del log del dron o de la telemetría).", en: "Flight altitude in meters (readable from drone log or telemetry)." };
 window.DAG_TEXTS["p2.dato3"]        = { es: "Modelo de cámara o, si no está en la lista, el tamaño del sensor (mm) y la distancia focal de la lente.", en: "Camera model or, if not listed, sensor size (mm) and lens focal length." };
 window.DAG_TEXTS["p2.dato4"]        = { es: "Fecha y hora del vuelo (por defecto, el sistema la lee de los metadatos del video).", en: "Date and time (by default the system reads it from the video metadata)." };
@@ -98,7 +98,7 @@ window.DAG_TEXTS["p3.pipe2.desc"]     = { es: "ByteTrack asigna un ID único a c
 window.DAG_TEXTS["p3.pipe3.title"]    = { es: "3. GSD y peso",                            en: "3. GSD & weight" };
 window.DAG_TEXTS["p3.pipe3.desc"]     = { es: "Usando la altura del vuelo y los parámetros de la cámara, calcula el GSD y lo usa para obtener el área real de cada silueta, de donde deriva el peso estimado.", en: "Using flight altitude and camera parameters, calculates GSD and uses it to get each silhouette's real area, from which it derives estimated weight." };
 window.DAG_TEXTS["p3.pipe4.title"]    = { es: "4. Clasificación",                         en: "4. Classification" };
-window.DAG_TEXTS["p3.pipe4.desc"]     = { es: "Aplica análisis por z-score sobre la densidad corporal de toda la tropa para clasificar a cada animal en NORMAL, TERNERO, BAJO PESO o SOBREPESO.", en: "Applies z-score analysis on the entire herd's body density to classify each animal as NORMAL, CALF, UNDERWEIGHT, or OVERWEIGHT." };
+window.DAG_TEXTS["p3.pipe4.desc"]     = { es: "Aplica análisis por z-score sobre la densidad corporal de toda la tropa para clasificar a cada animal en NORMAL, TERNERO, BAJO PESO o SOBREPESO.", en: "Applies z-score analysis on the entire cattle's body density to classify each animal as NORMAL, CALF, UNDERWEIGHT, or OVERWEIGHT." };
 window.DAG_TEXTS["p3.pipe5.title"]    = { es: "5. PDF + video",                           en: "5. PDF + video" };
 window.DAG_TEXTS["p3.pipe5.desc"]     = { es: "Genera el informe PDF completo y el video anotado con los IDs y datos de cada animal superpuestos.", en: "Generates the complete PDF report and annotated video with each animal's IDs and data overlaid." };
 
@@ -107,7 +107,7 @@ window.DAG_TEXTS["p3.pipe5.desc"]     = { es: "Genera el informe PDF completo y 
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["p4.title"]   = { es: "Chequeás los resultados y tomás decisiones",     en: "Review results and make decisions" };
 window.DAG_TEXTS["p4.text"]    = { es: "El dashboard se actualiza automáticamente con los datos del vuelo procesado. Podés ver el conteo de cabezas, el peso promedio, la distribución de condición corporal y el video anotado. Si algún animal generó una alerta, aparece resaltado. El informe PDF ya está disponible para descargar o compartir.", en: "The dashboard automatically updates with the processed flight data. You can see head count, average weight, body condition distribution, and annotated video. If any animal triggered an alert, it's highlighted. The PDF report is available to download or share." };
-window.DAG_TEXTS["p4.bullet1"] = { es: "Si el peso promedio del lote bajó respecto al vuelo anterior, podés comparar directamente en el gráfico de evolución.", en: "If the paddock average weight dropped compared to the previous flight, you can compare directly on the evolution chart." };
+window.DAG_TEXTS["p4.bullet1"] = { es: "Si el peso promedio del ganado bajó respecto al vuelo anterior, podés comparar directamente en el gráfico de evolución.", en: "If the cattle average weight dropped compared to the previous flight, you can compare directly on the evolution chart." };
 window.DAG_TEXTS["p4.bullet2"] = { es: "Los animales clasificados como BAJO PESO quedan identificados con su ID en el video anotado para que puedas ubicarlos en el campo.", en: "Animals classified as UNDERWEIGHT are identified by their ID in the annotated video so you can locate them in the field." };
 window.DAG_TEXTS["p4.bullet3"] = { es: "El informe PDF se puede mandar por WhatsApp o email directamente desde la app.", en: "The PDF report can be sent via WhatsApp or email directly from the app." };
 window.DAG_TEXTS["p4.bullet4"] = { es: "Todo el historial queda guardado. Podés comparar cualquier vuelo con vuelos de meses anteriores.", en: "All history is saved. You can compare any flight with flights from months earlier." };
@@ -130,9 +130,9 @@ window.DAG_TEXTS["req.datos.desc"]  = { es: "Altura de vuelo en metros y paráme
    CTA
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["cta.label"]   = { es: "¿Tenés el dron? El resto lo hacemos nosotros.", en: "Got a drone? We'll handle the rest." };
-window.DAG_TEXTS["cta.title1"]  = { es: "Empezá a conocer tu rodeo",    en: "Start knowing your herd" };
+window.DAG_TEXTS["cta.title1"]  = { es: "Empezá a conocer tu ganado",    en: "Start knowing your cattle" };
 window.DAG_TEXTS["cta.title2"]  = { es: "en el próximo vuelo",          en: "on the next flight" };
-window.DAG_TEXTS["cta.sub"]     = { es: "Escribinos y te mostramos cómo funciona en tu establecimiento, con tus lotes y tu hacienda.", en: "Reach out and we'll show you how it works on your property, with your paddocks and your herd." };
+window.DAG_TEXTS["cta.sub"]     = { es: "Escribinos y te mostramos cómo funciona en tu establecimiento, con tus ganados y tu campo.", en: "Reach out and we'll show you how it works on your property, with your cattles and your cattle." };
 window.DAG_TEXTS["cta.btn1"]    = { es: "Escribinos",                   en: "Get in touch" };
 window.DAG_TEXTS["cta.btn2"]    = { es: "Ver características",          en: "See features" };
 

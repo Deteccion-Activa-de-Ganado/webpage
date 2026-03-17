@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — DAG Detección Activa de Ganado</title>
-  <meta name="description" content="El dashboard de DAG centraliza conteos, pesos estimados, condición corporal, historial de vuelos y alertas de tu hacienda en un solo lugar." />
+  <meta name="description" content="El dashboard de DAG centraliza conteos, pesos estimados, condición corporal, historial de vuelos y alertas de tu campo en un solo lugar." />
   <link rel="icon" type="image/svg+xml" href="img/LOGO.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -437,9 +437,9 @@
     </h1>
     <div class="divider--short"></div>
     <p class="page-hero-sub"
-      data-key="hero.sub" data-es="El dashboard DAG reúne todos los datos de tus vuelos en un solo lugar. Chequeás el estado de cada lote, comparás con vuelos anteriores y descargás informes sin necesidad de abrir una planilla."
-      data-en="The DAG dashboard brings all your flight data together in one place. Check the state of each paddock, compare with previous flights, and download reports without opening a spreadsheet.">
-      El dashboard DAG reúne todos los datos de tus vuelos en un solo lugar. Chequeás el estado de cada lote, comparás con vuelos anteriores y descargás informes sin necesidad de abrir una planilla.
+      data-key="hero.sub" data-es="El dashboard DAG reúne todos los datos de tus vuelos en un solo lugar. Chequeás el estado de cada ganado, comparás con vuelos anteriores y descargás informes sin necesidad de abrir una planilla."
+      data-en="The DAG dashboard brings all your flight data together in one place. Check the state of each cattle, compare with previous flights, and download reports without opening a spreadsheet.">
+      El dashboard DAG reúne todos los datos de tus vuelos en un solo lugar. Chequeás el estado de cada ganado, comparás con vuelos anteriores y descargás informes sin necesidad de abrir una planilla.
     </p>
   </div>
 </section>
@@ -463,13 +463,13 @@
     </div>
     <div class="metric-card">
       <div class="metric-val">412 kg</div>
-      <div class="metric-label" data-key="metric.peso.label" data-es="Peso promedio del rodeo" data-en="Average herd weight">Peso promedio del rodeo</div>
+      <div class="metric-label" data-key="metric.peso.label" data-es="Peso promedio del ganado" data-en="Average cattle weight">Peso promedio del ganado</div>
       <div class="metric-desc" data-key="metric.peso.desc" data-es="Estimado por visión computacional sobre el área de la silueta de cada animal en el video." data-en="Estimated via computer vision from each animal's silhouette area in the video.">Estimado por área de silueta + GSD. Sin manga, sin balanza.</div>
     </div>
     <div class="metric-card">
       <div class="metric-val" style="color:var(--brand);">3</div>
       <div class="metric-label" data-key="metric.alertas.label" data-es="Alertas activas" data-en="Active alerts">Alertas activas</div>
-      <div class="metric-desc" data-key="metric.alertas.desc" data-es="Animales que están fuera del rango de condición corporal configurado para este lote. Se muestran identificados en el video anotado." data-en="Animals outside the configured body condition range for this paddock. Shown identified in the annotated video.">Animales fuera del rango configurado para este lote.</div>
+      <div class="metric-desc" data-key="metric.alertas.desc" data-es="Animales que están fuera del rango de condición corporal configurado para este ganado. Se muestran identificados en el video anotado." data-en="Animals outside the configured body condition range for this cattle. Shown identified in the annotated video.">Animales fuera del rango configurado para este ganado.</div>
     </div>
   </div>
 </section>
@@ -490,13 +490,13 @@
       <span class="sec-label" data-key="m1.label" data-es="Panel de métricas" data-en="Metrics panel">Panel de métricas</span>
       <h3 class="fp-title" data-key="m1.title" data-es="Las cifras clave a simple vista" data-en="Key numbers at a glance">Las cifras clave a simple vista</h3>
       <p class="fp-sub"
-        data-key="m1.sub" data-es="En la parte superior del dashboard siempre tenés visible: cantidad de cabezas detectadas en el último vuelo, peso promedio del rodeo, cantidad de alertas activas y cuántos días hace del último vuelo."
-        data-en="At the top of the dashboard you always see: head count from the last flight, average herd weight, number of active alerts, and how many days since the last flight.">
-        En la parte superior del dashboard siempre tenés visible: cabezas detectadas, peso promedio, alertas activas y días desde el último vuelo del lote.
+        data-key="m1.sub" data-es="En la parte superior del dashboard siempre tenés visible: cantidad de cabezas detectadas en el último vuelo, peso promedio del ganado, cantidad de alertas activas y cuántos días hace del último vuelo."
+        data-en="At the top of the dashboard you always see: head count from the last flight, average cattle weight, number of active alerts, and how many days since the last flight.">
+        En la parte superior del dashboard siempre tenés visible: cabezas detectadas, peso promedio, alertas activas y días desde el último vuelo del ganado.
       </p>
       <ul class="fp-bullets">
         <li data-key="m1.bullet1" data-es="Datos actualizados automáticamente después de cada vuelo procesado." data-en="Data automatically updated after each processed flight.">Actualización automática después de cada vuelo procesado.</li>
-        <li data-key="m1.bullet2" data-es="Los KPIs varían por lote seleccionado. Podés navegar entre todos los lotes del establecimiento." data-en="KPIs vary by selected paddock. You can navigate all paddocks on the property.">Varían por lote. Podés navegar entre todos los lotes del establecimiento.</li>
+        <li data-key="m1.bullet2" data-es="Los KPIs varían por ganado seleccionado. Podés navegar entre todos los ganados del establecimiento." data-en="KPIs vary by selected cattle. You can navigate all cattles on the property.">Varían por ganado. Podés navegar entre todos los ganados del establecimiento.</li>
         <li data-key="m1.bullet3" data-es="Si hay una baja de peso respecto al vuelo anterior, la cifra aparece marcada en ámbar para que no pase desapercibida." data-en="If there's a weight drop compared to the previous flight, the figure is marked in amber so it doesn't go unnoticed.">Si hay baja de peso respecto al vuelo anterior, la cifra aparece en ámbar.</li>
       </ul>
     </div>
@@ -510,21 +510,21 @@
   <div class="feat-panel rev fi">
     <div class="fp-text">
       <span class="sec-label" data-key="m2.label" data-es="Evolución histórica" data-en="Historical evolution">Evolución histórica</span>
-      <h3 class="fp-title" data-key="m2.title" data-es="Gráfico de peso mensual del rodeo" data-en="Monthly herd weight chart">Gráfico de peso mensual del rodeo</h3>
+      <h3 class="fp-title" data-key="m2.title" data-es="Gráfico de peso mensual del ganado" data-en="Monthly cattle weight chart">Gráfico de peso mensual del ganado</h3>
       <p class="fp-sub"
-        data-key="m2.sub" data-es="El gráfico de peso mensual muestra cómo evolucionó el peso promedio de cada lote vuelo a vuelo. Podés detectar caídas de condición antes de que se conviertan en un problema sanitario o productivo."
-        data-en="The monthly weight chart shows how each paddock's average weight evolved flight by flight. You can detect condition drops before they become a health or productivity problem.">
-        El gráfico de peso mensual muestra la evolución del peso promedio de cada lote vuelo a vuelo. Detectás caídas antes de que se conviertan en un problema.
+        data-key="m2.sub" data-es="El gráfico de peso mensual muestra cómo evolucionó el peso promedio de cada ganado vuelo a vuelo. Podés detectar caídas de condición antes de que se conviertan en un problema sanitario o productivo."
+        data-en="The monthly weight chart shows how each cattle's average weight evolved flight by flight. You can detect condition drops before they become a health or productivity problem.">
+        El gráfico de peso mensual muestra la evolución del peso promedio de cada ganado vuelo a vuelo. Detectás caídas antes de que se conviertan en un problema.
       </p>
       <ul class="fp-bullets">
-        <li data-key="m2.bullet1" data-es="Línea de tiempo con todos los vuelos del establecimiento, agrupados por lote." data-en="Timeline with all property flights, grouped by paddock.">Línea de tiempo con todos los vuelos del establecimiento, por lote.</li>
-        <li data-key="m2.bullet2" data-es="Podés superponer dos lotes distintos para comparar el ritmo de engorde." data-en="You can overlay two different paddocks to compare fattening rates.">Podés superponer dos lotes para comparar el ritmo de engorde.</li>
-        <li data-key="m2.bullet3" data-es="Anotaciones automáticas en el gráfico cuando ocurrió un cambio de tropilla o una alerta activa." data-en="Automatic annotations on the chart when a herd change or active alert occurred.">Anotaciones automáticas cuando ocurrió un cambio de tropilla o alerta.</li>
+        <li data-key="m2.bullet1" data-es="Línea de tiempo con todos los vuelos del establecimiento, agrupados por ganado." data-en="Timeline with all property flights, grouped by cattle.">Línea de tiempo con todos los vuelos del establecimiento, por ganado.</li>
+        <li data-key="m2.bullet2" data-es="Podés superponer dos ganados distintos para comparar el ritmo de engorde." data-en="You can overlay two different cattles to compare fattening rates.">Podés superponer dos ganados para comparar el ritmo de engorde.</li>
+        <li data-key="m2.bullet3" data-es="Anotaciones automáticas en el gráfico cuando ocurrió un cambio de tropilla o una alerta activa." data-en="Automatic annotations on the chart when a cattle change or active alert occurred.">Anotaciones automáticas cuando ocurrió un cambio de tropilla o alerta.</li>
       </ul>
     </div>
     <div class="fp-img">
       <!-- Reemplazá con screenshot del gráfico de evolución de peso -->
-      <img src="img/captura-pantalla-app.svg" alt="Gráfico de evolución de peso mensual del rodeo en el dashboard DAG" loading="lazy"/>
+      <img src="img/captura-pantalla-app.svg" alt="Gráfico de evolución de peso mensual del ganado en el dashboard DAG" loading="lazy"/>
     </div>
   </div>
 
@@ -532,7 +532,7 @@
   <div class="feat-panel fi">
     <div class="fp-text">
       <span class="sec-label" data-key="m3.label" data-es="Condición corporal" data-en="Body condition">Condición corporal</span>
-      <h3 class="fp-title" data-key="m3.title" data-es="Distribución de la tropa de un vistazo" data-en="Herd distribution at a glance">Distribución de la tropa de un vistazo</h3>
+      <h3 class="fp-title" data-key="m3.title" data-es="Distribución de la tropa de un vistazo" data-en="cattle distribution at a glance">Distribución de la tropa de un vistazo</h3>
       <p class="fp-sub"
         data-key="m3.sub" data-es="El módulo de condición corporal muestra cuántos animales cayeron en cada categoría: NORMAL, TERNERO, BAJO PESO o SOBREPESO. La proporción se actualiza con cada vuelo y se puede comparar con vuelos anteriores."
         data-en="The body condition module shows how many animals fell into each category: NORMAL, CALF, UNDERWEIGHT, or OVERWEIGHT. The proportion updates with each flight and can be compared with previous ones.">
@@ -550,25 +550,25 @@
     </div>
   </div>
 
-  <!-- Módulo 4: Mapa de lotes -->
+  <!-- Módulo 4: Mapa de ganados -->
   <div class="feat-panel rev fi">
     <div class="fp-text">
-      <span class="sec-label" data-key="m4.label" data-es="Mapa de lotes" data-en="Paddock map">Mapa de lotes</span>
-      <h3 class="fp-title" data-key="m4.title" data-es="Tu campo dibujado, por lote y estado" data-en="Your property mapped, by paddock and status">Tu campo dibujado, por lote y estado</h3>
+      <span class="sec-label" data-key="m4.label" data-es="Mapa de ganados" data-en="cattle map">Mapa de ganados</span>
+      <h3 class="fp-title" data-key="m4.title" data-es="Tu campo dibujado, por ganado y estado" data-en="Your property mapped, by cattle and status">Tu campo dibujado, por ganado y estado</h3>
       <p class="fp-sub"
-        data-key="m4.sub" data-es="El mapa muestra el establecimiento con cada lote delineado sobre OpenStreetMap. El color del lote indica si tiene alertas activas (rojo), condición normal (verde) o sin datos recientes (gris)."
-        data-en="The map shows the property with each paddock outlined on OpenStreetMap. Paddock color indicates active alerts (red), normal condition (green), or no recent data (gray).">
-        El mapa muestra el establecimiento con cada lote delineado sobre OpenStreetMap. El color de cada lote indica su estado actual.
+        data-key="m4.sub" data-es="El mapa muestra el establecimiento con cada ganado delineado sobre OpenStreetMap. El color del ganado indica si tiene alertas activas (rojo), condición normal (verde) o sin datos recientes (gris)."
+        data-en="The map shows the property with each cattle outlined on OpenStreetMap. cattle color indicates active alerts (red), normal condition (green), or no recent data (gray).">
+        El mapa muestra el establecimiento con cada ganado delineado sobre OpenStreetMap. El color de cada ganado indica su estado actual.
       </p>
       <ul class="fp-bullets">
-        <li data-key="m4.bullet1" data-es="Clic en un lote abre su panel detallado con métricas del último vuelo." data-en="Clicking a paddock opens its detailed panel with last flight metrics.">Clic en un lote abre su panel con métricas del último vuelo.</li>
+        <li data-key="m4.bullet1" data-es="Clic en un ganado abre su panel detallado con métricas del último vuelo." data-en="Clicking a cattle opens its detailed panel with last flight metrics.">Clic en un ganado abre su panel con métricas del último vuelo.</li>
         <li data-key="m4.bullet2" data-es="Verde: condición normal. Ámbar: atención recomendada. Rojo: alerta activa." data-en="Green: normal condition. Amber: attention recommended. Red: active alert.">Verde: normal. Ámbar: atención recomendada. Rojo: alerta activa.</li>
-        <li data-key="m4.bullet3" data-es="Gris: el lote no tiene vuelos en los últimos 30 días." data-en="Gray: the paddock has no flights in the last 30 days.">Gris: sin vuelos en los últimos 30 días.</li>
+        <li data-key="m4.bullet3" data-es="Gris: el ganado no tiene vuelos en los últimos 30 días." data-en="Gray: the cattle has no flights in the last 30 days.">Gris: sin vuelos en los últimos 30 días.</li>
       </ul>
     </div>
     <div class="fp-img">
-      <!-- Reemplazá con screenshot del mapa de lotes -->
-      <img src="img/foto-campo-aereo.svg" alt="Mapa del establecimiento con lotes delineados en DAG" loading="lazy"/>
+      <!-- Reemplazá con screenshot del mapa de ganados -->
+      <img src="img/foto-campo-aereo.svg" alt="Mapa del establecimiento con ganados delineados en DAG" loading="lazy"/>
     </div>
   </div>
 
@@ -583,7 +583,7 @@
         Accedés a todos los vuelos del establecimiento, ordenados por fecha. Cualquier vuelo anterior se puede abrir completo.
       </p>
       <ul class="fp-bullets">
-        <li data-key="m5.bullet1" data-es="Filtro por lote, rango de fechas y tipo de alerta para encontrar lo que buscás rápido." data-en="Filter by paddock, date range, and alert type to quickly find what you're looking for.">Filtro por lote, fechas y tipo de alerta.</li>
+        <li data-key="m5.bullet1" data-es="Filtro por ganado, rango de fechas y tipo de alerta para encontrar lo que buscás rápido." data-en="Filter by cattle, date range, and alert type to quickly find what you're looking for.">Filtro por ganado, fechas y tipo de alerta.</li>
         <li data-key="m5.bullet2" data-es="Cada entrada del historial muestra cabezas detectadas, peso promedio y alertas de ese vuelo." data-en="Each history entry shows detected heads, average weight, and alerts from that flight.">Cada entrada muestra cabezas, peso promedio y alertas de ese vuelo.</li>
         <li data-key="m5.bullet3" data-es="Podés descargar el PDF de cualquier vuelo histórico en cualquier momento." data-en="You can download the PDF of any historical flight at any time.">Descargá el PDF de cualquier vuelo histórico cuando lo necesitás.</li>
       </ul>
@@ -604,33 +604,33 @@
     <span class="sec-label" data-key="alerta.label" data-es="Sistema de alertas" data-en="Alert system">Sistema de alertas</span>
     <h2 class="section-title" data-key="alerta.title" data-es="Sabés qué pasa antes de que sea tarde" data-en="You know what's happening before it's too late">Sabés qué pasa antes de que sea tarde</h2>
     <p class="section-sub"
-      data-key="alerta.sub" data-es="El sistema de alertas evalúa cada vuelo procesado y genera notificaciones automáticas cuando se superan los umbrales que vos configuraste para cada lote."
-      data-en="The alert system evaluates each processed flight and generates automatic notifications when the thresholds you configured for each paddock are exceeded.">
+      data-key="alerta.sub" data-es="El sistema de alertas evalúa cada vuelo procesado y genera notificaciones automáticas cuando se superan los umbrales que vos configuraste para cada ganado."
+      data-en="The alert system evaluates each processed flight and generates automatic notifications when the thresholds you configured for each cattle are exceeded.">
       Cada vuelo procesado se evalúa automáticamente. Si algo sale de los rangos que vos definiste, recibís una notificación.
     </p>
   </div>
   <div class="fi" style="max-width:780px;">
     <div class="alert-type crit">
       <h4 data-key="alerta.crit.title" data-es="Alerta crítica — Bajo peso masivo" data-en="Critical alert — Mass underweight">Alerta crítica — Bajo peso masivo</h4>
-      <p data-key="alerta.crit.desc" data-es="Se activa cuando más del 10% de los animales del lote fue clasificado como BAJO PESO en el último vuelo. Indica posible deficiencia nutricional o sanitaria que requiere intervención inmediata." data-en="Triggered when more than 10% of the paddock's animals were classified as UNDERWEIGHT in the last flight. Indicates possible nutritional or health deficiency requiring immediate intervention.">Se activa cuando &gt;10% de los animales del lote fue clasificado como BAJO PESO. Posible deficiencia nutricional o sanitaria.</p>
+      <p data-key="alerta.crit.desc" data-es="Se activa cuando más del 10% de los animales del ganado fue clasificado como BAJO PESO en el último vuelo. Indica posible deficiencia nutricional o sanitaria que requiere intervención inmediata." data-en="Triggered when more than 10% of the cattle's animals were classified as UNDERWEIGHT in the last flight. Indicates possible nutritional or health deficiency requiring immediate intervention.">Se activa cuando &gt;10% de los animales del ganado fue clasificado como BAJO PESO. Posible deficiencia nutricional o sanitaria.</p>
     </div>
     <div class="alert-type warn">
       <h4 data-key="alerta.warn.title" data-es="Alerta de atención — Pérdida de peso individual" data-en="Attention alert — Individual weight loss">Alerta de atención — Pérdida de peso individual</h4>
-      <p data-key="alerta.warn.desc" data-es="Se activa cuando un animal individual perdió más del umbral de peso configurado entre dos vuelos consecutivos del mismo lote. El animal queda identificado con su ID en el video anotado." data-en="Triggered when an individual animal lost more than the configured weight threshold between two consecutive flights of the same paddock. The animal is identified by its ID in the annotated video.">Animal individual que perdió más del umbral configurado entre dos vuelos. Queda identificado con su ID.</p>
+      <p data-key="alerta.warn.desc" data-es="Se activa cuando un animal individual perdió más del umbral de peso configurado entre dos vuelos consecutivos del mismo ganado. El animal queda identificado con su ID en el video anotado." data-en="Triggered when an individual animal lost more than the configured weight threshold between two consecutive flights of the same cattle. The animal is identified by its ID in the annotated video.">Animal individual que perdió más del umbral configurado entre dos vuelos. Queda identificado con su ID.</p>
     </div>
     <div class="alert-type">
       <h4 data-key="alerta.info1.title" data-es="Información — Cambio de conteo significativo" data-en="Info — Significant count change">Información — Cambio de conteo significativo</h4>
-      <p data-key="alerta.info1.desc" data-es="Se activa cuando el conteo del último vuelo difiere en más del 5% respecto al vuelo anterior del mismo lote. Puede indicar movimiento de tropas, fallas de detección o un error de vuelo." data-en="Triggered when the last flight count differs by more than 5% from the previous flight of the same paddock. May indicate herd movement, detection failure, or flight error.">El conteo difiere &gt;5% respecto al vuelo anterior. Puede indicar movimiento de tropas o falla de detección.</p>
+      <p data-key="alerta.info1.desc" data-es="Se activa cuando el conteo del último vuelo difiere en más del 5% respecto al vuelo anterior del mismo ganado. Puede indicar movimiento de tropas, fallas de detección o un error de vuelo." data-en="Triggered when the last flight count differs by more than 5% from the previous flight of the same cattle. May indicate cattle movement, detection failure, or flight error.">El conteo difiere &gt;5% respecto al vuelo anterior. Puede indicar movimiento de tropas o falla de detección.</p>
     </div>
     <div class="alert-type">
-      <h4 data-key="alerta.info2.title" data-es="Información — Lote sin vuelo reciente" data-en="Info — Paddock without recent flight">Información — Lote sin vuelo reciente</h4>
-      <p data-key="alerta.info2.desc" data-es="Recordatorio automático cuando un lote lleva más de 30 días sin ser relevado, para que no pierdas la continuidad del historial." data-en="Automatic reminder when a paddock hasn't been surveyed for more than 30 days, so you don't lose history continuity.">Recordatorio automático cuando un lote lleva más de 30 días sin relevamiento.</p>
+      <h4 data-key="alerta.info2.title" data-es="Información — ganado sin vuelo reciente" data-en="Info — cattle without recent flight">Información — ganado sin vuelo reciente</h4>
+      <p data-key="alerta.info2.desc" data-es="Recordatorio automático cuando un ganado lleva más de 30 días sin ser relevado, para que no pierdas la continuidad del historial." data-en="Automatic reminder when a cattle hasn't been surveyed for more than 30 days, so you don't lose history continuity.">Recordatorio automático cuando un ganado lleva más de 30 días sin relevamiento.</p>
     </div>
   </div>
   <div class="fi config-box" style="margin-top:32px;">
-    <p data-key="alerta.config" data-es="Los umbrales de cada alerta son configurables por lote o por establecimiento. Podés definir que una alerta se dispare a partir del 5%, 10% o cualquier porcentaje de animales en bajo peso que tenga sentido para tu hacienda."
-      data-en="Each alert threshold is configurable per paddock or per property. You can set alerts to trigger at 5%, 10%, or any percentage of underweight animals that makes sense for your herd.">
-      Los umbrales de cada alerta son configurables por lote o por establecimiento. Definís vos el porcentaje que dispara la alerta.
+    <p data-key="alerta.config" data-es="Los umbrales de cada alerta son configurables por ganado o por establecimiento. Podés definir que una alerta se dispare a partir del 5%, 10% o cualquier porcentaje de animales en bajo peso que tenga sentido para tu campo."
+      data-en="Each alert threshold is configurable per cattle or per property. You can set alerts to trigger at 5%, 10%, or any percentage of underweight animals that makes sense for your cattle.">
+      Los umbrales de cada alerta son configurables por ganado o por establecimiento. Definís vos el porcentaje que dispara la alerta.
     </p>
   </div>
 </section>
@@ -658,7 +658,7 @@
         <li><span class="check">✓</span><span data-key="acceso.desk.li1" data-es="Subida de video directa desde el disco" data-en="Direct video upload from disk">Subida de video directa desde el disco</span></li>
         <li><span class="check">✓</span><span data-key="acceso.desk.li2" data-es="Reproducción del video anotado integrada" data-en="Integrated annotated video playback">Reproducción del video anotado integrada</span></li>
         <li><span class="check">✓</span><span data-key="acceso.desk.li3" data-es="Descarga de informes PDF con un clic" data-en="One-click PDF report download">Descarga de informes PDF con un clic</span></li>
-        <li><span class="check">✓</span><span data-key="acceso.desk.li4" data-es="Gestión completa de lotes y vuelos offline" data-en="Full offline paddock and flight management">Gestión de lotes y vuelos sin conexión</span></li>
+        <li><span class="check">✓</span><span data-key="acceso.desk.li4" data-es="Gestión completa de ganados y vuelos offline" data-en="Full offline cattle and flight management">Gestión de ganados y vuelos sin conexión</span></li>
       </ul>
     </div>
     <div class="access-card">
@@ -689,7 +689,7 @@
     <span class="sec-label" data-key="cta.label" data-es="¿Querés ver el dashboard en acción?" data-en="Want to see the dashboard in action?">¿Querés ver el dashboard en acción?</span>
     <h2 class="section-title" style="text-align:center;">
       <span data-key="cta.title1" data-es="Pedí una demo con" data-en="Request a demo with">Pedí una demo con</span><br/>
-      <span class="hl" data-key="cta.title2" data-es="tus propios lotes" data-en="your own paddocks">tus propios lotes</span>
+      <span class="hl" data-key="cta.title2" data-es="tus propios ganados" data-en="your own cattles">tus propios ganados</span>
     </h2>
     <p class="section-sub" style="text-align:center;"
       data-key="cta.sub" data-es="Te mostramos el dashboard funcionando con datos reales de un establecimiento similar al tuyo, o directamente con los datos de tu primer vuelo."
