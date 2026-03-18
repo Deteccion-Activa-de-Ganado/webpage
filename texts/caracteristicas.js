@@ -123,14 +123,14 @@ window.DAG_TEXTS["cmp.th.actividad"]  = { es: "Actividad",         en: "Activity
 window.DAG_TEXTS["cmp.th.tradicional"]= { es: "Método tradicional",en: "Traditional method" };
 window.DAG_TEXTS["cmp.th.dag"]        = { es: "Con DAG",           en: "With DAG" };
 window.DAG_TEXTS["cmp.row1.act"]   = { es: "Conteo del ganado",     en: "cattle count" };
-window.DAG_TEXTS["cmp.row1.bad"]   = { es: "A caballo o en camioneta, 2–4 hs, margen de error 5–10 %", en: "Horseback or truck, 2–4 hrs, 5–10% error margin" };
-window.DAG_TEXTS["cmp.row1.good"]  = { es: "10 min de vuelo + procesamiento automático, error < 2 %", en: "10 min flight + automatic processing, error < 2%" };
+window.DAG_TEXTS["cmp.row1.bad"]   = { es: "A caballo o en camioneta, 2–4 hs, margen de error acorde a ojo humano", en: "Horseback or truck, 2–4 hrs, error acording to human expectation" };
+window.DAG_TEXTS["cmp.row1.good"]  = { es: "[REVISAR] 10 min de vuelo + procesamiento automático, error < 2 %", en: "10 min flight + automatic processing, error < 2%" };
 window.DAG_TEXTS["cmp.row2.act"]   = { es: "Estimación de peso",   en: "Weight estimate" };
-window.DAG_TEXTS["cmp.row2.bad"]   = { es: "Manga y balanza: estresa la campo, baja 3–5 % el peso pre-venta", en: "Crush and scale: stresses livestock, drops 3–5% pre-sale weight" };
-window.DAG_TEXTS["cmp.row2.good"]  = { es: "Desde el aire, sin contacto físico con la campo", en: "From the air, zero physical contact with livestock" };
+window.DAG_TEXTS["cmp.row2.bad"]   = { es: "Manga y balanza: estresa y fatiga al ganado, perdida de peso innecesaria", en: "Crush and scale: stresses and fatigues livestock, unnecesary weight loss" };
+window.DAG_TEXTS["cmp.row2.good"]  = { es: "Desde el aire, sin contacto físico con el ganado", en: "From the air, zero physical contact with livestock" };
 window.DAG_TEXTS["cmp.row3.act"]   = { es: "Detección de animales con problemas", en: "Problem animal detection" };
 window.DAG_TEXTS["cmp.row3.bad"]   = { es: "Revisión visual a ojo, subjetiva y dependiente del ojo del operario", en: "Visual inspection by eye, subjective and operator-dependent" };
-window.DAG_TEXTS["cmp.row3.good"]  = { es: "Clasificación automática con z-score en cada vuelo", en: "Automatic z-score classification on every flight" };
+window.DAG_TEXTS["cmp.row3.good"]  = { es: "Clasificación automática estadistica en cada vuelo", en: "Automatic statistical classification on every flight" };
 window.DAG_TEXTS["cmp.row4.act"]   = { es: "Registros históricos", en: "Historical records" };
 window.DAG_TEXTS["cmp.row4.bad"]   = { es: "Cuadernos de campo o planillas de Excel, sin alertas automáticas", en: "Field notebooks or Excel sheets, no automatic alerts" };
 window.DAG_TEXTS["cmp.row4.good"]  = { es: "Dashboard con historial completo, gráficos automáticos y alertas", en: "Dashboard with full history, automatic charts, and alerts" };
@@ -142,9 +142,9 @@ window.DAG_TEXTS["cmp.row5.good"]  = { es: "PDF generado automáticamente al ter
    CTA
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["cta.label"]   = { es: "¿Querés verlo en tu campo?",  en: "Want to see it on your farm?" };
-window.DAG_TEXTS["cta.title1"]  = { es: "Gestioná tu campo",        en: "Manage your livestock" };
+window.DAG_TEXTS["cta.title1"]  = { es: "Gestioná tu ganado",        en: "Manage your livestock" };
 window.DAG_TEXTS["cta.title2"]  = { es: "de otra manera",              en: "a different way" };
-window.DAG_TEXTS["cta.sub"]     = { es: "Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu establecimiento.", en: "We're a team of Argentine engineers. Reach out and we'll show you how it works on your property." };
+window.DAG_TEXTS["cta.sub"]     = { es: "Somos un equipo de ingenieros argentinos. Escribinos y te mostramos cómo funciona en tu campo.", en: "We're a team of Argentine engineers. Reach out and we'll show you how it works on your property." };
 window.DAG_TEXTS["cta.btn1"]    = { es: "Escribinos",                  en: "Get in touch" };
 window.DAG_TEXTS["cta.btn2"]    = { es: "Ver cómo funciona",           en: "See how it works" };
 
@@ -152,7 +152,7 @@ window.DAG_TEXTS["cta.btn2"]    = { es: "Ver cómo funciona",           en: "See
    FOOTER
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["footer.desc"]        = { es: "Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial.", en: "Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence." };
-window.DAG_TEXTS["footer.badge"]       = { es: "Proyecto Final FIUBA 2024",  en: "FIUBA Final Project 2024" };
+window.DAG_TEXTS["footer.badge"]       = { es: "Tecnología Argentina",  en: "Argentine Technology" };
 window.DAG_TEXTS["footer.col.product"] = { es: "Producto",                   en: "Product" };
 window.DAG_TEXTS["footer.link.caract"] = { es: "Características",            en: "Features" };
 window.DAG_TEXTS["footer.link.como"]   = { es: "Cómo funciona",              en: "How it works" };

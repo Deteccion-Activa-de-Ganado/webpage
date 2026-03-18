@@ -504,9 +504,8 @@
               <th data-key="p1.table.rec" data-es="Recomendado para" data-en="Recommended for">Recomendado para</th>
             </tr></thead>
             <tbody>
-              <tr><td>30 m</td><td class="td-green" data-key="p1.r1.prec" data-es="Muy alta" data-en="Very high">Muy alta</td><td data-key="p1.r1.vis" data-es="ganados chicos (&lt; 50 ha)" data-en="Small cattles (&lt; 50 ha)">ganados chicos (&lt; 50 ha)</td><td data-key="p1.r1.rec" data-es="campo fina, terneros" data-en="Fine livestock, calves">campo fina, terneros</td></tr>
-              <tr><td>40–50 m</td><td class="td-green" data-key="p1.r2.prec" data-es="Alta — óptima" data-en="High — optimal">Alta — óptima</td><td data-key="p1.r2.vis" data-es="ganados medianos (50–200 ha)" data-en="Medium cattles (50–200 ha)">ganados medianos (50–200 ha)</td><td data-key="p1.r2.rec" data-es="La mayoría de los casos" data-en="Most use cases">La mayoría de los casos</td></tr>
-              <tr><td>60 m</td><td class="td-arena" data-key="p1.r3.prec" data-es="Buena" data-en="Good">Buena</td><td data-key="p1.r3.vis" data-es="ganados grandes (&gt; 200 ha)" data-en="Large cattles (&gt; 200 ha)">ganados grandes (&gt; 200 ha)</td><td data-key="p1.r3.rec" data-es="ganados numerosos" data-en="Larger cattles">ganados numerosos</td></tr>
+              <tr><td>10 m</td><td class="td-green" data-key="p1.r1.prec" data-es="Muy alta" data-en="Very high">Muy alta</td><td data-key="p1.r1.vis" data-es="ganados chicos (&lt; 50 ha)" data-en="Small cattles (&lt; 50 ha)">ganados chicos (&lt; 50 ha)</td><td data-key="p1.r1.rec" data-es="campo fina, terneros" data-en="Fine livestock, calves">campo fina, terneros</td></tr>
+              <tr><td>20-50 m</td><td class="td-arena" data-key="p1.r3.prec" data-es="Buena" data-en="Good">Media</td><td data-key="p1.r3.vis" data-es="ganados grandes (&gt; 200 ha)" data-en="Large cattles (&gt; 200 ha)">ganados grandes (&gt; 200 ha)</td><td data-key="p1.r3.rec" data-es="ganados numerosos" data-en="Larger cattles">ganados numerosos</td></tr>
               <tr><td>&gt; 80 m</td><td class="td-bordo" data-key="p1.r4.prec" data-es="Reducida" data-en="Reduced">Reducida</td><td data-key="p1.r4.vis" data-es="Cobertura máxima" data-en="Maximum coverage">Cobertura máxima</td><td data-key="p1.r4.rec" data-es="Solo conteo, sin peso preciso" data-en="Count only, no precise weight">Solo conteo, sin peso preciso</td></tr>
             </tbody>
           </table>
@@ -578,10 +577,10 @@
               <h4 data-key="p3.pipe1.title" data-es="1. Detección" data-en="1. Detection">1. Detección</h4>
               <p data-key="p3.pipe1.desc" data-es="YOLOv8 analiza cada fotograma y detecta todos los bovinos visibles en el cuadro, generando una máscara de segmentación para cada animal." data-en="YOLOv8 analyzes each frame and detects all visible cattle, generating a segmentation mask for each animal.">YOLOv8 analiza cada fotograma y detecta todos los bovinos, generando una máscara de segmentación.</p>
             </div>
-            <div class="pipe-step">
+            <!-- <div class="pipe-step">
               <h4 data-key="p3.pipe2.title" data-es="2. Tracking" data-en="2. Tracking">2. Tracking</h4>
               <p data-key="p3.pipe2.desc" data-es="ByteTrack asigna un ID único a cada animal y lo rastrea de fotograma en fotograma. Solo confirma un animal cuando aparece en 15 cuadros consecutivos." data-en="ByteTrack assigns a unique ID to each animal and tracks it frame by frame. An animal is only confirmed after 15 consecutive frames.">ByteTrack asigna un ID único y rastrea cada animal. Confirma a partir de 15 cuadros consecutivos.</p>
-            </div>
+            </div> -->
             <div class="pipe-step">
               <h4 data-key="p3.pipe3.title" data-es="3. GSD y peso" data-en="3. GSD & weight">3. GSD y peso</h4>
               <p data-key="p3.pipe3.desc" data-es="Usando la altura del vuelo y los parámetros de la cámara, calcula el GSD y lo usa para obtener el área real de cada silueta, de donde deriva el peso estimado." data-en="Using flight altitude and camera parameters, calculates GSD and uses it to get each silhouette's real area, from which it derives estimated weight.">Calcula el GSD con los parámetros de vuelo y estima el área real de cada animal para derivar su peso.</p>

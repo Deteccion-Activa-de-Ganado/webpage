@@ -108,6 +108,7 @@ window.DAG_TEXTS["cta.btn"]    = { es: "Contactanos",                           
    FOOTER
 ════════════════════════════════════════════════════════════ */
 window.DAG_TEXTS["footer.desc"]        = { es: "Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial.", en: "Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence." };
+window.DAG_TEXTS["footer.badge"]       = { es: "Tecnología Argentina",  en: "Argentine Technology" };
 window.DAG_TEXTS["footer.col.product"] = { es: "Producto",                   en: "Product" };
 window.DAG_TEXTS["footer.link.caract"] = { es: "Características",            en: "Features" };
 window.DAG_TEXTS["footer.link.como"]   = { es: "Cómo funciona",              en: "How it works" };
