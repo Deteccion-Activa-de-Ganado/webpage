@@ -1,0 +1,64 @@
+; DAG palette config
+; Change only the `active` value to test another combination.
+
+active=campo-clasica
+
+[palette campo-clasica]
+bg-main=#FDFBF7
+primary=#1B3A2A
+secondary=#6B2D3C
+brand=#B8976A
+text-primary=#1B3A2A
+text-muted=#6a7d72
+text-subtle=#9ba8a0
+border-default=#d6d0c7
+surface=#FFFFFF
+cta-hover=#5a2433
+
+[palette campo-atardecer]
+bg-main=#F8F1E5
+primary=#2E4B3E
+secondary=#904C43
+brand=#D2A66D
+text-primary=#2A3F36
+text-muted=#6F7C70
+text-subtle=#9FA89A
+border-default=#D9C9B6
+surface=#FFFDF8
+cta-hover=#7D4038
+
+[palette campo-frio]
+bg-main=#F3F7F4
+primary=#1E3F36
+secondary=#5B3A46
+brand=#8FA78A
+text-primary=#1E3F36
+text-muted=#5E746C
+text-subtle=#8EA098
+border-default=#C9D6CF
+surface=#FFFFFF
+cta-hover=#4F313C
+
+[palette argentina]
+bg-main=#F4F9FF
+primary=#2E7BCF
+secondary=#F6B40E
+brand=#74ACDF
+text-primary=#1B3A5A
+text-muted=#5F7C99
+text-subtle=#9BB2C8
+border-default=#D6E2F0
+surface=#FFFFFF
+cta-hover=#1F5EA8
+
+[palette argentina2]
+bg-main=#245A9C
+primary=#3E8ED6
+secondary=#F2B705
+brand=#74ACDF
+text-primary=#FFFFFF
+text-muted=#E3EEF9
+text-subtle=#C5D8EE
+border-default=#5F97CF
+surface=#2F6FB2
+cta-hover=#1C467A

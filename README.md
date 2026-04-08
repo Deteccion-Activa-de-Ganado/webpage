@@ -1,35 +1,16 @@
-# webpage
-Repo with DAG website code.
+# React + Vite
 
-## Palette configuration
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-The site can load a shared color palette from `palette-config.txt`.
+Currently, two official plugins are available:
 
-1. Open `palette-config.txt`.
-2. Set `active=` to one of the available palette names.
-3. Refresh any page (`index.html`, `caracteristicas.html`, `como-funciona.html`, `dashboard.html`).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-Important: if you open the HTML directly with `file://`, some browsers block reading `palette-config.txt`.
-Run a local server from the project folder, for example:
+## React Compiler
 
-```
-python3 -m http.server 8000
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Then open `http://localhost:8000/index.html`.
+## Expanding the ESLint configuration
 
-You can also create your own palette block using:
-
-```
-[palette your-name]
-bg-main=#...
-primary=#...
-secondary=#...
-brand=#...
-text-primary=#...
-text-muted=#...
-text-subtle=#...
-border-default=#...
-surface=#...
-cta-hover=#...
-```
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

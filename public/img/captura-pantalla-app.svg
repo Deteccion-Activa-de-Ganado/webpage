@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660">
+  <rect width="1100" height="660" fill="#121212" rx="16"/>
+  <rect x="2" y="2" width="1096" height="656" fill="none" stroke="#6CACE4" stroke-width="2.5" stroke-dasharray="14,7" rx="14"/>
+  <!-- Monitor frame -->
+  <rect x="100" y="80" width="900" height="480" rx="12" fill="none" stroke="#6CACE4" stroke-width="2.5"/>
+  <rect x="110" y="90" width="880" height="460" rx="8" fill="#1a1a1a"/>
+  <!-- Fake top bar -->
+  <rect x="110" y="90" width="880" height="36" rx="8" fill="#262626"/>
+  <circle cx="138" cy="108" r="7" fill="#f87171" opacity="0.7"/>
+  <circle cx="160" cy="108" r="7" fill="#fbbf24" opacity="0.7"/>
+  <circle cx="182" cy="108" r="7" fill="#6CACE4" opacity="0.7"/>
+  <!-- Fake sidebar -->
+  <rect x="110" y="126" width="160" height="424" fill="#0f0f0f"/>
+  <!-- Fake cards -->
+  <rect x="290" y="144" width="200" height="100" rx="8" fill="#1f1f1f" stroke="#262626" stroke-width="1"/>
+  <rect x="510" y="144" width="200" height="100" rx="8" fill="#1f1f1f" stroke="#262626" stroke-width="1"/>
+  <rect x="730" y="144" width="250" height="100" rx="8" fill="#1f1f1f" stroke="#262626" stroke-width="1"/>
+  <!-- Fake chart area -->
+  <rect x="290" y="264" width="690" height="270" rx="8" fill="#1f1f1f" stroke="#262626" stroke-width="1"/>
+  <!-- Fake chart lines -->
+  <polyline points="310,480 380,430 450,400 520,360 590,330 660,290 730,260 800,240 870,210 940,185" fill="none" stroke="#6CACE4" stroke-width="2" opacity="0.7"/>
+  <!-- Monitor stand -->
+  <rect x="490" y="560" width="120" height="20" rx="4" fill="#262626"/>
+  <rect x="450" y="580" width="200" height="12" rx="6" fill="#262626"/>
+  <text x="550" y="628" fill="#6CACE4" font-family="Arial,sans-serif" font-size="17" font-weight="700" text-anchor="middle">CAPTURA DE PANTALLA A REEMPLAZAR</text>
+  <text x="550" y="650" fill="#6B6B6B" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">Screenshot del dashboard DAG — app de escritorio o web | 1100×660 px | captura-pantalla-app.jpg</text>
+</svg>
