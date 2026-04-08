@@ -7,13 +7,15 @@ const navItems = [
   { to: '/dashboard', es: 'Dashboard', en: 'Dashboard' },
 ]
 
+const getActiveClass = ({ isActive }) => (isActive ? 'active' : undefined)
+
 export default function Layout({ children, lang, setLang }) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
     <>
-      <div id="mobMenu" className={`mob ${mobileOpen ? 'open' : ''}`}>
-        <button className="mob-close" onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">×</button>
+      <div id="mobMenu" className={`mob-menu ${mobileOpen ? 'open' : ''}`}>
+        <button className="close-btn" onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">×</button>
         <NavLink to="/" onClick={() => setMobileOpen(false)} data-es="Inicio" data-en="Home">Inicio</NavLink>
         {navItems.map((item) => (
           <NavLink key={item.to} to={item.to} onClick={() => setMobileOpen(false)} data-es={item.es} data-en={item.en}>
@@ -26,12 +28,12 @@ export default function Layout({ children, lang, setLang }) {
       </div>
 
       <header>
-        <div className="container nav-wrap">
+        <div className="nav-in">
           <NavLink to="/" className="nav-logo"><img src="/img/logo-dag.svg" alt="DAG logo" />DAG</NavLink>
           <ul className="nav-links">
             {navItems.map((item) => (
               <li key={item.to}>
-                <NavLink to={item.to} data-es={item.es} data-en={item.en}>{item.es}</NavLink>
+                <NavLink to={item.to} className={getActiveClass} data-es={item.es} data-en={item.en}>{item.es}</NavLink>
               </li>
             ))}
           </ul>
@@ -41,7 +43,11 @@ export default function Layout({ children, lang, setLang }) {
               <button className={`lang-btn ${lang === 'en' ? 'on' : ''}`} onClick={() => setLang('en')}>EN</button>
             </div>
             <a href="/#cta" className="hero-cta" data-es="Pedí una demo" data-en="Request a demo">Pedí una demo</a>
-            <button className="hamb" onClick={() => setMobileOpen(true)} aria-label="Open menu">☰</button>
+            <button className="hamburger" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
           </div>
         </div>
       </header>
@@ -49,7 +55,7 @@ export default function Layout({ children, lang, setLang }) {
       {children}
 
       <footer>
-        <div className="container foot-grid">
+        <div className="foot-inner foot-grid">
           <div>
             <a href="/" className="foot-logo">DAG</a>
             <p data-es="Detección Activa de Ganado. Plataforma argentina de gestión ganadera con drones e Inteligencia Artificial." data-en="Active Cattle Detection. Argentine livestock management platform using drones and Artificial Intelligence.">
