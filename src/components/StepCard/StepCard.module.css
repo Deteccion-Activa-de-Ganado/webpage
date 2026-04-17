@@ -1,0 +1,65 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 0 0 1.75rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (min-width: 720px) {
+  .card {
+    padding: 0 1.75rem 0 0;
+    border-bottom: none;
+    border-right: 1px solid var(--border-default);
+  }
+  .card:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.number {
+  font-family: "Azeret Mono", monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-subtle);
+}
+
+.icon {
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+}
+
+.rule {
+  width: 40px;
+  height: 1px;
+  background: var(--brand);
+}
+
+.title {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+.description {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}

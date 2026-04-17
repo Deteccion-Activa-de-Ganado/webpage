@@ -1,0 +1,26 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Azeret Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid currentColor;
+  transition: color 180ms ease;
+}
+
+.link:hover {
+  color: var(--primary);
+}
+
+.arrow {
+  transition: transform 220ms ease;
+}
+
+.link:hover .arrow {
+  transform: translateX(5px);
+}

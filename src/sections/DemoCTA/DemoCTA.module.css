@@ -1,0 +1,68 @@
+.section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 720px) {
+  .section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: "Azeret Mono", monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.title {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
+  line-height: 1.1;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
+  letter-spacing: -0.015em;
+}
+
+.highlight {
+  font-style: italic;
+  color: var(--secondary);
+}
+
+.lede {
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  max-width: 48ch;
+  line-height: 1.65;
+}
+
+.cta {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  padding: 1rem 2.25rem;
+}
+
+.email {
+  font-family: "Azeret Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--text-subtle);
+  margin-top: 0.5rem;
+}
