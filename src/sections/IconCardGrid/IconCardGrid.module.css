@@ -1,0 +1,26 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+@media (min-width: 720px) {
+  .cols2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 960px;
+  }
+  .cols3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.cols2 > *,
+.cols3 > * {
+  display: flex;
+  height: 100%;
+}

@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.iconWrap {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border-default);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.neutral .iconWrap {
+  color: var(--text-muted);
+}
+
+.before .iconWrap {
+  color: var(--secondary);
+  background: color-mix(in oklab, var(--secondary) 7%, transparent);
+  border-color: color-mix(in oklab, var(--secondary) 18%, var(--border-default));
+}
+
+.after .iconWrap {
+  color: var(--primary);
+  background: color-mix(in oklab, var(--primary) 7%, transparent);
+  border-color: color-mix(in oklab, var(--primary) 18%, var(--border-default));
+}
+
+.text {
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.55;
+  padding-top: 0.6rem;
+}

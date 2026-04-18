@@ -1,0 +1,64 @@
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table thead th {
+  font-family: "Azeret Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-main);
+  white-space: nowrap;
+}
+
+.table tbody tr + tr {
+  border-top: 1px solid var(--border-default);
+}
+
+.table tbody th,
+.table tbody td {
+  padding: 1.15rem 1.25rem;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  vertical-align: top;
+  font-weight: 400;
+}
+
+.activity {
+  color: var(--text-primary);
+  font-family: "Lora", Georgia, serif;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 22%;
+}
+
+.bad {
+  color: var(--secondary);
+}
+
+.good {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+@media (max-width: 720px) {
+  .activity {
+    white-space: normal;
+  }
+}

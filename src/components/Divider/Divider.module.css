@@ -1,0 +1,30 @@
+.plain {
+  width: 100%;
+  height: 1px;
+  background: var(--border-default);
+  border: none;
+  margin: 0;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-default);
+}
+
+.label {
+  font-family: "Azeret Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  white-space: nowrap;
+}
