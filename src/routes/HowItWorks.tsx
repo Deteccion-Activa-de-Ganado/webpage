@@ -1,6 +1,7 @@
 import { useT } from "@/providers/I18nProvider";
 import PageHero from "@/sections/PageHero/PageHero";
 import ProcessStep from "@/sections/ProcessStep/ProcessStep";
+import IconCardGrid from "@/sections/IconCardGrid/IconCardGrid";
 import DemoCTA from "@/sections/DemoCTA/DemoCTA";
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
@@ -34,6 +35,15 @@ export default function HowItWorks() {
       {howItWorks.steps.map((step, index) => (
         <ProcessStep key={step.n} step={step} tone={STEP_TONES[index]} />
       ))}
+
+      <IconCardGrid
+        eyebrow={howItWorks.requirements.eyebrow}
+        title={howItWorks.requirements.title}
+        lede={howItWorks.requirements.lede}
+        cards={howItWorks.requirements.cards}
+        tone="surface"
+        id="requisitos"
+      />
 
       <DemoCTA />
     </>

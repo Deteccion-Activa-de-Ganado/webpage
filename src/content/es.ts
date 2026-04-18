@@ -170,6 +170,31 @@ export const es: Content = {
         ],
       },
     ],
+    requirements: {
+      eyebrow: "Requisitos",
+      title: "¿Qué necesitás para empezar?",
+      lede: "Los mínimos son pocos y accesibles para cualquier productor ganadero moderno.",
+      cards: [
+        {
+          icon: "drone",
+          title: "Un dron con cámara",
+          description:
+            "Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. DJI, Autel, Parrot o equivalentes. No hace falta un equipo de alta gama.",
+        },
+        {
+          icon: "monitor",
+          title: "PC o celular con internet",
+          description:
+            "La app corre en Windows, macOS y Linux, o desde cualquier navegador moderno. Conexión de banda ancha estándar alcanza para subir el video.",
+        },
+        {
+          icon: "clipboard",
+          title: "Datos del vuelo",
+          description:
+            "Altura de vuelo en metros y parámetros de la cámara (sensor y focal). Están en el manual del dron o en las especificaciones del fabricante.",
+        },
+      ],
+    },
   },
   features: {
     pageHero: {
@@ -288,6 +313,42 @@ export const es: Content = {
         },
       },
     ],
+    comparison: {
+      eyebrow: "Comparativa",
+      title: "DAG vs. métodos tradicionales",
+      headers: {
+        activity: "Actividad",
+        traditional: "Método tradicional",
+        withDag: "Con DAG",
+      },
+      rows: [
+        {
+          activity: "Conteo del rodeo",
+          traditional: "A caballo o en camioneta, 2–4 hs, margen de error 5–10 %",
+          withDag: "10 min de vuelo + procesamiento automático, error < 2 %",
+        },
+        {
+          activity: "Estimación de peso",
+          traditional: "Manga y balanza: estresa la hacienda, baja 3–5 % el peso pre-venta",
+          withDag: "Desde el aire, sin contacto físico con la hacienda",
+        },
+        {
+          activity: "Detección de animales con problemas",
+          traditional: "Revisión visual a ojo, subjetiva y dependiente del ojo del operario",
+          withDag: "Clasificación automática con z-score en cada vuelo",
+        },
+        {
+          activity: "Registros históricos",
+          traditional: "Cuadernos de campo o planillas, sin alertas automáticas",
+          withDag: "Dashboard con historial completo, gráficos automáticos y alertas",
+        },
+        {
+          activity: "Informe para veterinario / comprador",
+          traditional: "Generación manual, horas de trabajo",
+          withDag: "PDF generado automáticamente al terminar el procesamiento",
+        },
+      ],
+    },
   },
   dashboardPage: {
     pageHero: {
@@ -435,6 +496,36 @@ export const es: Content = {
           title: "Información — Lote sin vuelo reciente",
           body: "Recordatorio automático cuando un lote lleva más de 30 días sin relevamiento, para que no pierdas la continuidad del historial.",
           severity: "info",
+        },
+      ],
+    },
+    access: {
+      eyebrow: "Disponibilidad",
+      title: "Desde la app o desde el navegador",
+      cards: [
+        {
+          icon: "monitor",
+          title: "App de escritorio",
+          description:
+            "Disponible para Windows, macOS y Linux. Es la forma recomendada para subir videos pesados y revisar resultados en detalle. Podés navegar el historial en modo offline.",
+          checklist: [
+            "Subida de video directa desde el disco.",
+            "Reproducción del video anotado integrada.",
+            "Descarga de informes PDF con un clic.",
+            "Gestión completa de lotes y vuelos sin conexión.",
+          ],
+        },
+        {
+          icon: "globe",
+          title: "Versión web",
+          description:
+            "Acceso desde cualquier equipo con navegador moderno (Chrome, Firefox, Edge, Safari). Ideal para consultas rápidas desde el celular en el campo o para compartir el acceso con el veterinario sin instalar nada.",
+          checklist: [
+            "Sin instalación — abrís el navegador y listo.",
+            "Acceso desde celular, tablet o PC prestada.",
+            "Se puede compartir con el veterinario o capataz.",
+            "Mismo dashboard y datos que la app de escritorio.",
+          ],
         },
       ],
     },

@@ -170,6 +170,31 @@ export const en: Content = {
         ],
       },
     ],
+    requirements: {
+      eyebrow: "Requirements",
+      title: "What do you need to get started?",
+      lede: "The minimums are few and accessible to any modern cattle producer.",
+      cards: [
+        {
+          icon: "drone",
+          title: "A drone with camera",
+          description:
+            "Any drone recording MP4, AVI, or MOV at 1080p or higher. DJI, Autel, Parrot, or equivalents. No high-end equipment needed.",
+        },
+        {
+          icon: "monitor",
+          title: "PC or phone with internet",
+          description:
+            "The app runs on Windows, macOS, and Linux, or from any modern browser. A standard broadband connection is enough to upload the video.",
+        },
+        {
+          icon: "clipboard",
+          title: "Flight data",
+          description:
+            "Flight altitude in meters and camera parameters (sensor and focal length). They're in the drone manual or the manufacturer's specifications.",
+        },
+      ],
+    },
   },
   features: {
     pageHero: {
@@ -288,6 +313,42 @@ export const en: Content = {
         },
       },
     ],
+    comparison: {
+      eyebrow: "Comparison",
+      title: "DAG vs. traditional methods",
+      headers: {
+        activity: "Activity",
+        traditional: "Traditional method",
+        withDag: "With DAG",
+      },
+      rows: [
+        {
+          activity: "Herd count",
+          traditional: "Horseback or truck, 2–4 hrs, 5–10% error margin",
+          withDag: "10-min flight + automatic processing, error < 2%",
+        },
+        {
+          activity: "Weight estimate",
+          traditional: "Crush and scale: stresses livestock, drops 3–5% pre-sale weight",
+          withDag: "From the air, zero physical contact with livestock",
+        },
+        {
+          activity: "Problem animal detection",
+          traditional: "Visual inspection by eye, subjective and operator-dependent",
+          withDag: "Automatic z-score classification on every flight",
+        },
+        {
+          activity: "Historical records",
+          traditional: "Field notebooks or Excel sheets, no automatic alerts",
+          withDag: "Dashboard with full history, automatic charts, and alerts",
+        },
+        {
+          activity: "Vet / buyer report",
+          traditional: "Manual generation, hours of work",
+          withDag: "PDF generated automatically when processing finishes",
+        },
+      ],
+    },
   },
   dashboardPage: {
     pageHero: {
@@ -435,6 +496,36 @@ export const en: Content = {
           title: "Info — Paddock without recent flight",
           body: "Automatic reminder when a paddock hasn't been surveyed for more than 30 days, so you don't lose history continuity.",
           severity: "info",
+        },
+      ],
+    },
+    access: {
+      eyebrow: "Availability",
+      title: "From the app or from the browser",
+      cards: [
+        {
+          icon: "monitor",
+          title: "Desktop app",
+          description:
+            "Available for Windows, macOS, and Linux. The recommended way to upload heavy videos and review results in detail. Works offline — you can browse history without a continuous connection.",
+          checklist: [
+            "Direct video upload from disk.",
+            "Integrated annotated-video playback.",
+            "One-click PDF report download.",
+            "Full offline paddock and flight management.",
+          ],
+        },
+        {
+          icon: "globe",
+          title: "Web version",
+          description:
+            "Usable from any device with a modern browser (Chrome, Firefox, Edge, Safari). Ideal for quick queries from your phone in the field, or to share access with a vet without installing anything.",
+          checklist: [
+            "No install — open the browser and you're in.",
+            "Access from phone, tablet, or borrowed PC.",
+            "Share access with the vet or foreman.",
+            "Same dashboard and data as the desktop app.",
+          ],
         },
       ],
     },

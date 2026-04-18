@@ -1,6 +1,7 @@
 import { useT } from "@/providers/I18nProvider";
 import PageHero from "@/sections/PageHero/PageHero";
 import FeatureBlock from "@/sections/FeatureBlock/FeatureBlock";
+import IconCardGrid from "@/sections/IconCardGrid/IconCardGrid";
 import DemoCTA from "@/sections/DemoCTA/DemoCTA";
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
@@ -76,6 +77,15 @@ export default function Dashboard() {
           ))}
         </div>
       </Section>
+
+      <IconCardGrid
+        eyebrow={dashboardPage.access.eyebrow}
+        title={dashboardPage.access.title}
+        lede={dashboardPage.access.lede}
+        cards={dashboardPage.access.cards}
+        tone="surface"
+        id="acceso"
+      />
 
       <DemoCTA />
     </>

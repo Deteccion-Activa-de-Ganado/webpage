@@ -60,6 +60,39 @@ export type FeatureItem = {
   };
 };
 
+export type IconKey = "drone" | "monitor" | "clipboard" | "globe";
+
+export type IconCardData = {
+  icon: IconKey;
+  title: string;
+  description: string;
+  checklist?: string[];
+};
+
+export type IconCardGridContent = {
+  eyebrow: string;
+  title: string;
+  lede?: string;
+  cards: IconCardData[];
+};
+
+export type ComparisonRow = {
+  activity: string;
+  traditional: string;
+  withDag: string;
+};
+
+export type ComparisonContent = {
+  eyebrow: string;
+  title: string;
+  headers: {
+    activity: string;
+    traditional: string;
+    withDag: string;
+  };
+  rows: ComparisonRow[];
+};
+
 export type Content = {
   nav: {
     home: string;
@@ -135,10 +168,12 @@ export type Content = {
       title: string;
     };
     steps: ProcessStepData[];
+    requirements: IconCardGridContent;
   };
   features: {
     pageHero: PageHeroContent;
     items: FeatureItem[];
+    comparison: ComparisonContent;
   };
   dashboardPage: {
     pageHero: PageHeroContent;
@@ -166,6 +201,7 @@ export type Content = {
         severity: CalloutTone;
       }>;
     };
+    access: IconCardGridContent;
   };
   footer: {
     tagline: string;

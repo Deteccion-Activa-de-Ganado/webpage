@@ -1,6 +1,7 @@
 .section {
   padding-top: 6rem;
   padding-bottom: 6rem;
+  border-top: 1px solid var(--border-default);
 }
 
 @media (min-width: 720px) {
