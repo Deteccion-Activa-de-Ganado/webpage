@@ -19,7 +19,7 @@ export const es: Content = {
       coordinates: "34°36′S · 58°22′O",
       titleLine1: "Conocé tu rodeo",
       titleLine2: "vuelo a vuelo",
-      lede: "Sobrevolá tus lotes con el dron y obtené conteo exacto, peso estimado y condición corporal de cada animal. Sin arrear, sin manga, sin estrés para la hacienda.",
+      lede: "Sobrevolá tus lotes con el dron y obtené conteo, peso estimado y condición corporal de cada animal. Sin arrear, sin manga, sin estrés para el ganado.",
       cta: "Pedí una demo",
       detection: {
         idTag: "ID:154    416kg",
@@ -29,7 +29,7 @@ export const es: Content = {
     },
     stats: [
       { value: "0", label: "Contacto físico con la hacienda" },
-      { value: ">93 %", label: "Precisión de conteo en condiciones reales" },
+      // { value: ">93 %", label: "Precisión de conteo en condiciones reales" },
       { value: "360°", label: "Cobertura del lote en un solo vuelo" },
       { value: "4", label: "Condiciones corporales detectadas" },
     ],
@@ -45,7 +45,7 @@ export const es: Content = {
         "El animal flaco se detecta tarde",
       ],
       withDAG: [
-        "Conteo exacto en un vuelo de 10 minutos",
+        "Recorrida en un vuelo de 10 minutos",
         "Peso estimado desde el aire, sin tocar al animal",
         "Dashboard con historial automático por vuelo",
         "Alertas automáticas antes de que sea un problema",
@@ -64,7 +64,7 @@ export const es: Content = {
     },
     dashboard: {
       eyebrow: "Dashboard",
-      title: "Tu rodeo en una pantalla",
+      title: "Tu ganado en una pantalla",
       cta: "Explorar el dashboard",
       tabs: ["Inicio", "Vuelos", "Analytics", "Configuración"],
       kpis: [
@@ -91,10 +91,10 @@ export const es: Content = {
     demo: {
       eyebrow: "Contacto",
       titleLine1: "¿Querés verlo",
-      titleLine2: "con tu rodeo?",
+      titleLine2: "con tu campo?",
       lede: "Escribinos y te mostramos cómo funciona en tu establecimiento.",
       cta: "Pedí una demo",
-      email: "dag@fi.uba.ar",
+      email: "REVISAR",
     },
   },
   howItWorks: {
@@ -113,12 +113,11 @@ export const es: Content = {
         n: "01",
         title: "Sobrevolás el lote con el dron",
         description:
-          "Tomás el dron, lo despegás y sobrevolás el lote en modo manual o automático (grid mission). El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.",
+          "Tomás el dron, lo despegás y sobrevolás el lote. El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.",
         bulletsTitle: "Drones compatibles",
         bullets: [
           "Cualquier dron que grabe video en MP4, AVI o MOV con resolución mínima 1080p.",
           "DJI Mini, Air, Mavic, Phantom — compatibles si conocés el sensor y la focal.",
-          "Autel EVO, Parrot ANAFI y equivalentes.",
           "Si no sabés el sensor de tu cámara, está en el manual o en la web del fabricante.",
         ],
       },
@@ -126,12 +125,12 @@ export const es: Content = {
         n: "02",
         title: "Subís el video con los datos del vuelo",
         description:
-          "Con el video descargado del dron, abrís la app de escritorio DAG o entrás a la web. Seleccionás el video, completás los datos del vuelo y confirmás. Eso es todo por tu parte.",
+          "Con el video descargado del dron, abrís DAG, seleccionás el video, completás los datos del vuelo y confirmás. Eso es todo por tu parte.",
         bulletsTitle: "Datos que ingresás",
         bullets: [
           "Establecimiento y lote al que pertenece el vuelo.",
-          "Altura de vuelo en metros (del log del dron o de la telemetría).",
-          "Modelo de cámara, o tamaño del sensor (mm) y focal de la lente.",
+          "Altura de vuelo en metros.",
+          "Seleccionas tu dron que usaste.",
           "Fecha y hora (por defecto, el sistema las lee de los metadatos del video).",
         ],
         callout: {
@@ -146,9 +145,9 @@ export const es: Content = {
           "Una vez que el video llega a los servidores de DAG, el pipeline de Inteligencia Artificial se ejecuta automáticamente. No hace falta hacer nada. El sistema te notifica cuando termina.",
         bulletsTitle: "Pipeline de procesamiento",
         bullets: [
-          "Detección: YOLOv8 analiza cada fotograma y genera una máscara de segmentación por animal.",
+          "Detección: se analiza cada fotograma y se genera una máscara por animal.",
           "Tracking: el sistema sigue a cada bovino entre frames para evitar contar dos veces.",
-          "Peso estimado: se calcula el área de silueta y se convierte en kilos con el GSD del vuelo.",
+          "Peso estimado: se calcula el área de silueta y se convierte en kilos con su tamaño.",
           "Condición corporal: clasificación en NORMAL, TERNERO, BAJO PESO o SOBREPESO.",
         ],
         callout: {
@@ -163,7 +162,6 @@ export const es: Content = {
           "Cuando termina el procesamiento, los datos aparecen en el dashboard. Ves el video anotado, descargás el informe PDF y comparás con vuelos anteriores.",
         bulletsTitle: "Qué obtenés",
         bullets: [
-          "Conteo exacto de cabezas confirmadas (15 fotogramas consecutivos por animal).",
           "Peso estimado individual y promedio del lote.",
           "Distribución de condición corporal con alertas automáticas.",
           "Video anotado con IDs y PDF descargable listo para compartir.",
@@ -179,13 +177,13 @@ export const es: Content = {
           icon: "drone",
           title: "Un dron con cámara",
           description:
-            "Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. DJI, Autel, Parrot o equivalentes. No hace falta un equipo de alta gama.",
+            "Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. No hace falta un equipo de alta gama.",
         },
         {
           icon: "monitor",
           title: "PC o celular con internet",
           description:
-            "La app corre en Windows, macOS y Linux, o desde cualquier navegador moderno. Conexión de banda ancha estándar alcanza para subir el video.",
+            "DAGA corre desde cualquier navegador moderno. Conexión a internet estándar alcanza para subir el video.",
         },
         {
           icon: "clipboard",
@@ -200,18 +198,18 @@ export const es: Content = {
     pageHero: {
       eyebrow: "Seis herramientas, un solo sistema",
       titleLine1: "Todo lo que necesitás para",
-      titleLine2: "conocer tu hacienda de verdad",
-      lede: "Cada función de DAG fue diseñada para reducir el trabajo manual del productor ganadero y darte información exacta sobre tu rodeo sin tener que tocar un solo animal.",
+      titleLine2: "conocer tu campo de verdad",
+      lede: "Cada función de DAG fue diseñada para reducir el trabajo manual del productor ganadero y darte información exacta sobre tu ganado sin tener que tocar un solo animal.",
     },
     items: [
       {
         slug: "conteo",
         n: "Función 1 de 6",
-        title: "Conteo automático del rodeo",
+        title: "Conteo automático del ganado -- lo sacaria",
         description:
-          "El motor de detección corre cuadro a cuadro sobre el video del dron usando YOLOv8, el modelo de segmentación de instancias más preciso disponible hoy. Cada animal detectado es rastreado individualmente por ByteTrack, que le asigna un ID único y lo sigue a lo largo de toda la trayectoria del vuelo.",
+          "El motor de detección corre cuadro a cuadro sobre el video. Cada animal detectado es rastreado individualmente, se le asigna un ID único y lo sigue a lo largo de toda la trayectoria del vuelo.",
         bullets: [
-          "Un animal se confirma recién después de aparecer en 15 fotogramas consecutivos, lo que elimina falsos positivos por vegetación o sombras.",
+          "Un animal se confirma recién después de aparecer en 15 fotogramas consecutivos, lo que elimina falsos positivos por vegetación o sombras. (??)",
           "El mismo animal no se cuenta dos veces aunque el dron lo sobrevuele en distintas pasadas.",
           "Compatible con MP4, AVI y MOV. Funciona con DJI, Autel, Parrot o cualquier dron que grabe video estabilizado.",
           "El video procesado se descarga con los bounding boxes y el ID de cada animal superpuesto.",
@@ -227,10 +225,10 @@ export const es: Content = {
         n: "Función 2 de 6",
         title: "Peso estimado sin tolva ni manga",
         description:
-          "El sistema calcula el GSD (Ground Sample Distance) usando la altura del vuelo, el tamaño del sensor y la focal de la lente. Con ese dato, mide el área real de la silueta de cada animal y la correlaciona con una curva de regresión calibrada sobre hacienda bovina argentina para estimar el peso vivo.",
+          "El sistema calcula el tamaño usando la altura del vuelo, el tamaño del sensor y la focal de la lente. Con ese dato, mide el área real de la silueta de cada animal y con eso estima el peso vivo.",
         bullets: [
           "El productor ingresa la altura del vuelo (en metros), el modelo de cámara o el sensor y la focal.",
-          "La estimación es más precisa entre 40 y 60 metros de altura.",
+          "La estimación es más precisa entre 10 y 15 metros de altura.",
           "El resultado es el peso promedio del lote y el peso individual de cada animal identificado.",
           "Sin estrés pre-venta: el animal pasta tranquilo mientras el dron vuela.",
         ],
@@ -245,11 +243,11 @@ export const es: Content = {
         n: "Función 3 de 6",
         title: "Clasificación de condición corporal",
         description:
-          "Cada animal queda clasificado automáticamente en una de cuatro categorías usando análisis estadístico por z-score sobre la densidad corporal de toda la tropa. Sin revisión manual, sin subjetividad.",
+          "Cada animal queda clasificado automáticamente en una de cuatro categorías usando análisis estadístico sobre la densidad corporal del ganado. Sin revisión manual, sin subjetividad.",
         bullets: [
-          "Normal: peso dentro del rango esperado para su tamaño de silueta. Condición óptima de producción.",
-          "Ternero: silueta significativamente más pequeña que el promedio. Detectado como ternero o vaquillona.",
-          "Bajo peso: silueta inusualmente pequeña respecto al peso estimado. Posible indicador sanitario.",
+          "Normal: peso dentro del rango esperado para su tamaño. Condición óptima de producción.",
+          "(!!!!!!!!!)Ternero: silueta significativamente más pequeña que el promedio. Detectado como ternero o vaquillona.",
+          "(!!!!!!!!!)Bajo peso: silueta inusualmente pequeña respecto al peso estimado. Posible indicador sanitario.",
           "Sobrepeso: silueta significativamente mayor al promedio. Riesgo de enfermedad metabólica en ciertas razas.",
         ],
         badges: ["Z-score", "Clasificación automática"],
@@ -267,7 +265,7 @@ export const es: Content = {
         bullets: [
           "KPIs actualizados automáticamente después de cada vuelo procesado.",
           "Historial cronológico completo de todos los vuelos del establecimiento.",
-          "Mapa de lotes sobre OpenStreetMap con código de colores por estado.",
+          "Mapa de lotes.",
           "Comparación entre lotes y evolución de peso mensual en gráficos.",
         ],
         badges: ["React", "TypeScript", "OpenStreetMap"],
@@ -284,7 +282,6 @@ export const es: Content = {
           "Cada vuelo procesado genera un informe PDF automático con el resumen ejecutivo: conteo, peso promedio, distribución de condición corporal y alertas del lote. Ideal para compartir con veterinario, contador o comprador.",
         bullets: [
           "Se genera automáticamente al terminar cada procesamiento.",
-          "Incluye de tres a cinco fotogramas anotados del video como referencia visual.",
           "Formato imprimible, listo para adjuntar por email.",
           "Histórico descargable de todos los PDFs del establecimiento.",
         ],
@@ -299,7 +296,7 @@ export const es: Content = {
         n: "Función 6 de 6",
         title: "Alertas configurables por lote",
         description:
-          "Definís las condiciones que más te importan para cada lote —umbrales de peso, proporción mínima de Normal, animales desaparecidos— y el sistema te avisa cuando algo se sale del rango después de cada vuelo procesado.",
+          "Definís las condiciones que más te importan para cada lote —umbrales de peso, desvío de cantidades, animales desaparecidos— y el sistema te avisa cuando algo se sale del rango después de cada vuelo procesado.",
         bullets: [
           "Umbrales de peso promedio por lote (mínimo y máximo).",
           "Alertas automáticas por baja condición corporal (más del 10% en Bajo Peso).",
@@ -335,7 +332,7 @@ export const es: Content = {
         {
           activity: "Detección de animales con problemas",
           traditional: "Revisión visual a ojo, subjetiva y dependiente del ojo del operario",
-          withDag: "Clasificación automática con z-score en cada vuelo",
+          withDag: "Clasificación automática en cada vuelo",
         },
         {
           activity: "Registros históricos",
@@ -365,13 +362,13 @@ export const es: Content = {
           value: "487",
           label: "Cabezas detectadas hoy",
           description:
-            "Conteo automático del último vuelo procesado. Confirmación por 15 fotogramas consecutivos.",
+            "Conteo automático del último vuelo procesado.",
         },
         {
           value: "412 kg",
           label: "Peso promedio del rodeo",
           description:
-            "Estimado por área de silueta y GSD del vuelo. Sin manga, sin balanza.",
+            "Estimado por área de silueta, sin manga, sin balanza.",
         },
         {
           value: "3",
@@ -439,7 +436,7 @@ export const es: Content = {
       },
       {
         slug: "mapa",
-        n: "Mapa de lotes",
+        n: "Mapa de lotes (!!!!!!!!!!!)",
         title: "Tu campo dibujado, por lote y estado",
         description:
           "El mapa muestra el establecimiento con cada lote delineado sobre OpenStreetMap. El color indica si el lote tiene alertas activas, condición normal o datos desactualizados.",
@@ -503,28 +500,27 @@ export const es: Content = {
       eyebrow: "Disponibilidad",
       title: "Desde la app o desde el navegador",
       cards: [
-        {
-          icon: "monitor",
-          title: "App de escritorio",
-          description:
-            "Disponible para Windows, macOS y Linux. Es la forma recomendada para subir videos pesados y revisar resultados en detalle. Podés navegar el historial en modo offline.",
-          checklist: [
-            "Subida de video directa desde el disco.",
-            "Reproducción del video anotado integrada.",
-            "Descarga de informes PDF con un clic.",
-            "Gestión completa de lotes y vuelos sin conexión.",
-          ],
-        },
+        // {
+        //   icon: "monitor",
+        //   title: "App de escritorio",
+        //   description:
+        //     "Disponible para Windows, macOS y Linux. Es la forma recomendada para subir videos pesados y revisar resultados en detalle. Podés navegar el historial en modo offline.",
+        //   checklist: [
+        //     "Subida de video directa desde el disco.",
+        //     "Reproducción del video anotado integrada.",
+        //     "Descarga de informes PDF con un clic.",
+        //     "Gestión completa de lotes y vuelos sin conexión.",
+        //   ],
+        // },
         {
           icon: "globe",
           title: "Versión web",
           description:
-            "Acceso desde cualquier equipo con navegador moderno (Chrome, Firefox, Edge, Safari). Ideal para consultas rápidas desde el celular en el campo o para compartir el acceso con el veterinario sin instalar nada.",
+            "Acceso desde cualquier equipo con navegador e internet. Ideal para consultas rápidas desde el celular en el campo o para compartir el acceso con el veterinario sin instalar nada.",
           checklist: [
             "Sin instalación — abrís el navegador y listo.",
             "Acceso desde celular, tablet o PC prestada.",
             "Se puede compartir con el veterinario o capataz.",
-            "Mismo dashboard y datos que la app de escritorio.",
           ],
         },
       ],
