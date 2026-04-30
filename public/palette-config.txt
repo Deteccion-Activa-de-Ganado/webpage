@@ -1,9 +1,9 @@
 ; DAG palette config
 ; Change only the `active` value to test another combination.
 
-active=campo-clasica
+active=pampas
 
-[palette campo-clasica]
+[palette vino]
 bg-main=#FDFBF7
 primary=#1B3A2A
 secondary=#6B2D3C
@@ -62,3 +62,75 @@ text-subtle=#C5D8EE
 border-default=#5F97CF
 surface=#2F6FB2
 cta-hover=#1C467A
+
+[palette argentina-formal]
+bg-main=#EAEFF5
+primary=#1A5FA8
+secondary=#B8860B
+brand=#4A80AD
+text-primary=#0D2235
+text-muted=#3D5470
+text-subtle=#6E8AA3
+border-default=#B0BFCC
+surface=#F5F8FB
+cta-hover=#134080
+
+[palette pampas]
+bg-main=#F5EDD8
+primary=#6B4C1E
+secondary=#A85C2A
+brand=#C89A50
+text-primary=#3A2810
+text-muted=#7A5E3A
+text-subtle=#A8906A
+border-default=#D9C49A
+surface=#FEFAF2
+cta-hover=#8B3A18
+
+[palette noche]
+bg-main=#0F1923
+primary=#4A9FD4
+secondary=#E8A825
+brand=#3A7FA8
+text-primary=#E8EFF5
+text-muted=#8FAABF
+text-subtle=#5A7A90
+border-default=#1E3040
+surface=#162230
+cta-hover=#5BB5E8
+
+[palette piedra]
+bg-main=#F2F0EE
+primary=#3A3730
+secondary=#7A6A55
+brand=#9E9080
+text-primary=#201E1A
+text-muted=#5E5A52
+text-subtle=#8E8A80
+border-default=#C8C4BC
+surface=#FFFFFF
+cta-hover=#282520
+
+[palette vino]
+bg-main=#FBF5F5
+primary=#7B1A2A
+secondary=#C49A28
+brand=#A84455
+text-primary=#3A0D15
+text-muted=#6E3A42
+text-subtle=#9E7078
+border-default=#D9BDC0
+surface=#FFFFFF
+cta-hover=#5A0F1D
+
+[palette patagonia]
+bg-main=#EEF3F7
+primary=#2C5F7A
+secondary=#5BA8C0
+brand=#7EC8DC
+text-primary=#182838
+text-muted=#4A6A7A
+text-subtle=#7A9AAA
+border-default=#BAD0DC
+surface=#F8FBFC
+cta-hover=#1E4A5E

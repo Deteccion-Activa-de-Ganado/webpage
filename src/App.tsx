@@ -6,6 +6,7 @@ import Home from "@/routes/Home";
 import Features from "@/routes/Features";
 import HowItWorks from "@/routes/HowItWorks";
 import Dashboard from "@/routes/Dashboard";
+import Encuesta from "@/routes/Encuesta/Encuesta";
 
 export default function App() {
   usePaletteFromConfig();
@@ -14,6 +15,7 @@ export default function App() {
     <I18nProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/encuesta" element={<Encuesta />} />
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/caracteristicas" element={<Features />} />
