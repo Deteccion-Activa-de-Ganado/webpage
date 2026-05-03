@@ -1,7 +1,7 @@
 ; DAG palette config
 ; Change only the `active` value to test another combination.
 
-active=pampas
+active=moderno-minimalista
 
 [palette vino]
 bg-main=#FDFBF7
@@ -98,6 +98,23 @@ text-subtle=#5A7A90
 border-default=#1E3040
 surface=#162230
 cta-hover=#5BB5E8
+
+[palette moderno-minimalista]
+bg-main= #FFFFFA
+primary= #74ACDF
+primary-strong: #3A7FB0
+secondary= #6B3E1E
+secondary-soft= #A47149
+accent= #F6B40E
+brand= #6CACE4
+text-primary= #1F2937
+text-muted= #6B7280
+text-inverse= #FFFFFF
+text-subtle= #FFB81C
+border-default= #E5E7EB
+surface= #F8FAFC
+cta= #74ACDF
+cta-hover= #3A7FB0
 
 [palette piedra]
 bg-main=#F2F0EE
