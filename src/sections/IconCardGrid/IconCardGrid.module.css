@@ -7,6 +7,11 @@
   align-items: stretch;
 }
 
+.cols1 {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 560px;
+}
+
 @media (min-width: 720px) {
   .cols2 {
     grid-template-columns: repeat(2, 1fr);
@@ -19,6 +24,13 @@
   }
 }
 
+@media (min-width: 900px) {
+  .cols1 {
+    max-width: 640px;
+  }
+}
+
+.cols1 > *,
 .cols2 > *,
 .cols3 > * {
   display: flex;

@@ -36,7 +36,12 @@ export default function IconCardGrid({
   tone = "paper",
   id,
 }: IconCardGridProps) {
-  const columnsClass = cards.length >= 3 ? styles.cols3 : styles.cols2;
+  const columnsClass =
+    cards.length === 1
+      ? styles.cols1
+      : cards.length >= 3
+        ? styles.cols3
+        : styles.cols2;
 
   return (
     <Section tone={tone} id={id}>

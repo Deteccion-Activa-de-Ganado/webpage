@@ -94,7 +94,7 @@ export const es: Content = {
       titleLine2: "con tu campo?",
       lede: "Escribinos y te mostramos cómo funciona en tu establecimiento.",
       cta: "Pedí una demo",
-      email: "REVISAR",
+      email: "hola@dag.ar",
     },
   },
   howItWorks: {
@@ -205,11 +205,11 @@ export const es: Content = {
       {
         slug: "conteo",
         n: "Función 1 de 6",
-        title: "Conteo automático del ganado -- lo sacaria",
+        title: "Conteo automático del ganado",
         description:
           "El motor de detección corre cuadro a cuadro sobre el video. Cada animal detectado es rastreado individualmente, se le asigna un ID único y lo sigue a lo largo de toda la trayectoria del vuelo.",
         bullets: [
-          "Un animal se confirma recién después de aparecer en 15 fotogramas consecutivos, lo que elimina falsos positivos por vegetación o sombras. (??)",
+          "Un animal se confirma recién después de aparecer en varios fotogramas consecutivos, lo que reduce falsos positivos por vegetación o sombras.",
           "El mismo animal no se cuenta dos veces aunque el dron lo sobrevuele en distintas pasadas.",
           "Compatible con MP4, AVI y MOV. Funciona con DJI, Autel, Parrot o cualquier dron que grabe video estabilizado.",
           "El video procesado se descarga con los bounding boxes y el ID de cada animal superpuesto.",
@@ -246,8 +246,8 @@ export const es: Content = {
           "Cada animal queda clasificado automáticamente en una de cuatro categorías usando análisis estadístico sobre la densidad corporal del ganado. Sin revisión manual, sin subjetividad.",
         bullets: [
           "Normal: peso dentro del rango esperado para su tamaño. Condición óptima de producción.",
-          "(!!!!!!!!!)Ternero: silueta significativamente más pequeña que el promedio. Detectado como ternero o vaquillona.",
-          "(!!!!!!!!!)Bajo peso: silueta inusualmente pequeña respecto al peso estimado. Posible indicador sanitario.",
+          "Ternero: silueta significativamente más pequeña que el promedio. Detectado como ternero o vaquillona.",
+          "Bajo peso: silueta inusualmente pequeña respecto al peso estimado. Posible indicador sanitario.",
           "Sobrepeso: silueta significativamente mayor al promedio. Riesgo de enfermedad metabólica en ciertas razas.",
         ],
         badges: ["Z-score", "Clasificación automática"],
@@ -436,7 +436,7 @@ export const es: Content = {
       },
       {
         slug: "mapa",
-        n: "Mapa de lotes (!!!!!!!!!!!)",
+        n: "Mapa de lotes",
         title: "Tu campo dibujado, por lote y estado",
         description:
           "El mapa muestra el establecimiento con cada lote delineado sobre OpenStreetMap. El color indica si el lote tiene alertas activas, condición normal o datos desactualizados.",
@@ -498,7 +498,7 @@ export const es: Content = {
     },
     access: {
       eyebrow: "Disponibilidad",
-      title: "Desde la app o desde el navegador",
+      title: "Desde el navegador",
       cards: [
         // {
         //   icon: "monitor",
