@@ -236,7 +236,7 @@ export const en: Content = {
         ],
         badges: ["GSD", "Instance segmentation", "Calibrated regression"],
         image: {
-          src: "/img/foto-hacienda-lote.svg",
+          src: "/img/foto-hacienda-lote.jpeg",
           alt: "Cattle in paddock — weight estimated from drone",
         },
       },
@@ -254,7 +254,7 @@ export const en: Content = {
         ],
         badges: ["Z-score", "Automatic classification"],
         image: {
-          src: "/img/hero-drone-deteccion.svg",
+          src: "/img/hero-drone-deteccion.jpg",
           alt: "Drone detecting and classifying animals in the field",
         },
       },
@@ -272,7 +272,7 @@ export const en: Content = {
         ],
         badges: ["React", "TypeScript", "OpenStreetMap"],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "Screenshot of the DAG dashboard",
         },
       },
@@ -290,7 +290,7 @@ export const en: Content = {
         ],
         badges: ["Auto-generated", "Print-ready"],
         image: {
-          src: "/img/foto-productor-tablet.svg",
+          src: "/img/foto-productor-tablet.jpeg",
           alt: "Producer reviewing a PDF report on a tablet",
         },
       },
@@ -308,7 +308,7 @@ export const en: Content = {
         ],
         badges: ["Per-paddock rules", "Email notifications"],
         image: {
-          src: "/img/foto-campo-aereo.svg",
+          src: "/img/foto-campo-aereo.jpeg",
           alt: "Aerial view of paddocks being monitored",
         },
       },
@@ -399,7 +399,7 @@ export const en: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "DAG dashboard key metrics panel",
         },
       },
@@ -416,7 +416,7 @@ export const en: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/diagrama-arquitectura.svg",
+          src: "/img/diagrama-arquitectura.jpeg",
           alt: "Monthly weight evolution chart in the DAG dashboard",
         },
       },
@@ -433,7 +433,7 @@ export const en: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/hero-drone-deteccion.svg",
+          src: "/img/hero-drone-deteccion.jpg",
           alt: "Body condition module of the DAG dashboard",
         },
       },
@@ -450,7 +450,7 @@ export const en: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/foto-campo-aereo.svg",
+          src: "/img/foto-campo-aereo.jpeg",
           alt: "Property map with paddocks outlined",
         },
       },
@@ -467,7 +467,7 @@ export const en: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "Property flight history in the DAG dashboard",
         },
       },

@@ -234,7 +234,7 @@ export const es: Content = {
         ],
         badges: ["GSD", "Segmentación de instancias", "Regresión calibrada"],
         image: {
-          src: "/img/foto-hacienda-lote.svg",
+          src: "/img/foto-hacienda-lote.jpeg",
           alt: "Hacienda bovina en lote — estimación de peso desde dron",
         },
       },
@@ -252,7 +252,7 @@ export const es: Content = {
         ],
         badges: ["Z-score", "Clasificación automática"],
         image: {
-          src: "/img/hero-drone-deteccion.svg",
+          src: "/img/hero-drone-deteccion.jpg",
           alt: "Dron detectando y clasificando animales en el campo",
         },
       },
@@ -270,7 +270,7 @@ export const es: Content = {
         ],
         badges: ["React", "TypeScript", "OpenStreetMap"],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "Captura de pantalla del dashboard DAG",
         },
       },
@@ -287,7 +287,7 @@ export const es: Content = {
         ],
         badges: ["Generación automática", "Listo para imprimir"],
         image: {
-          src: "/img/foto-productor-tablet.svg",
+          src: "/img/foto-productor-tablet.jpeg",
           alt: "Productor revisando un informe PDF en una tablet",
         },
       },
@@ -305,7 +305,7 @@ export const es: Content = {
         ],
         badges: ["Reglas por lote", "Notificaciones email"],
         image: {
-          src: "/img/foto-campo-aereo.svg",
+          src: "/img/foto-campo-aereo.jpeg",
           alt: "Vista aérea del campo mostrando lotes monitoreados",
         },
       },
@@ -396,7 +396,7 @@ export const es: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "Panel de métricas clave del dashboard DAG",
         },
       },
@@ -413,7 +413,7 @@ export const es: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/diagrama-arquitectura.svg",
+          src: "/img/diagrama-arquitectura.jpeg",
           alt: "Gráfico de evolución de peso mensual en el dashboard DAG",
         },
       },
@@ -430,7 +430,7 @@ export const es: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/hero-drone-deteccion.svg",
+          src: "/img/hero-drone-deteccion.jpg",
           alt: "Módulo de condición corporal del dashboard DAG",
         },
       },
@@ -447,7 +447,7 @@ export const es: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/foto-campo-aereo.svg",
+          src: "/img/foto-campo-aereo.jpeg",
           alt: "Mapa del establecimiento con lotes delineados",
         },
       },
@@ -464,7 +464,7 @@ export const es: Content = {
         ],
         badges: [],
         image: {
-          src: "/img/captura-pantalla-app.svg",
+          src: "/img/captura-pantalla-app.jpeg",
           alt: "Historial de vuelos del establecimiento en DAG",
         },
       },
