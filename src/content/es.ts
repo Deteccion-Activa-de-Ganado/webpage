@@ -94,7 +94,7 @@ export const es: Content = {
       titleLine2: "con tu campo?",
       lede: "Escribinos y te mostramos cómo funciona en tu establecimiento.",
       cta: "Pedí una demo",
-      email: "hola@dag.ar",
+      email: "dag.fiuba@gmail.com",
     },
   },
   howItWorks: {
@@ -531,7 +531,7 @@ export const es: Content = {
       "Conteo, peso y condición corporal desde el aire. Sin arrear, sin manga, sin errores.",
     navigateLabel: "Navegar",
     contactLabel: "Contacto",
-    contactEmail: "hola@dag.ar",
+    contactEmail: "dag.fiuba@gmail.com",
     coordinates: "34°36′S · 58°22′O — Buenos Aires, Argentina",
     copyright: "Detección Activa de Ganado",
   },

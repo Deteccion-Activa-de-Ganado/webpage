@@ -94,7 +94,7 @@ export const en: Content = {
       titleLine2: "with your herd?",
       lede: "Reach out and we'll show you how it works on your property.",
       cta: "Request a demo",
-      email: "dag@fi.uba.ar",
+      email: "dag.fiuba@gmail.com",
     },
   },
   howItWorks: {
@@ -535,7 +535,7 @@ export const en: Content = {
       "Head count, weight, and body condition — from the air. No herding, no chute, no guesswork.",
     navigateLabel: "Navigate",
     contactLabel: "Contact",
-    contactEmail: "hello@dag.ar",
+    contactEmail: "dag.fiuba@gmail.com",
     coordinates: "34°36′S · 58°22′W — Buenos Aires, Argentina",
     copyright: "Active Cattle Detection",
   },
