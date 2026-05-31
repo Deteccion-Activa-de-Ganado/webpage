@@ -23,12 +23,12 @@ const metricsPreview = {
   "metrics": [
     {
       "value": "487",
-      "label": "Cabezas detectadas hoy",
+      "label": "Cabezas detectadas",
       "description": "Conteo automático del último vuelo procesado."
     },
     {
       "value": "412 kg",
-      "label": "Peso promedio del rodeo",
+      "label": "Peso promedio del ganado",
       "description": "Estimado por área de silueta, sin manga, sin balanza."
     },
     {
@@ -53,7 +53,7 @@ const modules: FeatureBlockItem[] = [
     "bullets": [
       "Actualización automática después de cada vuelo procesado.",
       "Varían por lote. Podés navegar entre todos los lotes del establecimiento.",
-      "Si hay baja de peso respecto al vuelo anterior, la cifra aparece en ámbar."
+      "Si hay variaciones respecto al vuelo anterior, los colores lo destacan."
     ],
     "badges": [],
     "image": {
@@ -81,11 +81,18 @@ const modules: FeatureBlockItem[] = [
     "slug": "condicion-dashboard",
     "n": "Condición corporal",
     "title": "Distribución de la tropa de un vistazo",
-    "description": "El módulo muestra cuántos animales cayeron en cada categoría: NORMAL, TERNERO, BAJO PESO o SOBREPESO. La proporción se actualiza con cada vuelo procesado.",
+    "description": (
+      <>
+        El módulo muestra cuántos animales cayeron en cada categoría:{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>normal</span>,{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>ternero</span>,{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>bajo peso</span> o{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>sobrepeso</span>. La proporción se actualiza con cada vuelo procesado.
+      </>
+    ),
     "bullets": [
       "Desglose visual con porcentajes exactos por categoría.",
       "Si más del 10% está en BAJO PESO, el sistema genera una alerta automática.",
-      "Podés ver los IDs con baja condición y buscarlos en el video anotado."
     ],
     "badges": [],
     "image": {
@@ -97,7 +104,7 @@ const modules: FeatureBlockItem[] = [
     "slug": "mapa",
     "n": "Mapa de lotes",
     "title": "Tu campo dibujado, por lote y estado",
-    "description": "El mapa muestra el establecimiento con cada lote delineado sobre OpenStreetMap. El color indica si el lote tiene alertas activas, condición normal o datos desactualizados.",
+    "description": "El mapa muestra el establecimiento con cada lote delineado sobre un mapa. El color indica si el lote tiene alertas activas, condición normal o datos desactualizados.",
     "bullets": [
       "Clic en un lote abre su panel detallado con métricas del último vuelo.",
       "Verde: condición normal. Ámbar: atención recomendada. Rojo: alerta activa.",
@@ -130,7 +137,7 @@ const modules: FeatureBlockItem[] = [
 const alerts = {
   "eyebrow": "Sistema de alertas",
   "title": "Sabés qué pasa antes de que sea tarde",
-  "lede": "Cada vuelo procesado se evalúa automáticamente. Si algo sale de los rangos que vos definiste, recibís una notificación.",
+  "lede": "Cada vuelo procesado se evalúa automáticamente. Si algo sale de los rangos que vos definiste, recibís una notificación. Todas estas alertas son personalizables, por ejemplo:",
   "items": [
     {
       "title": "Alerta crítica — Bajo peso masivo",
@@ -138,13 +145,8 @@ const alerts = {
       "severity": "critical"
     },
     {
-      "title": "Alerta de atención — Pérdida de peso individual",
-      "body": "Se activa cuando un animal perdió más del umbral configurado entre dos vuelos consecutivos del mismo lote. Queda identificado con su ID en el video anotado.",
-      "severity": "warn"
-    },
-    {
       "title": "Información — Cambio de conteo significativo",
-      "body": "El conteo del último vuelo difiere en más del 5% respecto al anterior del mismo lote. Puede indicar movimiento de tropas, fallas de detección o un error de vuelo.",
+      "body": "El conteo del último vuelo difiere en más del 5% respecto al anterior del mismo lote. Puede indicar movimiento de vacas, fallas de detección o un error de vuelo.",
       "severity": "info"
     },
     {
@@ -165,8 +167,8 @@ const access = {
       "description": "Acceso desde cualquier equipo con navegador e internet. Ideal para consultas rápidas desde el celular en el campo o para compartir el acceso con el veterinario sin instalar nada.",
       "checklist": [
         "Sin instalación — abrís el navegador y listo.",
-        "Acceso desde celular, tablet o PC prestada.",
-        "Se puede compartir con el veterinario o capataz."
+        "Acceso desde celular, tablet o PC.",
+        "Se puede compartir con cualquiera."
       ]
     }
   ]

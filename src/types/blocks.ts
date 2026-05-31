@@ -5,7 +5,7 @@ export type FeatureBlockItem = {
   slug: string;
   n: string;
   title: string;
-  description: string;
+  description: ReactNode;
   bullets: readonly string[];
   badges: readonly string[];
   image: { src: string; alt: string };

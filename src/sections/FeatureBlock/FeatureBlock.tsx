@@ -31,7 +31,7 @@ export default function FeatureBlock({
             <h2 className={styles.title}>{item.title}</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className={styles.description}>{item.description}</p>
+            <div className={styles.description}>{item.description}</div>
           </Reveal>
           <Reveal delay={0.15}>
             <ul className={styles.bullets}>
