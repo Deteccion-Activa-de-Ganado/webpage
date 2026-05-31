@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { CalloutTone, IconKey, KpiDirection, MeterTone } from "./ui";
 
 export type FeatureBlockItem = {
@@ -15,7 +16,7 @@ export type ProcessStepBlock = {
   title: string;
   description: string;
   bulletsTitle: string;
-  bullets: readonly string[];
+  bullets: readonly ReactNode[];
   callout?: { title: string; body: string };
 };
 

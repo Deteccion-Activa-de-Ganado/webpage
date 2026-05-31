@@ -38,8 +38,8 @@ export default function ProcessStep({ step, tone = "paper" }: ProcessStepProps) 
             <div className={styles.listWrap}>
               <p className={styles.listTitle}>{step.bulletsTitle}</p>
               <ul className={styles.bullets}>
-                {step.bullets.map((item) => (
-                  <li key={item}>{item}</li>
+                {step.bullets.map((item, index) => (
+                  <li key={index}>{item}</li>
                 ))}
               </ul>
             </div>

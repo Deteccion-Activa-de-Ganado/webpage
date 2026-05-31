@@ -15,7 +15,7 @@ const pageHero: PageHeroBlock = {
 
 const intro = {
   "eyebrow": "El proceso paso a paso",
-  "title": "Cuatro pasos, un rodeo conocido"
+  "title": "Cuatro pasos, un ganado conocido"
 };
 
 const steps: ProcessStepBlock[] = [
@@ -25,8 +25,8 @@ const steps: ProcessStepBlock[] = [
     "description": "Tomás el dron, lo despegás y sobrevolás el lote. El único requisito es que el vuelo sea a una altura constante y que el video quede grabado en el dispositivo. No hace falta ningún hardware adicional ni aplicación especial de vuelo.",
     "bulletsTitle": "Drones compatibles",
     "bullets": [
-      "Cualquier dron que grabe video en MP4, AVI o MOV con resolución mínima 1080p.",
-      "DJI Mini, Air, Mavic, Phantom — compatibles si conocés el sensor y la focal.",
+      "Cualquier dron que grabe video con resolución mínima 1080p.",
+      "Cualqueir dron es compatible si conocés el sensor y la focal.",
       "Si no sabés el sensor de tu cámara, está en el manual o en la web del fabricante."
     ]
   },
@@ -38,7 +38,7 @@ const steps: ProcessStepBlock[] = [
     "bullets": [
       "Establecimiento y lote al que pertenece el vuelo.",
       "Altura de vuelo en metros.",
-      "Seleccionas tu dron que usaste.",
+      "Seleccionas el dron que usaste.",
       "Fecha y hora (por defecto, el sistema las lee de los metadatos del video)."
     ],
     "callout": {
@@ -53,19 +53,25 @@ const steps: ProcessStepBlock[] = [
     "bulletsTitle": "Pipeline de procesamiento",
     "bullets": [
       "Detección: se analiza cada fotograma y se genera una máscara por animal.",
-      "Tracking: el sistema sigue a cada bovino entre frames para evitar contar dos veces.",
+      "Tracking: el sistema sigue a cada bovino entre frames.",
       "Peso estimado: se calcula el área de silueta y se convierte en kilos con su tamaño.",
-      "Condición corporal: clasificación en NORMAL, TERNERO, BAJO PESO o SOBREPESO."
+      <>
+        Condición corporal: clasificación en{" "}
+        <span style={{ color: "var(--secondary)" }}>normal</span>,{" "}
+        <span style={{ color: "var(--secondary)" }}>ternero</span>,{" "}
+        <span style={{ color: "var(--secondary)" }}>bajo peso</span> o{" "}
+        <span style={{ color: "var(--secondary)" }}>sobrepeso</span>.
+      </>
     ],
     "callout": {
       "title": "¿Cuánto tarda?",
-      "body": "Un video de 10 minutos en 1080p tarda entre 15 y 30 minutos en procesarse. Recibís una notificación en la app cuando los resultados están disponibles."
+      "body": "Un video de 10 minutos en 1080p tarda entre 15 y 30 minutos en procesarse. Recibís una notificación cuando los resultados están disponibles."
     }
   },
   {
     "n": "04",
     "title": "Revisás los resultados en el dashboard",
-    "description": "Cuando termina el procesamiento, los datos aparecen en el dashboard. Ves el video anotado, descargás el informe PDF y comparás con vuelos anteriores.",
+    "description": "Cuando termina el procesamiento, los datos aparecen en el dashboard. Podes ver el video anotado, descargás el informe PDF y comparás con vuelos anteriores.",
     "bulletsTitle": "Qué obtenés",
     "bullets": [
       "Peso estimado individual y promedio del lote.",
@@ -83,12 +89,12 @@ const requirements = {
     {
       "icon": "drone",
       "title": "Un dron con cámara",
-      "description": "Cualquier dron que grabe en MP4, AVI o MOV a mínimo 1080p. No hace falta un equipo de alta gama."
+      "description": "Cualquier dron que grabe a mínimo 1080p. No hace falta un equipo de alta gama."
     },
     {
       "icon": "monitor",
       "title": "PC o celular con internet",
-      "description": "DAGA corre desde cualquier navegador moderno. Conexión a internet estándar alcanza para subir el video."
+      "description": "DAG corre desde cualquier navegador moderno. Conexión a internet estándar alcanza para subir el video."
     },
     {
       "icon": "clipboard",
