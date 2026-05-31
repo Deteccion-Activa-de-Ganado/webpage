@@ -100,8 +100,8 @@ surface=#162230
 cta-hover=#5BB5E8
 
 [palette moderno-minimalista]
-bg-main= #FFFFFA
-primary= #74ACDF
+bg-main= #FFFFFA 
+primary= #74ACDF 
 primary-strong: #3A7FB0
 secondary= #6B3E1E
 secondary-soft= #A47149
@@ -110,7 +110,7 @@ brand= #6CACE4
 text-primary= #1F2937
 text-muted= #6B7280
 text-inverse= #FFFFFF
-text-subtle= #FFB81C
+text-subtle= #A66A00
 border-default= #E5E7EB
 surface= #F8FAFC
 cta= #74ACDF

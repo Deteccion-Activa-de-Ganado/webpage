@@ -87,7 +87,7 @@ export default function HomePage() {
                 <span className={styles.heroRule} aria-hidden="true" />
                 <p className={styles.heroLede}>
                   Sobrevolá tus lotes con el dron y obtené conteo, peso estimado y
-                  condición corporal de cada animal. Sin arrear, sin manga, sin estrés
+                  condición corporal de cada animal. Sin arrear, sin manga y sin estrés
                   para el ganado.
                 </p>
                 <ButtonLink to="/#demo" className={styles.heroCta}>
@@ -154,6 +154,7 @@ export default function HomePage() {
                 ["Manga + balanza = estrés y pérdida de peso", Scale],
                 ["Registros en papel o Excel, sin tendencias", FileText],
                 ["El animal flaco se detecta tarde", Search],
+                ["Comunicacion de informacion manual y variable", FileText],
               ] as const
             ).map(([text, Icon], i) => (
               <Reveal key={text} delay={i * 0.06}>
@@ -178,6 +179,7 @@ export default function HomePage() {
                 ["Peso estimado desde el aire, sin tocar al animal", Eye],
                 ["Dashboard con historial automático por vuelo", BarChart3],
                 ["Alertas automáticas antes de que sea un problema", Bell],
+                ["Generacion automatica de informes estandarizados", BarChart3],
               ] as const
             ).map(([text, Icon], i) => (
               <Reveal key={text} delay={i * 0.06}>
@@ -301,7 +303,7 @@ export default function HomePage() {
               <p className={demoStyles.eyebrow}>Contacto</p>
               <h2 className={demoStyles.title}>
                 <span>¿Querés verlo</span>
-                <span className={demoStyles.highlight}>con tu campo?</span>
+                <span className={demoStyles.highlight}>en tu campo?</span>
               </h2>
               <p className={demoStyles.lede}>
                 Dejanos tu email y un mensaje. Te respondemos con los pasos para
@@ -374,7 +376,7 @@ export default function HomePage() {
                   {demoStatus === "sending" ? "Enviando…" : "Enviar solicitud de demo"}
                 </Button>
 
-                <p className={demoStyles.hint}>
+                <p className={demoStyles.hint} style={{ fontStyle: "italic" }}>
                   También podés escribirnos a{" "}
                   <a href="mailto:dag.fiuba@gmail.com">dag.fiuba@gmail.com</a> si preferís.
                 </p>
