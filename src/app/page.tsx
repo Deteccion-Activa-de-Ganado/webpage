@@ -23,12 +23,8 @@ import { submitDemoRequest } from "@/lib/demo-request";
 import StatCard from "@/components/StatCard/StatCard";
 import StepCard from "@/components/StepCard/StepCard";
 import IconItem from "@/components/IconItem/IconItem";
-import KpiCard from "@/components/KpiCard/KpiCard";
-import Meter from "@/components/Meter/Meter";
-import Sparkline from "@/components/Sparkline/Sparkline";
 import ArrowLink from "@/components/ArrowLink/ArrowLink";
 import Reveal from "@/components/Reveal/Reveal";
-import type { KpiDirection, MeterTone } from "@/types/ui";
 import demoStyles from "@/styles/demo-cta.module.css";
 import styles from "./page.module.css";
 
@@ -239,57 +235,13 @@ export default function HomePage() {
           />
         </Reveal>
         <Reveal delay={0.08}>
-          <div className={styles.panel} role="figure" aria-label="Tu ganado en una pantalla">
-            <div className={styles.panelBar}>
-              <span className={styles.dot} aria-hidden="true" />
-              <span className={styles.panelTitle}>DAG · Dashboard</span>
-            </div>
-            <div className={styles.tabs} role="tablist" aria-label="Dashboard">
-              {["Inicio", "Vuelos", "Analytics", "Configuración"].map((tab, i) => (
-                <span
-                  key={tab}
-                  role="tab"
-                  aria-selected={i === 0}
-                  className={`${styles.tab} ${i === 0 ? styles.tabActive : ""}`}
-                >
-                  {tab}
-                </span>
-              ))}
-            </div>
-            <div className={styles.panelBody}>
-              <div className={styles.kpiRow}>
-                <KpiCard label="Vuelos este mes" value="12" delta="+ 3" direction="up" />
-                <KpiCard label="Peso promedio" value="395 kg" delta="+ 11 kg" direction="up" />
-                <KpiCard
-                  label="Alertas activas"
-                  value="2"
-                  delta="Revisar lote Norte"
-                  direction={"warn" as KpiDirection}
-                />
-              </div>
-              <div className={styles.chartRow}>
-                <article className={styles.chartCard}>
-                  <header className={styles.chartHeader}>
-                    <p className={styles.cardLabel}>Evolución de peso</p>
-                    <span className={styles.chartLatest}>395 kg</span>
-                  </header>
-                  <Sparkline
-                    data={[350, 360, 368, 375, 385, 395]}
-                    labels={["May", "Jun", "Jul", "Ago", "Sep", "Oct"]}
-                  />
-                </article>
-                <article className={styles.meterCard}>
-                  <p className={styles.cardLabel}>Condición corporal</p>
-                  <div className={styles.meterList}>
-                    <Meter label="Normal" value={78} tone={"primary" as MeterTone} />
-                    <Meter label="Terneros" value={14} tone={"brand" as MeterTone} />
-                    <Meter label="Bajo peso" value={5} tone={"secondary" as MeterTone} />
-                    <Meter label="Sobrepeso" value={3} tone={"brand" as MeterTone} />
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
+          <figure className={styles.dashboardFigure} role="figure" aria-label="Tu ganado en una pantalla">
+            <img
+              className={styles.dashboardImage}
+              src="/img/captura-pantalla-app.jpeg"
+              alt="Captura de pantalla del dashboard de DAG"
+            />
+          </figure>
         </Reveal>
         <div className={styles.dashboardCta}>
           <ArrowLink to="/dashboard">Explorar el dashboard</ArrowLink>
