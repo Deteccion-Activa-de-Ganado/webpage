@@ -57,10 +57,10 @@ const steps: ProcessStepBlock[] = [
       "Peso estimado: se calcula el área de silueta y se convierte en kilos con su tamaño.",
       <>
         Condición corporal: clasificación en{" "}
-        <span style={{ color: "var(--secondary)" }}>normal</span>,{" "}
-        <span style={{ color: "var(--secondary)" }}>ternero</span>,{" "}
-        <span style={{ color: "var(--secondary)" }}>bajo peso</span> o{" "}
-        <span style={{ color: "var(--secondary)" }}>sobrepeso</span>.
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>normal</span>,{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>ternero</span>,{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>bajo peso</span> o{" "}
+        <span style={{ color: "var(--secondary)", fontWeight: "bold" }}>sobrepeso</span>.
       </>
     ],
     "callout": {
