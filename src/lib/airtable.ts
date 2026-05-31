@@ -20,7 +20,7 @@ export type SurveyPayload = {
   funcionMasUsada: string;
   claridadGraficos: string;
   // Step 7
-  quéAgregaría: string;
+  queAgregaria: string;
   sugerenciasAdicionales: string;
   // Step 8
   usaCaravanas: string;

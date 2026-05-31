@@ -9,7 +9,8 @@ import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import IconCard from "@/components/IconCard/IconCard";
 import Reveal from "@/components/Reveal/Reveal";
-import type { IconCardData, IconKey } from "@/content/types";
+import type { IconCardBlock } from "@/types/blocks";
+import type { IconKey } from "@/types/ui";
 import styles from "./IconCardGrid.module.css";
 
 const ICON_REGISTRY: Record<IconKey, LucideIcon> = {
@@ -23,7 +24,7 @@ type IconCardGridProps = {
   eyebrow: string;
   title: string;
   lede?: string;
-  cards: IconCardData[];
+  cards: readonly IconCardBlock[];
   tone?: "paper" | "surface";
   id?: string;
 };
@@ -55,7 +56,7 @@ export default function IconCardGrid({
       </Reveal>
       <div className={`${styles.grid} ${columnsClass}`}>
         {cards.map((card, i) => {
-          const Icon = ICON_REGISTRY[card.icon];
+          const Icon = ICON_REGISTRY[card.icon as IconKey];
           return (
             <Reveal key={card.title} delay={i * 0.08}>
               <IconCard

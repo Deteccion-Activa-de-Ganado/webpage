@@ -1,4 +1,4 @@
-import type { KpiDirection } from "@/content/types";
+import type { KpiDirection } from "@/types/ui";
 import styles from "./KpiCard.module.css";
 
 type KpiCardProps = {

@@ -1,8 +1,8 @@
 import { useId } from "react";
 
 type SparklineProps = {
-  data: number[];
-  labels?: string[];
+  data: readonly number[];
+  labels?: readonly string[];
   width?: number;
   height?: number;
 };

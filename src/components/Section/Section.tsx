@@ -6,6 +6,7 @@ type SectionProps = {
   tone?: "paper" | "surface";
   children: ReactNode;
   className?: string;
+  innerClassName?: string;
 };
 
 export default function Section({
@@ -13,13 +14,15 @@ export default function Section({
   tone = "paper",
   children,
   className,
+  innerClassName,
 }: SectionProps) {
   const classes = [styles.section, styles[tone], className]
     .filter(Boolean)
     .join(" ");
+  const innerClasses = [styles.inner, innerClassName].filter(Boolean).join(" ");
   return (
     <section id={id} className={classes}>
-      <div className={styles.inner}>{children}</div>
+      <div className={innerClasses}>{children}</div>
     </section>
   );
 }

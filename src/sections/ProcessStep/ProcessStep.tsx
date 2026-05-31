@@ -1,11 +1,11 @@
 import Section from "@/components/Section/Section";
 import Reveal from "@/components/Reveal/Reveal";
 import Callout from "@/components/Callout/Callout";
-import type { ProcessStepData } from "@/content/types";
+import type { ProcessStepBlock } from "@/types/blocks";
 import styles from "./ProcessStep.module.css";
 
 type ProcessStepProps = {
-  step: ProcessStepData;
+  step: ProcessStepBlock;
   tone?: "paper" | "surface";
 };
 

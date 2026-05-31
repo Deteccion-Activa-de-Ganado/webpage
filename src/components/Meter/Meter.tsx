@@ -1,4 +1,4 @@
-import type { MeterTone } from "@/content/types";
+import type { MeterTone } from "@/types/ui";
 import styles from "./Meter.module.css";
 
 type MeterProps = {

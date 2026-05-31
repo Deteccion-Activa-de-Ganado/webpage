@@ -6,7 +6,7 @@ type IconCardProps = {
   icon: ReactNode;
   title: string;
   description: string;
-  checklist?: string[];
+  checklist?: readonly string[];
 };
 
 export default function IconCard({

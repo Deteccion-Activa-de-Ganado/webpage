@@ -1,11 +1,11 @@
 import Section from "@/components/Section/Section";
 import Reveal from "@/components/Reveal/Reveal";
 import Badge from "@/components/Badge/Badge";
-import type { FeatureItem } from "@/content/types";
+import type { FeatureBlockItem } from "@/types/blocks";
 import styles from "./FeatureBlock.module.css";
 
 type FeatureBlockProps = {
-  item: FeatureItem;
+  item: FeatureBlockItem;
   reverse?: boolean;
   tone?: "paper" | "surface";
 };
@@ -16,7 +16,12 @@ export default function FeatureBlock({
   tone = "paper",
 }: FeatureBlockProps) {
   return (
-    <Section tone={tone} id={item.slug}>
+    <Section
+      tone={tone}
+      id={item.slug}
+      className={styles.featureSection}
+      innerClassName={styles.wideInner}
+    >
       <div className={`${styles.grid} ${reverse ? styles.reverse : ""}`}>
         <div className={styles.content}>
           <Reveal>

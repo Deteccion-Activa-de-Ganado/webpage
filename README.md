@@ -1,6 +1,6 @@
 # DAG — Detección Activa de Ganado
 
-Dynamic marketing site for **DAG**, a cattle monitoring system operated via drone. Spanish-first (`lang="es"`) with inline English translations. Built with React 18, TypeScript, Vite, and React Router v6.
+Dynamic marketing site for **DAG**, a cattle monitoring system operated via drone. Solo español. Built with React 18, TypeScript, Vite, and React Router v6 (carpetas de rutas al estilo Next.js App Router).
 
 ## Prerequisites
 
@@ -29,15 +29,13 @@ Open <http://localhost:5173>. Changes hot-reload automatically.
 
 ```
 src/
-├── components/   Reusable primitives (Button, Nav, StatCard, Sparkline, Callout, ...)
-├── sections/     Page-composing sections (Hero, FeatureBlock, ProcessStep, DemoCTA, ...)
-├── routes/       One file per route — Home, Features, HowItWorks, Dashboard, plus Layout
-├── providers/    React contexts (I18nProvider)
-├── hooks/        Custom hooks (useScrollToHash, usePaletteFromConfig)
-├── content/      Typed content dictionary (es.ts / en.ts, Content shape in types.ts)
-├── lib/          Pure helpers (palette parser)
-├── types/        Shared TypeScript types
-└── styles/       globals.css (resets + CSS custom property defaults + grain overlay)
+├── app/          Rutas (page.tsx por carpeta, layout, routes.ts)
+├── components/   UI reutilizable (Button, Nav, StatCard, ...)
+├── sections/     Bloques presentacionales (reciben content por props)
+├── hooks/        useScrollToHash, usePaletteFromConfig
+├── lib/          Helpers (palette, airtable)
+├── types/        Tipos compartidos (ui, blocks)
+└── styles/       globals.css
 ```
 
 ## Palette configuration
@@ -66,15 +64,28 @@ cta-hover=#...
 
 When adding a new design token, update (a) the `:root` defaults in `src/styles/globals.css`, (b) the `PaletteToken` union in `src/types/palette.ts`, and (c) every `[palette ...]` block in `public/palette-config.txt`, or the new token will fall back to its default.
 
-## Internationalization
+## Páginas (estilo Next.js App Router)
 
-Translations live in a typed dictionary:
+Las rutas viven en `src/app/`. Cada carpeta es un segmento de URL:
 
-- `src/content/types.ts` — the `Content` shape and narrow types (`MeterTone`, `KpiDirection`, etc.).
-- `src/content/es.ts` / `src/content/en.ts` — the actual Spanish and English strings.
-- `src/providers/I18nProvider.tsx` — `useT()` returns the current language's full nested object.
+| Carpeta | URL |
+|---------|-----|
+| `app/page.tsx` | `/` |
+| `app/caracteristicas/` | `/caracteristicas` |
+| `app/como-funciona/` | `/como-funciona` |
+| `app/dashboard/` | `/dashboard` |
+| `app/encuesta/` | `/encuesta` |
 
-Switch languages via the `ES` / `EN` toggle in the header. Choice persists via `localStorage["dag-lang"]`.
+En cada carpeta:
+
+- **`page.tsx`** — la página entera: composición y textos en JSX (props inline o bloques `<Section>`).
+- **`index.ts`** — reexporta `page` (opcional, para imports limpios).
+
+Ejemplo en inicio (`app/page.tsx`): `<Hero titleLine1="..." lede="..." />` sin archivos de datos aparte.
+
+Nav y footer llevan sus textos directo en `components/Nav/Nav.tsx` y `components/Footer/Footer.tsx`.
+
+El registro de rutas está en `src/app/routes.ts`. `sections/` son componentes reutilizables que reciben props desde cada `page.tsx`.
 
 ## Legacy static site
 

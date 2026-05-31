@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { CalloutTone } from "@/content/types";
+import type { CalloutTone } from "@/types/ui";
 import styles from "./Callout.module.css";
 
 type CalloutProps = {

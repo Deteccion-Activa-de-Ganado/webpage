@@ -1,16 +1,49 @@
+.featureSection {
+  padding-left: clamp(1.25rem, 3vw, 2rem);
+  padding-right: clamp(1.25rem, 3vw, 2rem);
+}
+
+.wideInner {
+  max-width: min(1360px, 100%);
+}
+
+@media (min-width: 1100px) {
+  .wideInner {
+    max-width: min(1480px, 100%);
+  }
+}
+
+@media (min-width: 1400px) {
+  .featureSection {
+    padding-left: max(1.5rem, calc((100% - 1520px) / 2));
+    padding-right: max(1.5rem, calc((100% - 1520px) / 2));
+  }
+
+  .wideInner {
+    max-width: 1520px;
+  }
+}
+
 .grid {
-  max-width: 1180px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3.25rem;
   align-items: center;
 }
 
 @media (min-width: 900px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 4.5rem clamp(4rem, 7vw, 8rem);
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    gap: 5rem clamp(5rem, 8vw, 9.5rem);
   }
 }
 
@@ -23,7 +56,20 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.4rem;
+  max-width: 36rem;
+}
+
+@media (min-width: 900px) {
+  .content {
+    max-width: none;
+    padding-right: 0.5rem;
+  }
+
+  .reverse .content {
+    padding-right: 0;
+    padding-left: 0.5rem;
+  }
 }
 
 .eyebrow {
@@ -90,14 +136,59 @@
 .imageWrap {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  border-radius: 4px;
-  background: var(--border-default);
-  box-shadow: 0 18px 50px -30px color-mix(in oklab, var(--primary) 35%, transparent);
+  margin: 0;
+  padding: 0.65rem;
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--surface) 92%, var(--bg-main));
+  border: 1px solid color-mix(in oklab, var(--border-default) 80%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--surface) 60%, transparent),
+    0 28px 56px -32px color-mix(in oklab, var(--primary) 38%, transparent);
+}
+
+.imageWrap::before {
+  content: "";
+  position: absolute;
+  inset: 0.65rem;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--brand) 22%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 900px) {
+  .imageWrap {
+    padding: 0.85rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .image {
   width: 100%;
   height: auto;
   display: block;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: saturate(1.02) contrast(1.03);
+  transition:
+    transform 420ms ease,
+    filter 420ms ease;
+}
+
+@media (min-width: 900px) {
+  .image {
+    height: 100%;
+    min-height: 300px;
+  }
+}
+
+@media (hover: hover) {
+  .imageWrap:hover .image {
+    transform: scale(1.02);
+    filter: saturate(1.06) contrast(1.05);
+  }
 }

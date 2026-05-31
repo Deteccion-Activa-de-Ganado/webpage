@@ -38,7 +38,7 @@
 
 .logo {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.6rem;
   font-family: "Azeret Mono", monospace;
   color: var(--primary);
@@ -57,17 +57,16 @@
 
 .logoSuffix {
   display: none;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
-  text-transform: uppercase;
 }
 
 @media (min-width: 1024px) {
   .logoSuffix {
     display: inline;
   }
+}
+
+.logo:hover .logoSuffix:not(.navLinkActive) {
+  color: var(--text-primary);
 }
 
 .primaryNav {

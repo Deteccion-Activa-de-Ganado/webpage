@@ -1,11 +1,11 @@
 import Section from "@/components/Section/Section";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import Reveal from "@/components/Reveal/Reveal";
-import type { ComparisonContent } from "@/content/types";
+import type { ComparisonBlock } from "@/types/blocks";
 import styles from "./ComparisonTable.module.css";
 
 type ComparisonTableProps = {
-  content: ComparisonContent;
+  content: ComparisonBlock;
   tone?: "paper" | "surface";
   id?: string;
 };

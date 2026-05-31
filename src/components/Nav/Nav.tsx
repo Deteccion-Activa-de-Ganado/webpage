@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { useT } from "@/providers/I18nProvider";
 import { ButtonLink } from "@/components/Button/Button";
-import LangToggle from "@/components/LangToggle/LangToggle";
 import styles from "./Nav.module.css";
 
 type NavItem = { to: string; label: string };
 
 export default function Nav() {
-  const t = useT();
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -25,18 +22,25 @@ export default function Nav() {
   }, []);
 
   const items: NavItem[] = [
-    { to: "/caracteristicas", label: t.nav.features },
-    { to: "/como-funciona", label: t.nav.howItWorks },
-    { to: "/dashboard", label: t.nav.dashboard },
+    { to: "/caracteristicas", label: "Características" },
+    { to: "/como-funciona", label: "Cómo funciona" },
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/encuesta", label: "Encuesta" },
   ];
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.inner}>
-        <Link to="/" className={styles.logo} aria-label={`DAG · ${t.nav.home}`}>
+        <Link to="/" className={styles.logo} aria-label="DAG · Inicio">
           <span className={styles.logoMark}>DAG</span>
           <span className={styles.logoDot} aria-hidden="true">·</span>
-          <span className={styles.logoSuffix}>Detección Activa de Ganado</span>
+          <span
+            className={`${styles.navLink} ${styles.logoSuffix} ${
+              location.pathname === "/" ? styles.navLinkActive : ""
+            }`}
+          >
+            Detección Activa de Ganado
+          </span>
         </Link>
 
         <nav className={styles.primaryNav} aria-label="Primary">
@@ -54,13 +58,8 @@ export default function Nav() {
         </nav>
 
         <div className={styles.actions}>
-          <LangToggle />
-          <ButtonLink
-            to="/#demo"
-            variant="primary"
-            className={styles.cta}
-          >
-            {t.nav.requestDemo}
+          <ButtonLink to="/#demo" variant="primary" className={styles.cta}>
+            Pedí una demo
           </ButtonLink>
         </div>
 
@@ -92,9 +91,8 @@ export default function Nav() {
             </NavLink>
           ))}
           <div className={styles.drawerFoot}>
-            <LangToggle />
             <ButtonLink to="/#demo" variant="primary">
-              {t.nav.requestDemo}
+              Pedí una demo
             </ButtonLink>
           </div>
         </div>
