@@ -28,7 +28,7 @@ import Reveal from "@/components/Reveal/Reveal";
 import demoStyles from "@/styles/demo-cta.module.css";
 import styles from "./page.module.css";
 
-const HERO_VIDEO_SRC = "/img/video_background.mp4";
+const HERO_VIDEO_SRC = "/img/home-hero-video.mp4";
 
 export default function HomePage() {
   const prefersReducedMotion = useReducedMotion();
@@ -238,7 +238,7 @@ export default function HomePage() {
           <figure className={styles.dashboardFigure} role="figure" aria-label="Tu ganado en una pantalla">
             <img
               className={styles.dashboardImage}
-              src="/img/captura-pantalla-app.jpeg"
+              src="/img/home-seccion-dashboard.jpeg"
               alt="Captura de pantalla del dashboard de DAG"
             />
           </figure>

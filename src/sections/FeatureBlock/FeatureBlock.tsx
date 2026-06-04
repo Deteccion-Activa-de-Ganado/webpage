@@ -2,6 +2,7 @@ import Section from "@/components/Section/Section";
 import Reveal from "@/components/Reveal/Reveal";
 import Badge from "@/components/Badge/Badge";
 import type { FeatureBlockItem } from "@/types/blocks";
+import FeatureBlockImage from "@/sections/FeatureBlock/FeatureBlockImage";
 import styles from "./FeatureBlock.module.css";
 
 type FeatureBlockProps = {
@@ -51,16 +52,11 @@ export default function FeatureBlock({
           ) : null}
         </div>
 
-        <Reveal delay={0.1}>
-          <figure className={styles.imageWrap}>
-            <img
-              className={styles.image}
-              src={item.image.src}
-              alt={item.image.alt}
-              loading="lazy"
-            />
-          </figure>
-        </Reveal>
+        <div className={styles.imageCell}>
+          <Reveal delay={0.1}>
+            <FeatureBlockImage src={item.image.src} alt={item.image.alt} />
+          </Reveal>
+        </div>
       </div>
     </Section>
   );

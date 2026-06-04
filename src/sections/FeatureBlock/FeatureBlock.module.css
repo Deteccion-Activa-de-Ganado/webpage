@@ -31,6 +31,7 @@
   grid-template-columns: 1fr;
   gap: 3.25rem;
   align-items: center;
+  min-width: 0;
 }
 
 @media (min-width: 900px) {
@@ -133,9 +134,25 @@
   margin-top: 0.75rem;
 }
 
+.imageCell {
+  width: 100%;
+  min-width: 0;
+  align-self: start;
+  display: flex;
+  justify-content: center;
+}
+
+.imageCell > div {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+}
+
 .imageWrap {
   position: relative;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   margin: 0;
   padding: 0.65rem;
   border-radius: 14px;
@@ -159,36 +176,67 @@
 @media (min-width: 900px) {
   .imageWrap {
     padding: 0.85rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
+}
+
+.imageScroll {
+  position: relative;
+  z-index: 0;
+  width: fit-content;
+  max-width: 100%;
+  height: clamp(17rem, 38vh, 24rem);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--brand) 45%, transparent)
+    color-mix(in oklab, var(--border-default) 35%, transparent);
+}
+
+.imageScroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.imageScroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand) 40%, var(--border-default));
+}
+
+.imageScroll::-webkit-scrollbar-track {
+  background: color-mix(in oklab, var(--border-default) 25%, transparent);
+  border-radius: 999px;
+}
+
+.imageScroll[data-mode="vertical-fill"] {
+  width: clamp(13rem, 30vw, 18rem);
+  overflow: hidden;
+}
+
+.imageScroll[data-mode="vertical-fill"] .image {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .image {
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: 100%;
   display: block;
-  aspect-ratio: 5 / 4;
-  object-fit: cover;
   border-radius: 10px;
   filter: saturate(1.02) contrast(1.03);
-  transition:
-    transform 420ms ease,
-    filter 420ms ease;
-}
-
-@media (min-width: 900px) {
-  .image {
-    height: 100%;
-    min-height: 300px;
-  }
+  transition: filter 420ms ease;
 }
 
 @media (hover: hover) {
   .imageWrap:hover .image {
-    transform: scale(1.02);
     filter: saturate(1.06) contrast(1.05);
   }
 }

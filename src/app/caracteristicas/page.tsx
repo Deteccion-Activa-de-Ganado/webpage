@@ -29,7 +29,7 @@ const items: FeatureBlockItem[] = [
       // "Python 3.11"
     ],
     "image": {
-      "src": "/img/muchasvacas.jpg",
+      "src": "/img/caracteristicas-01-conteo-ganado.jpg",
       "alt": "Vacas en una pastura"
     }
   },
@@ -37,7 +37,7 @@ const items: FeatureBlockItem[] = [
     "slug": "peso",
     "n": "Función 2 de 6",
     "title": "Peso estimado sin pesa ni manga",
-    "description": "El sistema calcula el tamaño usando la altura del vuelo, el tamaño del sensor y la focal de la lente. Con ese dato, mide el área real de la silueta de cada animal y con eso estima el peso vivo.",
+    "description": "El sistema utiliza la altura del vuelo, el tamaño del sensor y la focal del lente. Con estos datos calcula parámetros biométricos de cada animal para estimar su peso",
     "bullets": [
       "El productor ingresa la altura del vuelo (en metros), el modelo de cámara o el sensor y la focal.",
       "La estimación es más precisa entre 10 y 15 metros de altura.",
@@ -50,7 +50,7 @@ const items: FeatureBlockItem[] = [
       // "Regresión calibrada"
     ],
     "image": {
-      "src": "/img/foto-hacienda-lote.jpeg",
+      "src": "/img/caracteristicas-02-peso-lote.jpeg",
       "alt": "Hacienda bovina en lote — estimación de peso desde dron"
     }
   },
@@ -70,7 +70,7 @@ const items: FeatureBlockItem[] = [
       // "Clasificación automática"
     ],
     "image": {
-      "src": "/img/hero-drone-deteccion.jpg",
+      "src": "/img/caracteristicas-03-condicion-dron.jpg",
       "alt": "Dron detectando y clasificando animales en el campo"
     }
   },
@@ -91,7 +91,7 @@ const items: FeatureBlockItem[] = [
       // "OpenStreetMap"
     ],
     "image": {
-      "src": "/img/captura-pantalla-app.jpeg",
+      "src": "/img/caracteristicas-04-dashboard.jpeg",
       "alt": "Captura de pantalla del dashboard DAG"
     }
   },
@@ -110,7 +110,7 @@ const items: FeatureBlockItem[] = [
       // "Listo para imprimir"
     ],
     "image": {
-      "src": "/img/foto-productor-tablet.jpeg",
+      "src": "/img/caracteristicas-05-informe-pdf.jpeg",
       "alt": "Productor revisando un informe PDF en una tablet"
     }
   },
@@ -130,7 +130,7 @@ const items: FeatureBlockItem[] = [
       // "Notificaciones email"
     ],
     "image": {
-      "src": "/img/foto-campo-aereo.jpeg",
+      "src": "/img/caracteristicas-06-alertas-campo.jpeg",
       "alt": "Vista aérea del campo mostrando lotes monitoreados"
     }
   }

@@ -57,7 +57,7 @@ const modules: FeatureBlockItem[] = [
     ],
     "badges": [],
     "image": {
-      "src": "/img/captura-pantalla-app.jpeg",
+      "src": "/img/dashboard-modulo-panel-metricas.jpeg",
       "alt": "Panel de métricas clave del dashboard DAG"
     }
   },
@@ -73,7 +73,7 @@ const modules: FeatureBlockItem[] = [
     ],
     "badges": [],
     "image": {
-      "src": "/img/diagrama-arquitectura.jpeg",
+      "src": "/img/dashboard-modulo-evolucion-peso.jpeg",
       "alt": "Gráfico de evolución de peso mensual en el dashboard DAG"
     }
   },
@@ -96,7 +96,7 @@ const modules: FeatureBlockItem[] = [
     ],
     "badges": [],
     "image": {
-      "src": "/img/hero-drone-deteccion.jpg",
+      "src": "/img/dashboard-modulo-condicion-corporal.jpg",
       "alt": "Módulo de condición corporal del dashboard DAG"
     }
   },
@@ -112,7 +112,7 @@ const modules: FeatureBlockItem[] = [
     ],
     "badges": [],
     "image": {
-      "src": "/img/foto-campo-aereo.jpeg",
+      "src": "/img/dashboard-modulo-mapa-lotes.jpeg",
       "alt": "Mapa del establecimiento con lotes delineados"
     }
   },
@@ -128,7 +128,7 @@ const modules: FeatureBlockItem[] = [
     ],
     "badges": [],
     "image": {
-      "src": "/img/captura-pantalla-app.jpeg",
+      "src": "/img/dashboard-modulo-historial-vuelos.jpeg",
       "alt": "Historial de vuelos del establecimiento en DAG"
     }
   }
